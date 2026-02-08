@@ -76,7 +76,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "media/audio/media_audio_capture.h"
 #include "media/audio/media_audio.h"
 #include "menu/menu_send.h"
-#include "settings/settings_premium.h"
+#include "settings/sections/settings_premium.h"
 #include "ui/item_text_options.h"
 #include "ui/text/text_options.h"
 #include "ui/text/text_utilities.h"
@@ -2271,7 +2271,7 @@ void ComposeControls::initKeyHandler() {
 			_attachRequests.fire({});
 			return;
 		}
-		if (key == Qt::Key_Up && !hasModifiers) {
+		if (key == Qt::Key_Up && !hasModifiers && !AyuSettings::getInstance().disableUpArrowEdit) {
 			if (!isEditingMessage() && _field->empty()) {
 				_editLastMessageRequests.fire(std::move(keyEvent));
 				return;

@@ -9,6 +9,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 #include "api/api_premium.h"
 #include "api/api_sensitive_content.h"
+#include "api/api_transcribes.h"
 #include "lang/lang_keys.h"
 #include "calls/calls_instance.h" // Core::App().calls().joinGroupCall.
 #include "history/view/history_view_item_preview.h"
@@ -374,8 +375,16 @@ std::unique_ptr<Data::Media> HistoryItem::CreateMedia(
 			item,
 			item->history()->owner().processTodoList(item->fullId(), media));
 	}, [&](const MTPDmessageMediaDice &media) -> Result {
+		auto outcome = Data::DiceGameOutcome();
+		if (const auto game = media.vgame_outcome()) {
+			const auto &data = game->data();
+			outcome.seed = data.vseed().v;
+			outcome.nanoTon = data.vton_amount().v;
+			outcome.stakeNanoTon = data.vstake_ton_amount().v;
+		}
 		return std::make_unique<Data::MediaDice>(
 			item,
+			outcome,
 			qs(media.vemoticon()),
 			media.vvalue().v);
 	}, [&](const MTPDmessageMediaStory &media) -> Result {
@@ -739,6 +748,7 @@ HistoryItem::HistoryItem(
 	_media = std::make_unique<Data::MediaFile>(this, document, Args{
 		.hasQualitiesList = video && !video->qualities.empty(),
 		.skipPremiumEffect = !history->session().premium(),
+		.spoiler = fields.mediaSpoiler,
 	});
 	setText(caption);
 }
@@ -751,7 +761,7 @@ HistoryItem::HistoryItem(
 : HistoryItem(history, fields) {
 	createComponentsHelper(std::move(fields));
 
-	const auto spoiler = false;
+	const auto spoiler = fields.mediaSpoiler;
 	_media = std::make_unique<Data::MediaPhoto>(this, photo, spoiler);
 	setText(caption);
 }
@@ -1882,6 +1892,18 @@ TextWithEntities HistoryItem::factcheckText() const {
 	return {};
 }
 
+const Api::SummaryEntry &HistoryItem::summaryEntry() const {
+	if (!(_flags & MessageFlag::HasSummaryEntry)) {
+		static const auto empty = Api::SummaryEntry();
+		return empty;
+	}
+	return history()->session().api().transcribes().summary(this);
+}
+
+void HistoryItem::setHasSummaryEntry() {
+	_flags |= MessageFlag::HasSummaryEntry;
+}
+
 PeerData *HistoryItem::specialNotificationPeer() const {
 	return (mentionsMe() && !_history->peer->isUser())
 		? from().get()
@@ -1994,7 +2016,9 @@ void HistoryItem::destroy() {
 not_null<Data::Thread*> HistoryItem::notificationThread() const {
 	if (const auto rootId = topicRootId()) {
 		if (const auto forum = _history->asForum()) {
-			return forum->enforceTopicFor(rootId);
+			if (!_history->peer->isBot()) {
+				return forum->enforceTopicFor(rootId);
+			}
 		}
 	}
 	return _history;
@@ -6555,6 +6579,10 @@ void HistoryItem::setServiceMessageByAction(const MTPmessageAction &action) {
 						: QString(),
 					},
 					tr::marked);
+			} else if (action.is_craft()) {
+				result.text = tr::lng_action_gift_crafted(
+					tr::now,
+					tr::marked);
 			} else {
 				result.text = resale
 					? tr::lng_action_gift_self_bought(
@@ -6780,6 +6808,36 @@ void HistoryItem::setServiceMessageByAction(const MTPmessageAction &action) {
 		return result;
 	};
 
+	auto prepareNewCreatorPending = [this](const MTPDmessageActionNewCreatorPending &action) {
+		auto result = PreparedServiceText();
+		auto user = _history->owner().user(action.vnew_creator_id().v);
+		result.links.push_back(fromLink());
+		result.links.push_back(user->createOpenLink());
+		result.text = tr::lng_action_new_creator_pending(
+			tr::now,
+			lt_user,
+			tr::link(user->name(), 2),
+			lt_from,
+			fromLinkText(),
+			tr::marked);
+		return result;
+	};
+
+	auto prepareChangeCreator = [this](const MTPDmessageActionChangeCreator &action) {
+		auto result = PreparedServiceText();
+		auto user = _history->owner().user(action.vnew_creator_id().v);
+		result.links.push_back(fromLink());
+		result.links.push_back(user->createOpenLink());
+		result.text = tr::lng_action_change_creator(
+			tr::now,
+			lt_from,
+			fromLinkText(),
+			lt_user,
+			tr::link(user->name(), 2),
+			tr::marked);
+		return result;
+	};
+
 	setServiceText(action.match(
 		prepareChatAddUserText,
 		prepareChatJoinedByLink,
@@ -6839,6 +6897,8 @@ void HistoryItem::setServiceMessageByAction(const MTPmessageAction &action) {
 		prepareSuggestBirthday,
 		prepareStarGiftPurchaseOffer,
 		prepareStarGiftPurchaseOfferDeclined,
+		prepareNewCreatorPending,
+		prepareChangeCreator,
 		PrepareEmptyText<MTPDmessageActionRequestedPeerSentMe>,
 		PrepareErrorText<MTPDmessageActionEmpty>));
 
@@ -7100,6 +7160,7 @@ void HistoryItem::applyAction(const MTPMessageAction &action) {
 			.refunded = data.is_refunded(),
 			.upgrade = data.is_upgrade(),
 			.saved = data.is_saved(),
+			.craft = data.is_craft(),
 		};
 		if (auto gift = Api::FromTL(&history()->session(), data.vgift())) {
 			fields.stargiftId = gift->id;
@@ -7115,6 +7176,7 @@ void HistoryItem::applyAction(const MTPMessageAction &action) {
 				unique->exportAt = data.vcan_export_at().value_or_empty();
 				unique->canTransferAt = data.vcan_transfer_at().value_or_empty();
 				unique->canResellAt = data.vcan_resell_at().value_or_empty();
+				unique->canCraftAt = data.vcan_craft_at().value_or_empty();
 			}
 		}
 		_media = std::make_unique<Data::MediaGiftBox>(

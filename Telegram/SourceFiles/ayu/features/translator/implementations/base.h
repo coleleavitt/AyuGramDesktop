@@ -23,7 +23,7 @@ class Session;
 namespace Ayu::Translator {
 
 using CallbackSuccess = std::function<void(const std::vector<TextWithEntities> &)>;
-using CallbackFail = std::function<void()>;
+using CallbackFail = std::function<void(bool retryable)>;
 using CallbackCancel = std::function<void()>;
 
 using MultiThreadCallbackSuccess = std::function<void(const TextWithEntities &)>;

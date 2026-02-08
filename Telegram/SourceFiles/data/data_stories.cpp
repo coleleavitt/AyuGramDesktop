@@ -1239,7 +1239,7 @@ void Stories::markAsRead(FullStoryId id, bool viewed) {
 	}
 
 	const auto &settings = AyuSettings::getInstance();
-	if (!settings.sendReadStories) {
+	if (!settings.sendReadStories && !AyuSettings::isGhostExempt(id.peer.value)) {
 		return;
 	}
 
@@ -1398,7 +1398,7 @@ void Stories::sendMarkAsReadRequest(
 		not_null<PeerData*> peer,
 		StoryId tillId) {
 	const auto &settings = AyuSettings::getInstance();
-	if (!settings.sendReadStories) {
+	if (!settings.sendReadStories && !AyuSettings::isGhostExempt(peer->id.value)) {
 		return;
 	}
 
@@ -1433,14 +1433,15 @@ void Stories::sendMarkAsReadRequests() {
 	_markReadTimer.cancel();
 
 	const auto &settings = AyuSettings::getInstance();
-	if (!settings.sendReadStories) {
-		return;
-	}
 
 	for (auto i = begin(_markReadPending); i != end(_markReadPending);) {
 		const auto peerId = *i;
 		if (_markReadRequests.contains(peerId)) {
 			++i;
+			continue;
+		}
+		if (!settings.sendReadStories && !AyuSettings::isGhostExempt(peerId.value)) {
+			i = _markReadPending.erase(i);
 			continue;
 		}
 		const auto j = _all.find(peerId);
@@ -1457,9 +1458,6 @@ void Stories::sendIncrementViewsRequests() {
 	}
 
 	const auto &settings = AyuSettings::getInstance();
-	if (!settings.sendReadStories) {
-		return;
-	}
 
 	struct Prepared {
 		PeerId peer = 0;
@@ -1468,6 +1466,9 @@ void Stories::sendIncrementViewsRequests() {
 	auto prepared = std::vector<Prepared>();
 	for (const auto &[peer, ids] : _incrementViewsPending) {
 		if (_incrementViewsRequests.contains(peer)) {
+			continue;
+		}
+		if (!settings.sendReadStories && !AyuSettings::isGhostExempt(peer.value)) {
 			continue;
 		}
 		prepared.push_back({ .peer = peer });
@@ -2274,11 +2275,6 @@ void Stories::togglePinnedList(
 	auto &saved = _saved[peerId];
 	auto list = QVector<MTPint>();
 	list.reserve(maxPinnedCount());
-	for (const auto &id : saved.ids.pinnedToTop) {
-		if (pin || !ranges::contains(ids, FullStoryId{ peerId, id })) {
-			list.push_back(MTP_int(id));
-		}
-	}
 	if (pin) {
 		auto copy = ids;
 		ranges::sort(copy, ranges::greater());
@@ -2287,6 +2283,11 @@ void Stories::togglePinnedList(
 				&& !ranges::contains(saved.ids.pinnedToTop, id.story)) {
 				list.push_back(MTP_int(id.story));
 			}
+		}
+	}
+	for (const auto &id : saved.ids.pinnedToTop) {
+		if (pin || !ranges::contains(ids, FullStoryId{ peerId, id })) {
+			list.push_back(MTP_int(id));
 		}
 	}
 	const auto api = &_owner->session().api();

@@ -61,6 +61,7 @@ public:
 	bool saveForBots;
 
 	std::unordered_set<long long> shadowBanIds;
+	std::unordered_set<long long> ghostModeExceptions;
 	bool filtersEnabled;
 	bool filtersEnabledInChats;
 	bool hideFromBlocked;
@@ -139,6 +140,7 @@ public:
 	int showPeerId;
 	bool showMessageSeconds;
 	bool showMessageShot;
+	bool showMessageId;
 
 	bool stickerConfirmation;
 	bool gifConfirmation;
@@ -146,9 +148,23 @@ public:
 
 	QString translationProvider;
 
+	QString customSystemVersion;
+	QString customAppVersion;
+	QString customSystemLangCode;
+	bool spoofWebviewAsIOS;
+
 	bool adaptiveCoverColor;
 
+	bool deleteForEveryoneByDefault;
+	bool disableUpArrowEdit;
+	bool confirmBeforeCalling;
+
 	bool crashReporting;
+
+	bool alwaysUseIntelligentForward;
+	bool dontSharePhoneByDefault;
+	bool alwaysOnTop;
+	bool autoUnlockPasscode;
 };
 
 void set_sendReadMessages(bool val);
@@ -246,6 +262,7 @@ void set_quickAdminShortcuts(bool val);
 void set_showPeerId(int val);
 void set_showMessageSeconds(bool val);
 void set_showMessageShot(bool val);
+void set_showMessageId(bool val);
 
 void set_stickerConfirmation(bool val);
 void set_gifConfirmation(bool val);
@@ -253,9 +270,26 @@ void set_voiceConfirmation(bool val);
 
 void set_translationProvider(const QString &val);
 
+void set_customSystemVersion(const QString &val);
+void set_customAppVersion(const QString &val);
+void set_customSystemLangCode(const QString &val);
+void set_spoofWebviewAsIOS(bool val);
+
 void set_adaptiveCoverColor(bool val);
 
+void set_deleteForEveryoneByDefault(bool val);
+void set_disableUpArrowEdit(bool val);
+void set_confirmBeforeCalling(bool val);
+
 void set_crashReporting(bool val);
+
+void set_alwaysUseIntelligentForward(bool val);
+void set_dontSharePhoneByDefault(bool val);
+void set_alwaysOnTop(bool val);
+void set_autoUnlockPasscode(bool val);
+
+void set_ghostModeException(long long peerId, bool exempt);
+bool isGhostExempt(long long peerId);
 
 inline void to_json(nlohmann::json &nlohmann_json_j, const AyuGramSettings &nlohmann_json_t) {
 	NLOHMANN_JSON_TO(sendReadMessages)
@@ -270,6 +304,7 @@ inline void to_json(nlohmann::json &nlohmann_json_j, const AyuGramSettings &nloh
 	NLOHMANN_JSON_TO(saveMessagesHistory)
 	NLOHMANN_JSON_TO(saveForBots)
 	NLOHMANN_JSON_TO(shadowBanIds)
+	NLOHMANN_JSON_TO(ghostModeExceptions)
 	NLOHMANN_JSON_TO(filtersEnabled)
 	NLOHMANN_JSON_TO(filtersEnabledInChats)
 	NLOHMANN_JSON_TO(hideFromBlocked)
@@ -333,12 +368,24 @@ inline void to_json(nlohmann::json &nlohmann_json_j, const AyuGramSettings &nloh
 	NLOHMANN_JSON_TO(showPeerId)
 	NLOHMANN_JSON_TO(showMessageSeconds)
 	NLOHMANN_JSON_TO(showMessageShot)
+	NLOHMANN_JSON_TO(showMessageId)
 	NLOHMANN_JSON_TO(stickerConfirmation)
 	NLOHMANN_JSON_TO(gifConfirmation)
 	NLOHMANN_JSON_TO(voiceConfirmation)
 	NLOHMANN_JSON_TO(translationProvider)
+	NLOHMANN_JSON_TO(customSystemVersion)
+	NLOHMANN_JSON_TO(customAppVersion)
+	NLOHMANN_JSON_TO(customSystemLangCode)
+	NLOHMANN_JSON_TO(spoofWebviewAsIOS)
 	NLOHMANN_JSON_TO(adaptiveCoverColor)
+	NLOHMANN_JSON_TO(deleteForEveryoneByDefault)
+	NLOHMANN_JSON_TO(disableUpArrowEdit)
+	NLOHMANN_JSON_TO(confirmBeforeCalling)
 	NLOHMANN_JSON_TO(crashReporting)
+	NLOHMANN_JSON_TO(alwaysUseIntelligentForward)
+	NLOHMANN_JSON_TO(dontSharePhoneByDefault)
+	NLOHMANN_JSON_TO(alwaysOnTop)
+	NLOHMANN_JSON_TO(autoUnlockPasscode)
 }
 
 inline void from_json(const nlohmann::json &nlohmann_json_j, AyuGramSettings &nlohmann_json_t) {
@@ -357,6 +404,7 @@ inline void from_json(const nlohmann::json &nlohmann_json_j, AyuGramSettings &nl
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(filtersEnabled)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(filtersEnabledInChats)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(shadowBanIds)
+	NLOHMANN_JSON_FROM_WITH_DEFAULT(ghostModeExceptions)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(hideFromBlocked)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(disableAds)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(disableStories)
@@ -418,12 +466,24 @@ inline void from_json(const nlohmann::json &nlohmann_json_j, AyuGramSettings &nl
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(showPeerId)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(showMessageSeconds)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(showMessageShot)
+	NLOHMANN_JSON_FROM_WITH_DEFAULT(showMessageId)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(stickerConfirmation)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(gifConfirmation)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(voiceConfirmation)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(translationProvider)
+	NLOHMANN_JSON_FROM_WITH_DEFAULT(customSystemVersion)
+	NLOHMANN_JSON_FROM_WITH_DEFAULT(customAppVersion)
+	NLOHMANN_JSON_FROM_WITH_DEFAULT(customSystemLangCode)
+	NLOHMANN_JSON_FROM_WITH_DEFAULT(spoofWebviewAsIOS)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(adaptiveCoverColor)
+	NLOHMANN_JSON_FROM_WITH_DEFAULT(deleteForEveryoneByDefault)
+	NLOHMANN_JSON_FROM_WITH_DEFAULT(disableUpArrowEdit)
+	NLOHMANN_JSON_FROM_WITH_DEFAULT(confirmBeforeCalling)
 	NLOHMANN_JSON_FROM_WITH_DEFAULT(crashReporting)
+	NLOHMANN_JSON_FROM_WITH_DEFAULT(alwaysUseIntelligentForward)
+	NLOHMANN_JSON_FROM_WITH_DEFAULT(dontSharePhoneByDefault)
+	NLOHMANN_JSON_FROM_WITH_DEFAULT(alwaysOnTop)
+	NLOHMANN_JSON_FROM_WITH_DEFAULT(autoUnlockPasscode)
 }
 
 AyuGramSettings &getInstance();

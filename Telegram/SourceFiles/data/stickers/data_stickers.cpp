@@ -22,7 +22,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "history/history_item_components.h"
 #include "apiwrap.h"
 #include "storage/storage_account.h"
-#include "settings/settings_premium.h"
+#include "settings/sections/settings_premium.h"
 #include "core/application.h"
 #include "core/core_settings.h"
 #include "main/main_session.h"
@@ -186,6 +186,14 @@ void Stickers::notifyStickerSetInstalled(uint64 setId) {
 
 rpl::producer<uint64> Stickers::stickerSetInstalled() const {
 	return _stickerSetInstalled.events();
+}
+
+void Stickers::notifyGifWithCaptionSent() {
+	_gifWithCaptionSent.fire({});
+}
+
+rpl::producer<> Stickers::gifWithCaptionSent() const {
+	return _gifWithCaptionSent.events();
 }
 
 void Stickers::notifyEmojiSetInstalled(uint64 setId) {

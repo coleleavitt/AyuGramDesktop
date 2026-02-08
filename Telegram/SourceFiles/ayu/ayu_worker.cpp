@@ -33,7 +33,7 @@ base::Timer &workerTimer() {
 void markAsOnline(not_null<Main::Session*> session) {
 	state[session->userId().bare] = true;
 	workerTimer().cancel();
-	workerTimer().callEach(3000);
+	workerTimer().callOnce(3000);
 }
 
 void lateInit() {
@@ -83,7 +83,7 @@ void runOnce() {
 }
 
 void initialize() {
-	workerTimer().callEach(3000);
+	workerTimer().callOnce(3000);
 }
 
 }

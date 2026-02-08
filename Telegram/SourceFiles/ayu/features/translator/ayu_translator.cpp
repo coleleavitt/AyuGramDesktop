@@ -6,6 +6,7 @@
 // Copyright @Radolyn, 2025
 #include "ayu_translator.h"
 
+#include <memory>
 #include <optional>
 #include <QtCore/QCryptographicHash>
 #include <QtCore/QString>
@@ -16,14 +17,36 @@
 #include "data/data_peer.h"
 #include "data/data_session.h"
 #include "history/history_item.h"
+#include "implementations/deepl.h"
 #include "implementations/google.h"
 #include "implementations/telegram.h"
 #include "implementations/yandex.h"
 #include "main/main_session.h"
 
-// todo: expose available languages from current translator and use in `ChooseTranslateToBox`
-
 namespace Ayu::Translator {
+
+static std::vector<QString> getProviderChain(const QString &primary) {
+	std::vector<QString> chain;
+	chain.push_back(primary);
+	for (const auto &p : { QString("google"), QString("deepl"), QString("yandex"), QString("telegram") }) {
+		if (p != primary) {
+			chain.push_back(p);
+		}
+	}
+	return chain;
+}
+
+static CallbackCancel startWithProvider(const QString &provider, const StartTranslationArgs &args) {
+	if (provider == "telegram") {
+		return TelegramTranslator::instance().startTranslation(args);
+	} else if (provider == "yandex") {
+		return YandexTranslator::instance().startTranslation(args);
+	} else if (provider == "deepl") {
+		return DeepLTranslator::instance().startTranslation(args);
+	} else {
+		return GoogleTranslator::instance().startTranslation(args);
+	}
+}
 
 TranslateManager::Builder::Builder(
 	TranslateManager &manager,
@@ -114,8 +137,7 @@ mtpRequestId TranslateManager::performTranslation(Builder &req) {
 			};
 			texts.push_back(textWithEntities);
 
-			// todo: entities are not considered in cache key
-			const auto key = generateCacheKey(text, fromLang, toLang);
+			const auto key = generateCacheKey(text, entities, fromLang, toLang);
 			cacheKeys.push_back(key);
 
 			if (const auto cached = getFromCache(key)) {
@@ -144,12 +166,11 @@ mtpRequestId TranslateManager::performTranslation(Builder &req) {
 						uncachedIndices.push_back(i);
 						uncachedTexts.push_back(textWithEntities);
 					}
-				} else {
-					// todo: ??
-					texts.push_back({});
-					cacheKeys.push_back(QString());
-					resultTexts.push_back({});
-				}
+			} else {
+				texts.push_back(TextWithEntities{ .text = QString() });
+				cacheKeys.push_back(QString());
+				resultTexts.push_back(TextWithEntities{ .text = QString() });
+			}
 			}
 		}
 	}
@@ -203,12 +224,18 @@ mtpRequestId TranslateManager::performTranslation(Builder &req) {
 		triggerDone(id, result);
 	};
 
-	CallbackFail onFail = [this, id]
+	const auto &settings = AyuSettings::getInstance();
+	const auto providerChain = std::make_shared<std::vector<QString>>(getProviderChain(settings.translationProvider));
+
+	struct FallbackState
 	{
-		triggerFail(id);
+		Main::Session *session;
+		PassedData requestData;
+		ParsedData parsedData;
+		CallbackSuccess onSuccess;
 	};
 
-	const auto args = StartTranslationArgs{
+	auto shared = std::make_shared<FallbackState>(FallbackState{
 		.session = req.session(),
 		.requestData = {
 			.flags = req.flags(),
@@ -223,18 +250,41 @@ mtpRequestId TranslateManager::performTranslation(Builder &req) {
 			.toLang = toLang,
 		},
 		.onSuccess = std::move(onSuccess),
-		.onFail = std::move(onFail),
+	});
+
+	auto onFailPtr = std::make_shared<CallbackFail>();
+	*onFailPtr = [this, id, providerChain, shared, onFailPtr](bool /*retryable*/)
+	{
+		const auto it = _pending.find(id);
+		if (it == _pending.end()) return;
+
+		it->second.providerIndex++;
+		if (it->second.providerIndex >= static_cast<int>(providerChain->size())) {
+			triggerFail(id);
+			return;
+		}
+
+		auto args = StartTranslationArgs{
+			.session = shared->session,
+			.requestData = shared->requestData,
+			.parsedData = shared->parsedData,
+			.onSuccess = shared->onSuccess,
+			.onFail = *onFailPtr,
+		};
+
+		it->second.cancel = startWithProvider((*providerChain)[it->second.providerIndex], args);
+	};
+
+	auto args = StartTranslationArgs{
+		.session = shared->session,
+		.requestData = shared->requestData,
+		.parsedData = shared->parsedData,
+		.onSuccess = shared->onSuccess,
+		.onFail = *onFailPtr,
 	};
 
 	if (const auto it = _pending.find(id); it != _pending.end()) {
-		const auto &settings = AyuSettings::getInstance();
-		if (settings.translationProvider == "telegram") {
-			it->second.cancel = TelegramTranslator::instance().startTranslation(args);
-		} else if (settings.translationProvider == "yandex") {
-			it->second.cancel = YandexTranslator::instance().startTranslation(args);
-		} else {
-			it->second.cancel = GoogleTranslator::instance().startTranslation(args);
-		}
+		it->second.cancel = startWithProvider((*providerChain)[0], args);
 	}
 
 	return id;
@@ -273,7 +323,13 @@ void TranslateManager::resetCache() {
 	_cacheList.clear();
 	_cacheMap.clear();
 
-	// todo: remove all running requests
+	auto pending = std::move(_pending);
+	_pending.clear();
+	for (auto &[id, entry] : pending) {
+		if (entry.cancel) {
+			entry.cancel();
+		}
+	}
 }
 
 TranslateManager *TranslateManager::currentInstance() {
@@ -286,9 +342,18 @@ void TranslateManager::init() {
 	if (!instance) instance = new TranslateManager;
 }
 
-QString TranslateManager::generateCacheKey(const QString &text, const QString &fromLang, const QString &toLang) const {
-	const auto textHash = QCryptographicHash::hash(text.toUtf8(), QCryptographicHash::Sha1).toHex();
-	return QStringLiteral("%1_%2_%3").arg(QString::fromLatin1(textHash), fromLang, toLang);
+QString TranslateManager::generateCacheKey(const QString &text, const EntitiesInText &entities, const QString &fromLang, const QString &toLang) const {
+	QByteArray data = text.toUtf8();
+	for (const auto &entity : entities) {
+		const auto offset = entity.offset();
+		const auto length = entity.length();
+		const auto type = entity.type();
+		data.append(reinterpret_cast<const char *>(&offset), sizeof(offset));
+		data.append(reinterpret_cast<const char *>(&length), sizeof(length));
+		data.append(reinterpret_cast<const char *>(&type), sizeof(type));
+	}
+	const auto hash = QCryptographicHash::hash(data, QCryptographicHash::Sha1).toHex();
+	return QStringLiteral("%1_%2_%3").arg(QString::fromLatin1(hash), fromLang, toLang);
 }
 
 QString TranslateManager::generateMessageCacheKey(PeerId peerId,

@@ -1008,7 +1008,7 @@ void RepliesList::sendReadTillRequest() {
 	api->request(base::take(_readRequestId)).cancel();
 
 	const auto &settings = AyuSettings::getInstance();
-	if (!settings.sendReadMessages) {
+	if (!settings.sendReadMessages && !AyuSettings::isGhostExempt(_history->peer->id.value)) {
 		return;
 	}
 

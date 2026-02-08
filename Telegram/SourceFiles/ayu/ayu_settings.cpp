@@ -326,6 +326,7 @@ AyuGramSettings::AyuGramSettings() {
 	showPeerId = 2;
 	showMessageSeconds = false;
 	showMessageShot = true;
+	showMessageId = false;
 
 	// ~ Confirmations
 	stickerConfirmation = false;
@@ -334,9 +335,23 @@ AyuGramSettings::AyuGramSettings() {
 
 	translationProvider = "telegram"; // telegram, google, yandex
 
+	customSystemVersion = "";
+	customAppVersion = "";
+	customSystemLangCode = "";
+	spoofWebviewAsIOS = false;
+
 	adaptiveCoverColor = true;
 
+	deleteForEveryoneByDefault = true;
+	disableUpArrowEdit = false;
+	confirmBeforeCalling = true;
+
 	crashReporting = true;
+
+	alwaysUseIntelligentForward = false;
+	dontSharePhoneByDefault = true;
+	alwaysOnTop = false;
+	autoUnlockPasscode = false;
 }
 
 void set_sendReadMessages(bool val) {
@@ -682,12 +697,73 @@ void set_translationProvider(const QString &val) {
 	Ayu::Translator::TranslateManager::currentInstance()->resetCache();
 }
 
+void set_customSystemVersion(const QString &val) {
+	settings->customSystemVersion = val;
+}
+
+void set_customAppVersion(const QString &val) {
+	settings->customAppVersion = val;
+}
+
+void set_customSystemLangCode(const QString &val) {
+	settings->customSystemLangCode = val;
+}
+
+void set_spoofWebviewAsIOS(bool val) {
+	settings->spoofWebviewAsIOS = val;
+}
+
 void set_adaptiveCoverColor(bool val) {
 	settings->adaptiveCoverColor = val;
 }
 
+void set_deleteForEveryoneByDefault(bool val) {
+	settings->deleteForEveryoneByDefault = val;
+}
+
+void set_disableUpArrowEdit(bool val) {
+	settings->disableUpArrowEdit = val;
+}
+
+void set_confirmBeforeCalling(bool val) {
+	settings->confirmBeforeCalling = val;
+}
+
 void set_crashReporting(bool val) {
 	settings->crashReporting = val;
+}
+
+void set_showMessageId(bool val) {
+	settings->showMessageId = val;
+}
+
+void set_alwaysUseIntelligentForward(bool val) {
+	settings->alwaysUseIntelligentForward = val;
+}
+
+void set_dontSharePhoneByDefault(bool val) {
+	settings->dontSharePhoneByDefault = val;
+}
+
+void set_alwaysOnTop(bool val) {
+	settings->alwaysOnTop = val;
+}
+
+void set_autoUnlockPasscode(bool val) {
+	settings->autoUnlockPasscode = val;
+}
+
+void set_ghostModeException(long long peerId, bool exempt) {
+	if (exempt) {
+		settings->ghostModeExceptions.insert(peerId);
+	} else {
+		settings->ghostModeExceptions.erase(peerId);
+	}
+	save();
+}
+
+bool isGhostExempt(long long peerId) {
+	return settings->ghostModeExceptions.count(peerId) > 0;
 }
 
 bool isUseScheduledMessages() {

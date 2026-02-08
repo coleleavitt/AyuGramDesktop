@@ -69,7 +69,7 @@ QPointer<QNetworkReply> YandexTranslator::startSingleTranslation(
 	const auto onFail = args.onFail;
 
 	if (text.empty() || toLang.isEmpty()) {
-		if (onFail) onFail();
+		if (onFail) onFail(false);
 		return nullptr;
 	}
 
@@ -118,7 +118,7 @@ QPointer<QNetworkReply> YandexTranslator::startSingleTranslation(
 							 [](QNetworkReply *r) { r->deleteLater(); });
 
 						 if (reply->error() != QNetworkReply::NoError) {
-							 if (onFail) onFail();
+							 if (onFail) onFail(true);
 							 return;
 						 }
 
@@ -126,7 +126,7 @@ QPointer<QNetworkReply> YandexTranslator::startSingleTranslation(
 						 bool ok = false;
 						 const auto translatedText = parseJsonPath(body, QStringLiteral("text"), &ok);
 						 if (!ok) {
-							 if (onFail) onFail();
+							 if (onFail) onFail(false);
 							 return;
 						 }
 						 if (onSuccess) onSuccess(shouldWrapInHtml()

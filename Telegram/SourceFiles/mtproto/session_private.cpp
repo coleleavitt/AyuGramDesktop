@@ -22,6 +22,8 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "base/unixtime.h"
 #include "base/platform/base_platform_info.h"
 
+#include "ayu/ayu_settings.h"
+
 #include <ksandbox.h>
 #include <zlib.h>
 
@@ -681,7 +683,13 @@ void SessionPrivate::tryToSend() {
 		const auto systemVersion = (_currentDcType == DcType::Cdn)
 			? "n/a"
 			: _instance->systemVersion();
-		const auto appVersion = ComputeAppVersion();
+		const auto appVersion = [&] {
+			const auto &ayuSettings = AyuSettings::getInstance();
+			if (!ayuSettings.customAppVersion.isEmpty()) {
+				return ayuSettings.customAppVersion;
+			}
+			return ComputeAppVersion();
+		}();
 		const auto proxyType = _options->proxy.type;
 		const auto mtprotoProxy = (proxyType == ProxyData::Type::Mtproto);
 		const auto clientProxyFields = mtprotoProxy

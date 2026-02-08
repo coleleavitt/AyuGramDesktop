@@ -1,0 +1,6 @@
+// AUTO-GENERATED
+
+#ifndef _GI_XDPINHIBIT__ENUMS_HPP_
+#define _GI_XDPINHIBIT__ENUMS_HPP_
+
+#endif

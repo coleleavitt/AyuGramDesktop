@@ -74,13 +74,16 @@ public:
 
 [[nodiscard]] not_null<Ui::FlatLabel*> AddVersionLabel(
 		not_null<Ui::RpWidget*> parent) {
-	return (Platform::IsMacStoreBuild() || Platform::IsWindowsStoreBuild())
-		? Ui::CreateChild<Ui::FlatLabel>(
-			parent.get(),
-			st::mainMenuVersionLabel)
-		: Ui::CreateChild<VersionLabel>(
-			parent.get(),
-			st::mainMenuVersionLabel);
+	const auto label = Ui::CreateChild<Ui::FlatLabel>(
+		parent.get(),
+		st::mainMenuVersionLabel);
+	if constexpr (Platform::IsMacStoreBuild()
+		|| Platform::IsWindowsStoreBuild()) {
+		Ui::InstallTooltip(label, [] {
+			return u"Build date: %1."_q.arg(__DATE__);
+		});
+	}
+	return label;
 }
 
 not_null<Ui::SettingsButton*> AddMyChannelsBox(

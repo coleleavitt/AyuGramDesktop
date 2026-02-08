@@ -1,0 +1,3801 @@
+<?xml version="1.0"?>
+<!-- This file was automatically generated from C sources - DO NOT EDIT!
+To affect the contents of this file, edit the original C definitions,
+and/or use gtk-doc annotations.  -->
+<repository version="1.2"
+            xmlns="http://www.gtk.org/introspection/core/1.0"
+            xmlns:c="http://www.gtk.org/introspection/c/1.0"
+            xmlns:doc="http://www.gtk.org/introspection/doc/1.0"
+            xmlns:glib="http://www.gtk.org/introspection/glib/1.0">
+  <include name="Gio" version="2.0"/>
+  <c:include name="/home/cole/AyuGram-build/tdesktop/Telegram/gen/dbus/Telegram_XdgNotifications_dbus.h"/>
+  <doc:format name="unknown"/>
+  <namespace name="XdgNotifications"
+             version="1.0"
+             shared-library=""
+             c:identifier-prefixes="XdgNotifications"
+             c:symbol-prefixes="xdg_notifications">
+    <function-macro name="IS_NOTIFICATIONS"
+                    c:identifier="XDG_NOTIFICATIONS_IS_NOTIFICATIONS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="22"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_NOTIFICATIONS_PROXY"
+                    c:identifier="XDG_NOTIFICATIONS_IS_NOTIFICATIONS_PROXY"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="309"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_NOTIFICATIONS_PROXY_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_IS_NOTIFICATIONS_PROXY_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="310"/>
+      <parameters>
+        <parameter name="k">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_NOTIFICATIONS_SKELETON"
+                    c:identifier="XDG_NOTIFICATIONS_IS_NOTIFICATIONS_SKELETON"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="379"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_NOTIFICATIONS_SKELETON_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_IS_NOTIFICATIONS_SKELETON_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="380"/>
+      <parameters>
+        <parameter name="k">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_OBJECT"
+                    c:identifier="XDG_NOTIFICATIONS_IS_OBJECT"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="411"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_OBJECT_MANAGER_CLIENT"
+                    c:identifier="XDG_NOTIFICATIONS_IS_OBJECT_MANAGER_CLIENT"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="497"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_OBJECT_MANAGER_CLIENT_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_IS_OBJECT_MANAGER_CLIENT_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="498"/>
+      <parameters>
+        <parameter name="k">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_OBJECT_PROXY"
+                    c:identifier="XDG_NOTIFICATIONS_IS_OBJECT_PROXY"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="432"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_OBJECT_PROXY_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_IS_OBJECT_PROXY_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="433"/>
+      <parameters>
+        <parameter name="k">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_OBJECT_SKELETON"
+                    c:identifier="XDG_NOTIFICATIONS_IS_OBJECT_SKELETON"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="463"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="IS_OBJECT_SKELETON_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_IS_OBJECT_SKELETON_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="464"/>
+      <parameters>
+        <parameter name="k">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="NOTIFICATIONS"
+                    c:identifier="XDG_NOTIFICATIONS_NOTIFICATIONS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="21"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="NOTIFICATIONS_GET_IFACE"
+                    c:identifier="XDG_NOTIFICATIONS_NOTIFICATIONS_GET_IFACE"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="23"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="NOTIFICATIONS_PROXY"
+                    c:identifier="XDG_NOTIFICATIONS_NOTIFICATIONS_PROXY"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="306"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="NOTIFICATIONS_PROXY_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_NOTIFICATIONS_PROXY_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="307"/>
+      <parameters>
+        <parameter name="k">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="NOTIFICATIONS_PROXY_GET_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_NOTIFICATIONS_PROXY_GET_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="308"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="NOTIFICATIONS_SKELETON"
+                    c:identifier="XDG_NOTIFICATIONS_NOTIFICATIONS_SKELETON"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="376"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="NOTIFICATIONS_SKELETON_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_NOTIFICATIONS_SKELETON_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="377"/>
+      <parameters>
+        <parameter name="k">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="NOTIFICATIONS_SKELETON_GET_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_NOTIFICATIONS_SKELETON_GET_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="378"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <interface name="Notifications"
+               c:symbol-prefix="notifications"
+               c:type="XdgNotificationsNotifications"
+               glib:type-name="XdgNotificationsNotifications"
+               glib:get-type="xdg_notifications_notifications_get_type"
+               glib:type-struct="NotificationsIface">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="1277">Abstract interface type for the D-Bus interface &lt;link linkend="gdbus-interface-org-freedesktop-Notifications.top_of_page"&gt;org.freedesktop.Notifications&lt;/link&gt;.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="94"/>
+      <function name="interface_info"
+                c:identifier="xdg_notifications_notifications_interface_info">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1115">Gets a machine-readable description of the &lt;link linkend="gdbus-interface-org-freedesktop-Notifications.top_of_page"&gt;org.freedesktop.Notifications&lt;/link&gt; D-Bus interface.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="98"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1120">A #GDBusInterfaceInfo. Do not free.</doc>
+          <type name="Gio.DBusInterfaceInfo" c:type="GDBusInterfaceInfo*"/>
+        </return-value>
+      </function>
+      <function name="override_properties"
+                c:identifier="xdg_notifications_notifications_override_properties">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1128">Overrides all #GObject properties in the #XdgNotificationsNotifications interface for a concrete class.
+The properties are overridden in the order they are defined.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="99"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1136">The last property id.</doc>
+          <type name="guint" c:type="guint"/>
+        </return-value>
+        <parameters>
+          <parameter name="klass" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1130">The class structure for a #GObject derived class.</doc>
+            <type name="GObject.ObjectClass" c:type="GObjectClass*"/>
+          </parameter>
+          <parameter name="property_id_begin" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1131">The property id to assign to the first overridden property.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </function>
+      <virtual-method name="action_invoked">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1293">Handler for the #XdgNotificationsNotifications::action-invoked signal.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="74"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_id" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_action_key" transfer-ownership="none">
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="activation_token">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1294">Handler for the #XdgNotificationsNotifications::activation-token signal.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="79"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_id" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_activation_token" transfer-ownership="none">
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="get_inhibited"
+                      invoker="get_inhibited"
+                      introspectable="0">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1550">Gets the value of the &lt;link linkend="gdbus-property-org-freedesktop-Notifications.Inhibited"&gt;"Inhibited"&lt;/link&gt; D-Bus property.
+
+Since this D-Bus property is readable, it is meaningful to use this function on both the client- and service-side.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="72"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1558">The property value.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1552">A #XdgNotificationsNotifications.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="handle_close_notification">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1286">Handler for the #XdgNotificationsNotifications::handle-close-notification signal.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="35"/>
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="invocation" transfer-ownership="none">
+            <type name="Gio.DBusMethodInvocation"
+                  c:type="GDBusMethodInvocation*"/>
+          </parameter>
+          <parameter name="arg_id" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="handle_get_capabilities">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1287">Handler for the #XdgNotificationsNotifications::handle-get-capabilities signal.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="40"/>
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="invocation" transfer-ownership="none">
+            <type name="Gio.DBusMethodInvocation"
+                  c:type="GDBusMethodInvocation*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="handle_get_server_information">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1288">Handler for the #XdgNotificationsNotifications::handle-get-server-information signal.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="44"/>
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="invocation" transfer-ownership="none">
+            <type name="Gio.DBusMethodInvocation"
+                  c:type="GDBusMethodInvocation*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="handle_inhibit">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1289">Handler for the #XdgNotificationsNotifications::handle-inhibit signal.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="48"/>
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="invocation" transfer-ownership="none">
+            <type name="Gio.DBusMethodInvocation"
+                  c:type="GDBusMethodInvocation*"/>
+          </parameter>
+          <parameter name="arg_desktop_entry" transfer-ownership="none">
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_reason" transfer-ownership="none">
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_hints" transfer-ownership="none">
+            <type name="GLib.Variant" c:type="GVariant*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="handle_notify">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1290">Handler for the #XdgNotificationsNotifications::handle-notify signal.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="55"/>
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="invocation" transfer-ownership="none">
+            <type name="Gio.DBusMethodInvocation"
+                  c:type="GDBusMethodInvocation*"/>
+          </parameter>
+          <parameter name="arg_app_name" transfer-ownership="none">
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_replaces_id" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_app_icon" transfer-ownership="none">
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_summary" transfer-ownership="none">
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_body" transfer-ownership="none">
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_actions" transfer-ownership="none">
+            <type name="utf8" c:type="const gchar* const*"/>
+          </parameter>
+          <parameter name="arg_hints" transfer-ownership="none">
+            <type name="GLib.Variant" c:type="GVariant*"/>
+          </parameter>
+          <parameter name="arg_timeout" transfer-ownership="none">
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="handle_un_inhibit">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1291">Handler for the #XdgNotificationsNotifications::handle-un-inhibit signal.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="67"/>
+        <return-value transfer-ownership="none">
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="invocation" transfer-ownership="none">
+            <type name="Gio.DBusMethodInvocation"
+                  c:type="GDBusMethodInvocation*"/>
+          </parameter>
+          <parameter name="arg_unnamed_arg0" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="notification_closed">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1295">Handler for the #XdgNotificationsNotifications::notification-closed signal.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="84"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_id" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_reason" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <virtual-method name="notification_replied">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1296">Handler for the #XdgNotificationsNotifications::notification-replied signal.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="89"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_id" transfer-ownership="none">
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_text" transfer-ownership="none">
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </virtual-method>
+      <method name="call_close_notification"
+              c:identifier="xdg_notifications_notifications_call_close_notification"
+              glib:finish-func="call_close_notification_finish"
+              glib:sync-func="call_close_notification_sync">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1797">Asynchronously invokes the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.CloseNotification"&gt;CloseNotification()&lt;/link&gt; D-Bus method on @proxy.
+When the operation is finished, @callback will be invoked in the thread-default main loop of the thread you are calling this method from (see g_main_context_push_thread_default()).
+You can then call xdg_notifications_notifications_call_close_notification_finish() to get the result of the operation.
+
+See xdg_notifications_notifications_call_close_notification_sync() for the synchronous, blocking version of this method.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="194"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1799">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1800">Argument to pass with the method invocation.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1801">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1"
+                     scope="async"
+                     closure="3">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1802">A #GAsyncReadyCallback to call when the request is satisfied or %NULL.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1803">User data to pass to @callback.</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_close_notification_finish"
+              c:identifier="xdg_notifications_notifications_call_close_notification_finish"
+              throws="1">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1830">Finishes an operation started with xdg_notifications_notifications_call_close_notification().</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="201"/>
+        <return-value transfer-ownership="none" skip="1">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1838">%TRUE if the call succeeded, %FALSE if @error is set.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1832">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1833">The #GAsyncResult obtained from the #GAsyncReadyCallback passed to xdg_notifications_notifications_call_close_notification().</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_close_notification_sync"
+              c:identifier="xdg_notifications_notifications_call_close_notification_sync"
+              throws="1"
+              glib:async-func="call_close_notification">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1857">Synchronously invokes the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.CloseNotification"&gt;CloseNotification()&lt;/link&gt; D-Bus method on @proxy. The calling thread is blocked until a reply is received.
+
+See xdg_notifications_notifications_call_close_notification() for the asynchronous version of this method.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="206"/>
+        <return-value transfer-ownership="none" skip="1">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1868">%TRUE if the call succeeded, %FALSE if @error is set.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1859">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1860">Argument to pass with the method invocation.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1861">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_get_capabilities"
+              c:identifier="xdg_notifications_notifications_call_get_capabilities"
+              glib:finish-func="call_get_capabilities_finish"
+              glib:sync-func="call_get_capabilities_sync">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1895">Asynchronously invokes the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.GetCapabilities"&gt;GetCapabilities()&lt;/link&gt; D-Bus method on @proxy.
+When the operation is finished, @callback will be invoked in the thread-default main loop of the thread you are calling this method from (see g_main_context_push_thread_default()).
+You can then call xdg_notifications_notifications_call_get_capabilities_finish() to get the result of the operation.
+
+See xdg_notifications_notifications_call_get_capabilities_sync() for the synchronous, blocking version of this method.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="212"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1897">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1898">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1"
+                     scope="async"
+                     closure="2">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1899">A #GAsyncReadyCallback to call when the request is satisfied or %NULL.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1900">User data to pass to @callback.</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_get_capabilities_finish"
+              c:identifier="xdg_notifications_notifications_call_get_capabilities_finish"
+              throws="1">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1925">Finishes an operation started with xdg_notifications_notifications_call_get_capabilities().</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="218"/>
+        <return-value transfer-ownership="none" skip="1">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1934">%TRUE if the call succeeded, %FALSE if @error is set.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1927">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="out_caps"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     optional="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1928">Return location for return parameter or %NULL to ignore.</doc>
+            <array c:type="gchar***">
+              <type name="utf8" c:type="gchar**"/>
+            </array>
+          </parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1929">The #GAsyncResult obtained from the #GAsyncReadyCallback passed to xdg_notifications_notifications_call_get_capabilities().</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_get_capabilities_sync"
+              c:identifier="xdg_notifications_notifications_call_get_capabilities_sync"
+              throws="1"
+              glib:async-func="call_get_capabilities">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1955">Synchronously invokes the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.GetCapabilities"&gt;GetCapabilities()&lt;/link&gt; D-Bus method on @proxy. The calling thread is blocked until a reply is received.
+
+See xdg_notifications_notifications_call_get_capabilities() for the asynchronous version of this method.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="224"/>
+        <return-value transfer-ownership="none" skip="1">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1966">%TRUE if the call succeeded, %FALSE if @error is set.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1957">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="out_caps"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     optional="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1958">Return location for return parameter or %NULL to ignore.</doc>
+            <array c:type="gchar***">
+              <type name="utf8" c:type="gchar**"/>
+            </array>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1959">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_get_server_information"
+              c:identifier="xdg_notifications_notifications_call_get_server_information"
+              glib:finish-func="call_get_server_information_finish"
+              glib:sync-func="call_get_server_information_sync">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1993">Asynchronously invokes the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.GetServerInformation"&gt;GetServerInformation()&lt;/link&gt; D-Bus method on @proxy.
+When the operation is finished, @callback will be invoked in the thread-default main loop of the thread you are calling this method from (see g_main_context_push_thread_default()).
+You can then call xdg_notifications_notifications_call_get_server_information_finish() to get the result of the operation.
+
+See xdg_notifications_notifications_call_get_server_information_sync() for the synchronous, blocking version of this method.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="230"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1995">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1996">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1"
+                     scope="async"
+                     closure="2">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1997">A #GAsyncReadyCallback to call when the request is satisfied or %NULL.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1998">User data to pass to @callback.</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_get_server_information_finish"
+              c:identifier="xdg_notifications_notifications_call_get_server_information_finish"
+              throws="1">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2023">Finishes an operation started with xdg_notifications_notifications_call_get_server_information().</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="236"/>
+        <return-value transfer-ownership="none" skip="1">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="2035">%TRUE if the call succeeded, %FALSE if @error is set.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2025">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="out_name"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     optional="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2026">Return location for return parameter or %NULL to ignore.</doc>
+            <type name="utf8" c:type="gchar**"/>
+          </parameter>
+          <parameter name="out_vendor"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     optional="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2027">Return location for return parameter or %NULL to ignore.</doc>
+            <type name="utf8" c:type="gchar**"/>
+          </parameter>
+          <parameter name="out_version"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     optional="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2028">Return location for return parameter or %NULL to ignore.</doc>
+            <type name="utf8" c:type="gchar**"/>
+          </parameter>
+          <parameter name="out_spec_version"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     optional="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2029">Return location for return parameter or %NULL to ignore.</doc>
+            <type name="utf8" c:type="gchar**"/>
+          </parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2030">The #GAsyncResult obtained from the #GAsyncReadyCallback passed to xdg_notifications_notifications_call_get_server_information().</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_get_server_information_sync"
+              c:identifier="xdg_notifications_notifications_call_get_server_information_sync"
+              throws="1"
+              glib:async-func="call_get_server_information">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2062">Synchronously invokes the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.GetServerInformation"&gt;GetServerInformation()&lt;/link&gt; D-Bus method on @proxy. The calling thread is blocked until a reply is received.
+
+See xdg_notifications_notifications_call_get_server_information() for the asynchronous version of this method.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="245"/>
+        <return-value transfer-ownership="none" skip="1">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="2076">%TRUE if the call succeeded, %FALSE if @error is set.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2064">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="out_name"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     optional="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2065">Return location for return parameter or %NULL to ignore.</doc>
+            <type name="utf8" c:type="gchar**"/>
+          </parameter>
+          <parameter name="out_vendor"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     optional="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2066">Return location for return parameter or %NULL to ignore.</doc>
+            <type name="utf8" c:type="gchar**"/>
+          </parameter>
+          <parameter name="out_version"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     optional="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2067">Return location for return parameter or %NULL to ignore.</doc>
+            <type name="utf8" c:type="gchar**"/>
+          </parameter>
+          <parameter name="out_spec_version"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     optional="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2068">Return location for return parameter or %NULL to ignore.</doc>
+            <type name="utf8" c:type="gchar**"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2069">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_inhibit"
+              c:identifier="xdg_notifications_notifications_call_inhibit"
+              glib:finish-func="call_inhibit_finish"
+              glib:sync-func="call_inhibit_sync">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2109">Asynchronously invokes the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.Inhibit"&gt;Inhibit()&lt;/link&gt; D-Bus method on @proxy.
+When the operation is finished, @callback will be invoked in the thread-default main loop of the thread you are calling this method from (see g_main_context_push_thread_default()).
+You can then call xdg_notifications_notifications_call_inhibit_finish() to get the result of the operation.
+
+See xdg_notifications_notifications_call_inhibit_sync() for the synchronous, blocking version of this method.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="254"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2111">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_desktop_entry" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2112">Argument to pass with the method invocation.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_reason" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2113">Argument to pass with the method invocation.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_hints" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2114">Argument to pass with the method invocation.</doc>
+            <type name="GLib.Variant" c:type="GVariant*"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2115">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1"
+                     scope="async"
+                     closure="5">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2116">A #GAsyncReadyCallback to call when the request is satisfied or %NULL.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2117">User data to pass to @callback.</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_inhibit_finish"
+              c:identifier="xdg_notifications_notifications_call_inhibit_finish"
+              throws="1">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2148">Finishes an operation started with xdg_notifications_notifications_call_inhibit().</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="263"/>
+        <return-value transfer-ownership="none" skip="1">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="2157">%TRUE if the call succeeded, %FALSE if @error is set.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2150">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="out_unnamed_arg3"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     optional="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2151">Return location for return parameter or %NULL to ignore.</doc>
+            <type name="guint" c:type="guint*"/>
+          </parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2152">The #GAsyncResult obtained from the #GAsyncReadyCallback passed to xdg_notifications_notifications_call_inhibit().</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_inhibit_sync"
+              c:identifier="xdg_notifications_notifications_call_inhibit_sync"
+              throws="1"
+              glib:async-func="call_inhibit">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2178">Synchronously invokes the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.Inhibit"&gt;Inhibit()&lt;/link&gt; D-Bus method on @proxy. The calling thread is blocked until a reply is received.
+
+See xdg_notifications_notifications_call_inhibit() for the asynchronous version of this method.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="269"/>
+        <return-value transfer-ownership="none" skip="1">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="2192">%TRUE if the call succeeded, %FALSE if @error is set.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2180">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_desktop_entry" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2181">Argument to pass with the method invocation.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_reason" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2182">Argument to pass with the method invocation.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_hints" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2183">Argument to pass with the method invocation.</doc>
+            <type name="GLib.Variant" c:type="GVariant*"/>
+          </parameter>
+          <parameter name="out_unnamed_arg3"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     optional="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2184">Return location for return parameter or %NULL to ignore.</doc>
+            <type name="guint" c:type="guint*"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2185">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_notify"
+              c:identifier="xdg_notifications_notifications_call_notify"
+              glib:finish-func="call_notify_finish"
+              glib:sync-func="call_notify_sync">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1651">Asynchronously invokes the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.Notify"&gt;Notify()&lt;/link&gt; D-Bus method on @proxy.
+When the operation is finished, @callback will be invoked in the thread-default main loop of the thread you are calling this method from (see g_main_context_push_thread_default()).
+You can then call xdg_notifications_notifications_call_notify_finish() to get the result of the operation.
+
+See xdg_notifications_notifications_call_notify_sync() for the synchronous, blocking version of this method.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="160"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1653">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_app_name" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1654">Argument to pass with the method invocation.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_replaces_id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1655">Argument to pass with the method invocation.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_app_icon" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1656">Argument to pass with the method invocation.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_summary" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1657">Argument to pass with the method invocation.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_body" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1658">Argument to pass with the method invocation.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_actions" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1659">Argument to pass with the method invocation.</doc>
+            <type name="utf8" c:type="const gchar* const*"/>
+          </parameter>
+          <parameter name="arg_hints" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1660">Argument to pass with the method invocation.</doc>
+            <type name="GLib.Variant" c:type="GVariant*"/>
+          </parameter>
+          <parameter name="arg_timeout" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1661">Argument to pass with the method invocation.</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1662">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1"
+                     scope="async"
+                     closure="10">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1663">A #GAsyncReadyCallback to call when the request is satisfied or %NULL.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1664">User data to pass to @callback.</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_notify_finish"
+              c:identifier="xdg_notifications_notifications_call_notify_finish"
+              throws="1">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1705">Finishes an operation started with xdg_notifications_notifications_call_notify().</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="174"/>
+        <return-value transfer-ownership="none" skip="1">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1714">%TRUE if the call succeeded, %FALSE if @error is set.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1707">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="out_unnamed_arg8"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     optional="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1708">Return location for return parameter or %NULL to ignore.</doc>
+            <type name="guint" c:type="guint*"/>
+          </parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1709">The #GAsyncResult obtained from the #GAsyncReadyCallback passed to xdg_notifications_notifications_call_notify().</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_notify_sync"
+              c:identifier="xdg_notifications_notifications_call_notify_sync"
+              throws="1"
+              glib:async-func="call_notify">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1735">Synchronously invokes the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.Notify"&gt;Notify()&lt;/link&gt; D-Bus method on @proxy. The calling thread is blocked until a reply is received.
+
+See xdg_notifications_notifications_call_notify() for the asynchronous version of this method.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="180"/>
+        <return-value transfer-ownership="none" skip="1">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1754">%TRUE if the call succeeded, %FALSE if @error is set.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1737">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_app_name" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1738">Argument to pass with the method invocation.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_replaces_id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1739">Argument to pass with the method invocation.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_app_icon" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1740">Argument to pass with the method invocation.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_summary" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1741">Argument to pass with the method invocation.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_body" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1742">Argument to pass with the method invocation.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="arg_actions" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1743">Argument to pass with the method invocation.</doc>
+            <type name="utf8" c:type="const gchar* const*"/>
+          </parameter>
+          <parameter name="arg_hints" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1744">Argument to pass with the method invocation.</doc>
+            <type name="GLib.Variant" c:type="GVariant*"/>
+          </parameter>
+          <parameter name="arg_timeout" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1745">Argument to pass with the method invocation.</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+          <parameter name="out_unnamed_arg8"
+                     direction="out"
+                     caller-allocates="0"
+                     transfer-ownership="full"
+                     optional="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1746">Return location for return parameter or %NULL to ignore.</doc>
+            <type name="guint" c:type="guint*"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1747">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_un_inhibit"
+              c:identifier="xdg_notifications_notifications_call_un_inhibit"
+              glib:finish-func="call_un_inhibit_finish"
+              glib:sync-func="call_un_inhibit_sync">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2225">Asynchronously invokes the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.UnInhibit"&gt;UnInhibit()&lt;/link&gt; D-Bus method on @proxy.
+When the operation is finished, @callback will be invoked in the thread-default main loop of the thread you are calling this method from (see g_main_context_push_thread_default()).
+You can then call xdg_notifications_notifications_call_un_inhibit_finish() to get the result of the operation.
+
+See xdg_notifications_notifications_call_un_inhibit_sync() for the synchronous, blocking version of this method.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="278"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2227">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_unnamed_arg0" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2228">Argument to pass with the method invocation.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2229">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1"
+                     scope="async"
+                     closure="3">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2230">A #GAsyncReadyCallback to call when the request is satisfied or %NULL.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2231">User data to pass to @callback.</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_un_inhibit_finish"
+              c:identifier="xdg_notifications_notifications_call_un_inhibit_finish"
+              throws="1">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2258">Finishes an operation started with xdg_notifications_notifications_call_un_inhibit().</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="285"/>
+        <return-value transfer-ownership="none" skip="1">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="2266">%TRUE if the call succeeded, %FALSE if @error is set.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2260">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2261">The #GAsyncResult obtained from the #GAsyncReadyCallback passed to xdg_notifications_notifications_call_un_inhibit().</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="call_un_inhibit_sync"
+              c:identifier="xdg_notifications_notifications_call_un_inhibit_sync"
+              throws="1"
+              glib:async-func="call_un_inhibit">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2285">Synchronously invokes the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.UnInhibit"&gt;UnInhibit()&lt;/link&gt; D-Bus method on @proxy. The calling thread is blocked until a reply is received.
+
+See xdg_notifications_notifications_call_un_inhibit() for the asynchronous version of this method.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="290"/>
+        <return-value transfer-ownership="none" skip="1">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="2296">%TRUE if the call succeeded, %FALSE if @error is set.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="proxy" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2287">A #XdgNotificationsNotificationsProxy.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_unnamed_arg0" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2288">Argument to pass with the method invocation.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2289">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="complete_close_notification"
+              c:identifier="xdg_notifications_notifications_complete_close_notification">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2344">Helper function used in service implementations to finish handling invocations of the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.CloseNotification"&gt;CloseNotification()&lt;/link&gt; D-Bus method. If you instead want to finish handling an invocation by returning an error, use g_dbus_method_invocation_return_error() or similar.
+
+This method will free @invocation, you cannot use it afterwards.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="108"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2346">A #XdgNotificationsNotifications.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="invocation" transfer-ownership="full">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2347">A #GDBusMethodInvocation.</doc>
+            <type name="Gio.DBusMethodInvocation"
+                  c:type="GDBusMethodInvocation*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="complete_get_capabilities"
+              c:identifier="xdg_notifications_notifications_complete_get_capabilities">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2362">Helper function used in service implementations to finish handling invocations of the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.GetCapabilities"&gt;GetCapabilities()&lt;/link&gt; D-Bus method. If you instead want to finish handling an invocation by returning an error, use g_dbus_method_invocation_return_error() or similar.
+
+This method will free @invocation, you cannot use it afterwards.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="112"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2364">A #XdgNotificationsNotifications.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="invocation" transfer-ownership="full">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2365">A #GDBusMethodInvocation.</doc>
+            <type name="Gio.DBusMethodInvocation"
+                  c:type="GDBusMethodInvocation*"/>
+          </parameter>
+          <parameter name="caps" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2366">Parameter to return.</doc>
+            <type name="utf8" c:type="const gchar* const*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="complete_get_server_information"
+              c:identifier="xdg_notifications_notifications_complete_get_server_information">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2383">Helper function used in service implementations to finish handling invocations of the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.GetServerInformation"&gt;GetServerInformation()&lt;/link&gt; D-Bus method. If you instead want to finish handling an invocation by returning an error, use g_dbus_method_invocation_return_error() or similar.
+
+This method will free @invocation, you cannot use it afterwards.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="117"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2385">A #XdgNotificationsNotifications.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="invocation" transfer-ownership="full">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2386">A #GDBusMethodInvocation.</doc>
+            <type name="Gio.DBusMethodInvocation"
+                  c:type="GDBusMethodInvocation*"/>
+          </parameter>
+          <parameter name="name" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2387">Parameter to return.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="vendor" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2388">Parameter to return.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="version" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2389">Parameter to return.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="spec_version" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2390">Parameter to return.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="complete_inhibit"
+              c:identifier="xdg_notifications_notifications_complete_inhibit">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2413">Helper function used in service implementations to finish handling invocations of the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.Inhibit"&gt;Inhibit()&lt;/link&gt; D-Bus method. If you instead want to finish handling an invocation by returning an error, use g_dbus_method_invocation_return_error() or similar.
+
+This method will free @invocation, you cannot use it afterwards.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="125"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2415">A #XdgNotificationsNotifications.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="invocation" transfer-ownership="full">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2416">A #GDBusMethodInvocation.</doc>
+            <type name="Gio.DBusMethodInvocation"
+                  c:type="GDBusMethodInvocation*"/>
+          </parameter>
+          <parameter name="unnamed_arg3" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2417">Parameter to return.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="complete_notify"
+              c:identifier="xdg_notifications_notifications_complete_notify">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2323">Helper function used in service implementations to finish handling invocations of the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.Notify"&gt;Notify()&lt;/link&gt; D-Bus method. If you instead want to finish handling an invocation by returning an error, use g_dbus_method_invocation_return_error() or similar.
+
+This method will free @invocation, you cannot use it afterwards.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="103"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2325">A #XdgNotificationsNotifications.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="invocation" transfer-ownership="full">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2326">A #GDBusMethodInvocation.</doc>
+            <type name="Gio.DBusMethodInvocation"
+                  c:type="GDBusMethodInvocation*"/>
+          </parameter>
+          <parameter name="unnamed_arg8" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2327">Parameter to return.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="complete_un_inhibit"
+              c:identifier="xdg_notifications_notifications_complete_un_inhibit">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2434">Helper function used in service implementations to finish handling invocations of the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.UnInhibit"&gt;UnInhibit()&lt;/link&gt; D-Bus method. If you instead want to finish handling an invocation by returning an error, use g_dbus_method_invocation_return_error() or similar.
+
+This method will free @invocation, you cannot use it afterwards.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="130"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2436">A #XdgNotificationsNotifications.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="invocation" transfer-ownership="full">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2437">A #GDBusMethodInvocation.</doc>
+            <type name="Gio.DBusMethodInvocation"
+                  c:type="GDBusMethodInvocation*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="emit_action_invoked"
+              c:identifier="xdg_notifications_notifications_emit_action_invoked">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1600">Emits the &lt;link linkend="gdbus-signal-org-freedesktop-Notifications.ActionInvoked"&gt;"ActionInvoked"&lt;/link&gt; D-Bus signal.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="142"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1602">A #XdgNotificationsNotifications.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1603">Argument to pass with the signal.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_action_key" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1604">Argument to pass with the signal.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="emit_activation_token"
+              c:identifier="xdg_notifications_notifications_emit_activation_token">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1634">Emits the &lt;link linkend="gdbus-signal-org-freedesktop-Notifications.ActivationToken"&gt;"ActivationToken"&lt;/link&gt; D-Bus signal.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="152"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1636">A #XdgNotificationsNotifications.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1637">Argument to pass with the signal.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_activation_token" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1638">Argument to pass with the signal.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="emit_notification_closed"
+              c:identifier="xdg_notifications_notifications_emit_notification_closed">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1583">Emits the &lt;link linkend="gdbus-signal-org-freedesktop-Notifications.NotificationClosed"&gt;"NotificationClosed"&lt;/link&gt; D-Bus signal.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="137"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1585">A #XdgNotificationsNotifications.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1586">Argument to pass with the signal.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_reason" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1587">Argument to pass with the signal.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="emit_notification_replied"
+              c:identifier="xdg_notifications_notifications_emit_notification_replied">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1617">Emits the &lt;link linkend="gdbus-signal-org-freedesktop-Notifications.NotificationReplied"&gt;"NotificationReplied"&lt;/link&gt; D-Bus signal.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="147"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1619">A #XdgNotificationsNotifications.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="arg_id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1620">Argument to pass with the signal.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_text" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1621">Argument to pass with the signal.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <method name="get_inhibited"
+              c:identifier="xdg_notifications_notifications_get_inhibited"
+              glib:get-property="inhibited"
+              introspectable="0">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1550">Gets the value of the &lt;link linkend="gdbus-property-org-freedesktop-Notifications.Inhibited"&gt;"Inhibited"&lt;/link&gt; D-Bus property.
+
+Since this D-Bus property is readable, it is meaningful to use this function on both the client- and service-side.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="299"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1558">The property value.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1552">A #XdgNotificationsNotifications.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="set_inhibited"
+              c:identifier="xdg_notifications_notifications_set_inhibited"
+              glib:set-property="inhibited"
+              introspectable="0">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1568">Sets the &lt;link linkend="gdbus-property-org-freedesktop-Notifications.Inhibited"&gt;"Inhibited"&lt;/link&gt; D-Bus property to @value.
+
+Since this D-Bus property is not writable, it is only meaningful to use this function on the service-side.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="300"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1570">A #XdgNotificationsNotifications.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </instance-parameter>
+          <parameter name="value" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1571">The value to set.</doc>
+            <type name="gboolean" c:type="gboolean"/>
+          </parameter>
+        </parameters>
+      </method>
+      <property name="inhibited"
+                writable="1"
+                transfer-ownership="none"
+                setter="set_inhibited"
+                getter="get_inhibited"
+                default-value="FALSE">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1539">Represents the D-Bus property &lt;link linkend="gdbus-property-org-freedesktop-Notifications.Inhibited"&gt;"Inhibited"&lt;/link&gt;.
+
+Since the D-Bus property for this #GObject property is readable but not writable, it is meaningful to read from it on both the client- and service-side. It is only meaningful, however, to write to it on the service-side.</doc>
+        <type name="gboolean" c:type="gboolean"/>
+      </property>
+      <glib:signal name="action-invoked" when="last">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1475">On the client-side, this signal is emitted whenever the D-Bus signal &lt;link linkend="gdbus-signal-org-freedesktop-Notifications.ActionInvoked"&gt;"ActionInvoked"&lt;/link&gt; is received.
+
+On the service-side, this signal can be used with e.g. g_signal_emit_by_name() to make the object emit the D-Bus signal.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="arg_id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1478">Argument.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_action_key" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1479">Argument.</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+      <glib:signal name="activation-token" when="last">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1517">On the client-side, this signal is emitted whenever the D-Bus signal &lt;link linkend="gdbus-signal-org-freedesktop-Notifications.ActivationToken"&gt;"ActivationToken"&lt;/link&gt; is received.
+
+On the service-side, this signal can be used with e.g. g_signal_emit_by_name() to make the object emit the D-Bus signal.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="arg_id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1520">Argument.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_activation_token" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1521">Argument.</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+      <glib:signal name="handle-close-notification" when="last">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1338">Signal emitted when a remote caller is invoking the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.CloseNotification"&gt;CloseNotification()&lt;/link&gt; D-Bus method.
+
+If a signal handler returns %TRUE, it means the signal handler will handle the invocation (e.g. take a reference to @invocation and eventually call xdg_notifications_notifications_complete_close_notification() or e.g. g_dbus_method_invocation_return_error() on it) and no other signal handlers will run. If no signal handler handles the invocation, the %G_DBUS_ERROR_UNKNOWN_METHOD error is returned.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1348">%G_DBUS_METHOD_INVOCATION_HANDLED or %TRUE if the invocation was handled, %G_DBUS_METHOD_INVOCATION_UNHANDLED or %FALSE to let other signal handlers run.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="invocation" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1341">A #GDBusMethodInvocation.</doc>
+            <type name="Gio.DBusMethodInvocation"/>
+          </parameter>
+          <parameter name="arg_id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1342">Argument passed by remote caller.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+      <glib:signal name="handle-get-capabilities" when="last">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1361">Signal emitted when a remote caller is invoking the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.GetCapabilities"&gt;GetCapabilities()&lt;/link&gt; D-Bus method.
+
+If a signal handler returns %TRUE, it means the signal handler will handle the invocation (e.g. take a reference to @invocation and eventually call xdg_notifications_notifications_complete_get_capabilities() or e.g. g_dbus_method_invocation_return_error() on it) and no other signal handlers will run. If no signal handler handles the invocation, the %G_DBUS_ERROR_UNKNOWN_METHOD error is returned.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1370">%G_DBUS_METHOD_INVOCATION_HANDLED or %TRUE if the invocation was handled, %G_DBUS_METHOD_INVOCATION_UNHANDLED or %FALSE to let other signal handlers run.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="invocation" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1364">A #GDBusMethodInvocation.</doc>
+            <type name="Gio.DBusMethodInvocation"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+      <glib:signal name="handle-get-server-information" when="last">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1383">Signal emitted when a remote caller is invoking the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.GetServerInformation"&gt;GetServerInformation()&lt;/link&gt; D-Bus method.
+
+If a signal handler returns %TRUE, it means the signal handler will handle the invocation (e.g. take a reference to @invocation and eventually call xdg_notifications_notifications_complete_get_server_information() or e.g. g_dbus_method_invocation_return_error() on it) and no other signal handlers will run. If no signal handler handles the invocation, the %G_DBUS_ERROR_UNKNOWN_METHOD error is returned.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1392">%G_DBUS_METHOD_INVOCATION_HANDLED or %TRUE if the invocation was handled, %G_DBUS_METHOD_INVOCATION_UNHANDLED or %FALSE to let other signal handlers run.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="invocation" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1386">A #GDBusMethodInvocation.</doc>
+            <type name="Gio.DBusMethodInvocation"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+      <glib:signal name="handle-inhibit" when="last">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1405">Signal emitted when a remote caller is invoking the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.Inhibit"&gt;Inhibit()&lt;/link&gt; D-Bus method.
+
+If a signal handler returns %TRUE, it means the signal handler will handle the invocation (e.g. take a reference to @invocation and eventually call xdg_notifications_notifications_complete_inhibit() or e.g. g_dbus_method_invocation_return_error() on it) and no other signal handlers will run. If no signal handler handles the invocation, the %G_DBUS_ERROR_UNKNOWN_METHOD error is returned.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1417">%G_DBUS_METHOD_INVOCATION_HANDLED or %TRUE if the invocation was handled, %G_DBUS_METHOD_INVOCATION_UNHANDLED or %FALSE to let other signal handlers run.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="invocation" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1408">A #GDBusMethodInvocation.</doc>
+            <type name="Gio.DBusMethodInvocation"/>
+          </parameter>
+          <parameter name="arg_desktop_entry" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1409">Argument passed by remote caller.</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="arg_reason" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1410">Argument passed by remote caller.</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="arg_hints" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1411">Argument passed by remote caller.</doc>
+            <type name="GLib.Variant"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+      <glib:signal name="handle-notify" when="last">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1308">Signal emitted when a remote caller is invoking the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.Notify"&gt;Notify()&lt;/link&gt; D-Bus method.
+
+If a signal handler returns %TRUE, it means the signal handler will handle the invocation (e.g. take a reference to @invocation and eventually call xdg_notifications_notifications_complete_notify() or e.g. g_dbus_method_invocation_return_error() on it) and no other signal handlers will run. If no signal handler handles the invocation, the %G_DBUS_ERROR_UNKNOWN_METHOD error is returned.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1325">%G_DBUS_METHOD_INVOCATION_HANDLED or %TRUE if the invocation was handled, %G_DBUS_METHOD_INVOCATION_UNHANDLED or %FALSE to let other signal handlers run.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="invocation" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1311">A #GDBusMethodInvocation.</doc>
+            <type name="Gio.DBusMethodInvocation"/>
+          </parameter>
+          <parameter name="arg_app_name" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1312">Argument passed by remote caller.</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="arg_replaces_id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1313">Argument passed by remote caller.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_app_icon" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1314">Argument passed by remote caller.</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="arg_summary" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1315">Argument passed by remote caller.</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="arg_body" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1316">Argument passed by remote caller.</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+          <parameter name="arg_actions" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1317">Argument passed by remote caller.</doc>
+            <array>
+              <type name="utf8"/>
+            </array>
+          </parameter>
+          <parameter name="arg_hints" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1318">Argument passed by remote caller.</doc>
+            <type name="GLib.Variant"/>
+          </parameter>
+          <parameter name="arg_timeout" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1319">Argument passed by remote caller.</doc>
+            <type name="gint" c:type="gint"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+      <glib:signal name="handle-un-inhibit" when="last">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1430">Signal emitted when a remote caller is invoking the &lt;link linkend="gdbus-method-org-freedesktop-Notifications.UnInhibit"&gt;UnInhibit()&lt;/link&gt; D-Bus method.
+
+If a signal handler returns %TRUE, it means the signal handler will handle the invocation (e.g. take a reference to @invocation and eventually call xdg_notifications_notifications_complete_un_inhibit() or e.g. g_dbus_method_invocation_return_error() on it) and no other signal handlers will run. If no signal handler handles the invocation, the %G_DBUS_ERROR_UNKNOWN_METHOD error is returned.</doc>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1440">%G_DBUS_METHOD_INVOCATION_HANDLED or %TRUE if the invocation was handled, %G_DBUS_METHOD_INVOCATION_UNHANDLED or %FALSE to let other signal handlers run.</doc>
+          <type name="gboolean" c:type="gboolean"/>
+        </return-value>
+        <parameters>
+          <parameter name="invocation" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1433">A #GDBusMethodInvocation.</doc>
+            <type name="Gio.DBusMethodInvocation"/>
+          </parameter>
+          <parameter name="arg_unnamed_arg0" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1434">Argument passed by remote caller.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+      <glib:signal name="notification-closed" when="last">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1454">On the client-side, this signal is emitted whenever the D-Bus signal &lt;link linkend="gdbus-signal-org-freedesktop-Notifications.NotificationClosed"&gt;"NotificationClosed"&lt;/link&gt; is received.
+
+On the service-side, this signal can be used with e.g. g_signal_emit_by_name() to make the object emit the D-Bus signal.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="arg_id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1457">Argument.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_reason" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1458">Argument.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+      <glib:signal name="notification-replied" when="last">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1496">On the client-side, this signal is emitted whenever the D-Bus signal &lt;link linkend="gdbus-signal-org-freedesktop-Notifications.NotificationReplied"&gt;"NotificationReplied"&lt;/link&gt; is received.
+
+On the service-side, this signal can be used with e.g. g_signal_emit_by_name() to make the object emit the D-Bus signal.</doc>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="arg_id" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1499">Argument.</doc>
+            <type name="guint" c:type="guint"/>
+          </parameter>
+          <parameter name="arg_text" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1500">Argument.</doc>
+            <type name="utf8" c:type="gchar*"/>
+          </parameter>
+        </parameters>
+      </glib:signal>
+    </interface>
+    <record name="NotificationsIface"
+            c:type="XdgNotificationsNotificationsIface"
+            glib:is-gtype-struct-for="Notifications">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="1283">Virtual table for the D-Bus interface &lt;link linkend="gdbus-interface-org-freedesktop-Notifications.top_of_page"&gt;org.freedesktop.Notifications&lt;/link&gt;.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="94"/>
+      <field name="parent_iface">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1285">The parent interface.</doc>
+        <type name="GObject.TypeInterface" c:type="GTypeInterface"/>
+      </field>
+      <field name="handle_close_notification">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1286">Handler for the #XdgNotificationsNotifications::handle-close-notification signal.</doc>
+        <callback name="handle_close_notification">
+          <source-position filename="Telegram_XdgNotifications_dbus.h"
+                           line="35"/>
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="object" transfer-ownership="none">
+              <type name="Notifications"
+                    c:type="XdgNotificationsNotifications*"/>
+            </parameter>
+            <parameter name="invocation" transfer-ownership="none">
+              <type name="Gio.DBusMethodInvocation"
+                    c:type="GDBusMethodInvocation*"/>
+            </parameter>
+            <parameter name="arg_id" transfer-ownership="none">
+              <type name="guint" c:type="guint"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="handle_get_capabilities">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1287">Handler for the #XdgNotificationsNotifications::handle-get-capabilities signal.</doc>
+        <callback name="handle_get_capabilities">
+          <source-position filename="Telegram_XdgNotifications_dbus.h"
+                           line="40"/>
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="object" transfer-ownership="none">
+              <type name="Notifications"
+                    c:type="XdgNotificationsNotifications*"/>
+            </parameter>
+            <parameter name="invocation" transfer-ownership="none">
+              <type name="Gio.DBusMethodInvocation"
+                    c:type="GDBusMethodInvocation*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="handle_get_server_information">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1288">Handler for the #XdgNotificationsNotifications::handle-get-server-information signal.</doc>
+        <callback name="handle_get_server_information">
+          <source-position filename="Telegram_XdgNotifications_dbus.h"
+                           line="44"/>
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="object" transfer-ownership="none">
+              <type name="Notifications"
+                    c:type="XdgNotificationsNotifications*"/>
+            </parameter>
+            <parameter name="invocation" transfer-ownership="none">
+              <type name="Gio.DBusMethodInvocation"
+                    c:type="GDBusMethodInvocation*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="handle_inhibit">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1289">Handler for the #XdgNotificationsNotifications::handle-inhibit signal.</doc>
+        <callback name="handle_inhibit">
+          <source-position filename="Telegram_XdgNotifications_dbus.h"
+                           line="48"/>
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="object" transfer-ownership="none">
+              <type name="Notifications"
+                    c:type="XdgNotificationsNotifications*"/>
+            </parameter>
+            <parameter name="invocation" transfer-ownership="none">
+              <type name="Gio.DBusMethodInvocation"
+                    c:type="GDBusMethodInvocation*"/>
+            </parameter>
+            <parameter name="arg_desktop_entry" transfer-ownership="none">
+              <type name="utf8" c:type="const gchar*"/>
+            </parameter>
+            <parameter name="arg_reason" transfer-ownership="none">
+              <type name="utf8" c:type="const gchar*"/>
+            </parameter>
+            <parameter name="arg_hints" transfer-ownership="none">
+              <type name="GLib.Variant" c:type="GVariant*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="handle_notify">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1290">Handler for the #XdgNotificationsNotifications::handle-notify signal.</doc>
+        <callback name="handle_notify">
+          <source-position filename="Telegram_XdgNotifications_dbus.h"
+                           line="55"/>
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="object" transfer-ownership="none">
+              <type name="Notifications"
+                    c:type="XdgNotificationsNotifications*"/>
+            </parameter>
+            <parameter name="invocation" transfer-ownership="none">
+              <type name="Gio.DBusMethodInvocation"
+                    c:type="GDBusMethodInvocation*"/>
+            </parameter>
+            <parameter name="arg_app_name" transfer-ownership="none">
+              <type name="utf8" c:type="const gchar*"/>
+            </parameter>
+            <parameter name="arg_replaces_id" transfer-ownership="none">
+              <type name="guint" c:type="guint"/>
+            </parameter>
+            <parameter name="arg_app_icon" transfer-ownership="none">
+              <type name="utf8" c:type="const gchar*"/>
+            </parameter>
+            <parameter name="arg_summary" transfer-ownership="none">
+              <type name="utf8" c:type="const gchar*"/>
+            </parameter>
+            <parameter name="arg_body" transfer-ownership="none">
+              <type name="utf8" c:type="const gchar*"/>
+            </parameter>
+            <parameter name="arg_actions" transfer-ownership="none">
+              <type name="utf8" c:type="const gchar* const*"/>
+            </parameter>
+            <parameter name="arg_hints" transfer-ownership="none">
+              <type name="GLib.Variant" c:type="GVariant*"/>
+            </parameter>
+            <parameter name="arg_timeout" transfer-ownership="none">
+              <type name="gint" c:type="gint"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="handle_un_inhibit">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1291">Handler for the #XdgNotificationsNotifications::handle-un-inhibit signal.</doc>
+        <callback name="handle_un_inhibit">
+          <source-position filename="Telegram_XdgNotifications_dbus.h"
+                           line="67"/>
+          <return-value transfer-ownership="none">
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="object" transfer-ownership="none">
+              <type name="Notifications"
+                    c:type="XdgNotificationsNotifications*"/>
+            </parameter>
+            <parameter name="invocation" transfer-ownership="none">
+              <type name="Gio.DBusMethodInvocation"
+                    c:type="GDBusMethodInvocation*"/>
+            </parameter>
+            <parameter name="arg_unnamed_arg0" transfer-ownership="none">
+              <type name="guint" c:type="guint"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="get_inhibited">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1292">Getter for the #XdgNotificationsNotifications:inhibited property.</doc>
+        <callback name="get_inhibited">
+          <source-position filename="Telegram_XdgNotifications_dbus.h"
+                           line="72"/>
+          <return-value transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="1558">The property value.</doc>
+            <type name="gboolean" c:type="gboolean"/>
+          </return-value>
+          <parameters>
+            <parameter name="object" transfer-ownership="none">
+              <doc xml:space="preserve"
+                   filename="Telegram_XdgNotifications_dbus.c"
+                   line="1552">A #XdgNotificationsNotifications.</doc>
+              <type name="Notifications"
+                    c:type="XdgNotificationsNotifications*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="action_invoked">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1293">Handler for the #XdgNotificationsNotifications::action-invoked signal.</doc>
+        <callback name="action_invoked">
+          <source-position filename="Telegram_XdgNotifications_dbus.h"
+                           line="74"/>
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="object" transfer-ownership="none">
+              <type name="Notifications"
+                    c:type="XdgNotificationsNotifications*"/>
+            </parameter>
+            <parameter name="arg_id" transfer-ownership="none">
+              <type name="guint" c:type="guint"/>
+            </parameter>
+            <parameter name="arg_action_key" transfer-ownership="none">
+              <type name="utf8" c:type="const gchar*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="activation_token">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1294">Handler for the #XdgNotificationsNotifications::activation-token signal.</doc>
+        <callback name="activation_token">
+          <source-position filename="Telegram_XdgNotifications_dbus.h"
+                           line="79"/>
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="object" transfer-ownership="none">
+              <type name="Notifications"
+                    c:type="XdgNotificationsNotifications*"/>
+            </parameter>
+            <parameter name="arg_id" transfer-ownership="none">
+              <type name="guint" c:type="guint"/>
+            </parameter>
+            <parameter name="arg_activation_token" transfer-ownership="none">
+              <type name="utf8" c:type="const gchar*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="notification_closed">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1295">Handler for the #XdgNotificationsNotifications::notification-closed signal.</doc>
+        <callback name="notification_closed">
+          <source-position filename="Telegram_XdgNotifications_dbus.h"
+                           line="84"/>
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="object" transfer-ownership="none">
+              <type name="Notifications"
+                    c:type="XdgNotificationsNotifications*"/>
+            </parameter>
+            <parameter name="arg_id" transfer-ownership="none">
+              <type name="guint" c:type="guint"/>
+            </parameter>
+            <parameter name="arg_reason" transfer-ownership="none">
+              <type name="guint" c:type="guint"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+      <field name="notification_replied">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1296">Handler for the #XdgNotificationsNotifications::notification-replied signal.</doc>
+        <callback name="notification_replied">
+          <source-position filename="Telegram_XdgNotifications_dbus.h"
+                           line="89"/>
+          <return-value transfer-ownership="none">
+            <type name="none" c:type="void"/>
+          </return-value>
+          <parameters>
+            <parameter name="object" transfer-ownership="none">
+              <type name="Notifications"
+                    c:type="XdgNotificationsNotifications*"/>
+            </parameter>
+            <parameter name="arg_id" transfer-ownership="none">
+              <type name="guint" c:type="guint"/>
+            </parameter>
+            <parameter name="arg_text" transfer-ownership="none">
+              <type name="utf8" c:type="const gchar*"/>
+            </parameter>
+          </parameters>
+        </callback>
+      </field>
+    </record>
+    <class name="NotificationsProxy"
+           c:symbol-prefix="notifications_proxy"
+           c:type="XdgNotificationsNotificationsProxy"
+           parent="Gio.DBusProxy"
+           glib:type-name="XdgNotificationsNotificationsProxy"
+           glib:get-type="xdg_notifications_notifications_proxy_get_type"
+           glib:type-struct="NotificationsProxyClass">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="2454">The #XdgNotificationsNotificationsProxy structure contains only private data and should only be accessed using the provided API.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="326"/>
+      <implements name="Gio.AsyncInitable"/>
+      <implements name="Gio.DBusInterface"/>
+      <implements name="Gio.Initable"/>
+      <implements name="Notifications"/>
+      <constructor name="new_finish"
+                   c:identifier="xdg_notifications_notifications_proxy_new_finish"
+                   throws="1">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2714">Finishes an operation started with xdg_notifications_notifications_proxy_new().</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="342"/>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="2721">The constructed proxy object or %NULL if @error is set.</doc>
+          <type name="NotificationsProxy"
+                c:type="XdgNotificationsNotifications*"/>
+        </return-value>
+        <parameters>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2716">The #GAsyncResult obtained from the #GAsyncReadyCallback passed to xdg_notifications_notifications_proxy_new().</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <constructor name="new_for_bus_finish"
+                   c:identifier="xdg_notifications_notifications_proxy_new_for_bus_finish"
+                   throws="1">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2804">Finishes an operation started with xdg_notifications_notifications_proxy_new_for_bus().</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="361"/>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="2811">The constructed proxy object or %NULL if @error is set.</doc>
+          <type name="NotificationsProxy"
+                c:type="XdgNotificationsNotifications*"/>
+        </return-value>
+        <parameters>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2806">The #GAsyncResult obtained from the #GAsyncReadyCallback passed to xdg_notifications_notifications_proxy_new_for_bus().</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <constructor name="new_for_bus_sync"
+                   c:identifier="xdg_notifications_notifications_proxy_new_for_bus_sync"
+                   throws="1">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2829">Like xdg_notifications_notifications_proxy_new_sync() but takes a #GBusType instead of a #GDBusConnection.
+
+The calling thread is blocked until a reply is received.
+
+See xdg_notifications_notifications_proxy_new_for_bus() for the asynchronous version of this constructor.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="364"/>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="2844">The constructed proxy object or %NULL if @error is set.</doc>
+          <type name="NotificationsProxy"
+                c:type="XdgNotificationsNotifications*"/>
+        </return-value>
+        <parameters>
+          <parameter name="bus_type" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2831">A #GBusType.</doc>
+            <type name="Gio.BusType" c:type="GBusType"/>
+          </parameter>
+          <parameter name="flags" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2832">Flags from the #GDBusProxyFlags enumeration.</doc>
+            <type name="Gio.DBusProxyFlags" c:type="GDBusProxyFlags"/>
+          </parameter>
+          <parameter name="name" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2833">A bus name (well-known or unique).</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="object_path" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2834">An object path.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2835">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <constructor name="new_sync"
+                   c:identifier="xdg_notifications_notifications_proxy_new_sync"
+                   throws="1">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2739">Synchronously creates a proxy for the D-Bus interface &lt;link linkend="gdbus-interface-org-freedesktop-Notifications.top_of_page"&gt;org.freedesktop.Notifications&lt;/link&gt;. See g_dbus_proxy_new_sync() for more details.
+
+The calling thread is blocked until a reply is received.
+
+See xdg_notifications_notifications_proxy_new() for the asynchronous version of this constructor.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="345"/>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="2754">The constructed proxy object or %NULL if @error is set.</doc>
+          <type name="NotificationsProxy"
+                c:type="XdgNotificationsNotifications*"/>
+        </return-value>
+        <parameters>
+          <parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2741">A #GDBusConnection.</doc>
+            <type name="Gio.DBusConnection" c:type="GDBusConnection*"/>
+          </parameter>
+          <parameter name="flags" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2742">Flags from the #GDBusProxyFlags enumeration.</doc>
+            <type name="Gio.DBusProxyFlags" c:type="GDBusProxyFlags"/>
+          </parameter>
+          <parameter name="name"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2743">A bus name (well-known or unique) or %NULL if @connection is not a message bus connection.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="object_path" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2744">An object path.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2745">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <function name="new"
+                c:identifier="xdg_notifications_notifications_proxy_new"
+                glib:finish-func="new_finish">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2684">Asynchronously creates a proxy for the D-Bus interface &lt;link linkend="gdbus-interface-org-freedesktop-Notifications.top_of_page"&gt;org.freedesktop.Notifications&lt;/link&gt;. See g_dbus_proxy_new() for more details.
+
+When the operation is finished, @callback will be invoked in the thread-default main loop of the thread you are calling this method from (see g_main_context_push_thread_default()).
+You can then call xdg_notifications_notifications_proxy_new_finish() to get the result of the operation.
+
+See xdg_notifications_notifications_proxy_new_sync() for the synchronous, blocking version of this constructor.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="334"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2686">A #GDBusConnection.</doc>
+            <type name="Gio.DBusConnection" c:type="GDBusConnection*"/>
+          </parameter>
+          <parameter name="flags" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2687">Flags from the #GDBusProxyFlags enumeration.</doc>
+            <type name="Gio.DBusProxyFlags" c:type="GDBusProxyFlags"/>
+          </parameter>
+          <parameter name="name"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2688">A bus name (well-known or unique) or %NULL if @connection is not a message bus connection.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="object_path" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2689">An object path.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2690">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1"
+                     scope="async"
+                     closure="6">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2691">A #GAsyncReadyCallback to call when the request is satisfied.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2692">User data to pass to @callback.</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </function>
+      <function name="new_for_bus"
+                c:identifier="xdg_notifications_notifications_proxy_new_for_bus"
+                glib:finish-func="new_for_bus_finish">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2774">Like xdg_notifications_notifications_proxy_new() but takes a #GBusType instead of a #GDBusConnection.
+
+When the operation is finished, @callback will be invoked in the thread-default main loop of the thread you are calling this method from (see g_main_context_push_thread_default()).
+You can then call xdg_notifications_notifications_proxy_new_for_bus_finish() to get the result of the operation.
+
+See xdg_notifications_notifications_proxy_new_for_bus_sync() for the synchronous, blocking version of this constructor.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="353"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="bus_type" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2776">A #GBusType.</doc>
+            <type name="Gio.BusType" c:type="GBusType"/>
+          </parameter>
+          <parameter name="flags" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2777">Flags from the #GDBusProxyFlags enumeration.</doc>
+            <type name="Gio.DBusProxyFlags" c:type="GDBusProxyFlags"/>
+          </parameter>
+          <parameter name="name" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2778">A bus name (well-known or unique).</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="object_path" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2779">An object path.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2780">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1"
+                     scope="async"
+                     closure="6">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2781">A #GAsyncReadyCallback to call when the request is satisfied.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="2782">User data to pass to @callback.</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </function>
+      <field name="parent_instance" readable="0" private="1">
+        <type name="Gio.DBusProxy" c:type="GDBusProxy"/>
+      </field>
+      <field name="priv" readable="0" private="1">
+        <type name="NotificationsProxyPrivate"
+              c:type="XdgNotificationsNotificationsProxyPrivate*"/>
+      </field>
+    </class>
+    <record name="NotificationsProxyClass"
+            c:type="XdgNotificationsNotificationsProxyClass"
+            glib:is-gtype-struct-for="NotificationsProxy">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="2460">Class structure for #XdgNotificationsNotificationsProxy.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="326"/>
+      <field name="parent_class">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2462">The parent class.</doc>
+        <type name="Gio.DBusProxyClass" c:type="GDBusProxyClass"/>
+      </field>
+    </record>
+    <record name="NotificationsProxyPrivate"
+            c:type="XdgNotificationsNotificationsProxyPrivate"
+            disguised="1"
+            opaque="1">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="314"/>
+    </record>
+    <class name="NotificationsSkeleton"
+           c:symbol-prefix="notifications_skeleton"
+           c:type="XdgNotificationsNotificationsSkeleton"
+           parent="Gio.DBusInterfaceSkeleton"
+           glib:type-name="XdgNotificationsNotificationsSkeleton"
+           glib:get-type="xdg_notifications_notifications_skeleton_get_type"
+           glib:type-struct="NotificationsSkeletonClass">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="2866">The #XdgNotificationsNotificationsSkeleton structure contains only private data and should only be accessed using the provided API.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="396"/>
+      <implements name="Gio.DBusInterface"/>
+      <implements name="Notifications"/>
+      <constructor name="new"
+                   c:identifier="xdg_notifications_notifications_skeleton_new">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3436">Creates a skeleton object for the D-Bus interface &lt;link linkend="gdbus-interface-org-freedesktop-Notifications.top_of_page"&gt;org.freedesktop.Notifications&lt;/link&gt;.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="404"/>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="3441">The skeleton object.</doc>
+          <type name="NotificationsSkeleton"
+                c:type="XdgNotificationsNotifications*"/>
+        </return-value>
+      </constructor>
+      <field name="parent_instance" readable="0" private="1">
+        <type name="Gio.DBusInterfaceSkeleton"
+              c:type="GDBusInterfaceSkeleton"/>
+      </field>
+      <field name="priv" readable="0" private="1">
+        <type name="NotificationsSkeletonPrivate"
+              c:type="XdgNotificationsNotificationsSkeletonPrivate*"/>
+      </field>
+    </class>
+    <record name="NotificationsSkeletonClass"
+            c:type="XdgNotificationsNotificationsSkeletonClass"
+            glib:is-gtype-struct-for="NotificationsSkeleton">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="2872">Class structure for #XdgNotificationsNotificationsSkeleton.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="396"/>
+      <field name="parent_class">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="2874">The parent class.</doc>
+        <type name="Gio.DBusInterfaceSkeletonClass"
+              c:type="GDBusInterfaceSkeletonClass"/>
+      </field>
+    </record>
+    <record name="NotificationsSkeletonPrivate"
+            c:type="XdgNotificationsNotificationsSkeletonPrivate"
+            disguised="1"
+            opaque="1">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="384"/>
+    </record>
+    <function-macro name="OBJECT"
+                    c:identifier="XDG_NOTIFICATIONS_OBJECT"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="410"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="OBJECT_GET_IFACE"
+                    c:identifier="XDG_NOTIFICATIONS_OBJECT_GET_IFACE"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="412"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="OBJECT_MANAGER_CLIENT"
+                    c:identifier="XDG_NOTIFICATIONS_OBJECT_MANAGER_CLIENT"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="494"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="OBJECT_MANAGER_CLIENT_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_OBJECT_MANAGER_CLIENT_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="495"/>
+      <parameters>
+        <parameter name="k">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="OBJECT_MANAGER_CLIENT_GET_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_OBJECT_MANAGER_CLIENT_GET_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="496"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="OBJECT_PROXY"
+                    c:identifier="XDG_NOTIFICATIONS_OBJECT_PROXY"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="429"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="OBJECT_PROXY_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_OBJECT_PROXY_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="430"/>
+      <parameters>
+        <parameter name="k">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="OBJECT_PROXY_GET_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_OBJECT_PROXY_GET_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="431"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="OBJECT_SKELETON"
+                    c:identifier="XDG_NOTIFICATIONS_OBJECT_SKELETON"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="460"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="OBJECT_SKELETON_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_OBJECT_SKELETON_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="461"/>
+      <parameters>
+        <parameter name="k">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <function-macro name="OBJECT_SKELETON_GET_CLASS"
+                    c:identifier="XDG_NOTIFICATIONS_OBJECT_SKELETON_GET_CLASS"
+                    introspectable="0">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="462"/>
+      <parameters>
+        <parameter name="o">
+        </parameter>
+      </parameters>
+    </function-macro>
+    <interface name="Object"
+               c:symbol-prefix="object"
+               c:type="XdgNotificationsObject"
+               glib:type-name="XdgNotificationsObject"
+               glib:get-type="xdg_notifications_object_get_type"
+               glib:type-struct="ObjectIface">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="3462">The #XdgNotificationsObject type is a specialized container of interfaces.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="421"/>
+      <prerequisite name="Gio.DBusObject"/>
+      <method name="get_notifications"
+              c:identifier="xdg_notifications_object_get_notifications"
+              glib:get-property="notifications">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3492">Gets the #XdgNotificationsNotifications instance for the D-Bus interface &lt;link linkend="gdbus-interface-org-freedesktop-Notifications.top_of_page"&gt;org.freedesktop.Notifications&lt;/link&gt; on @object, if any.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="425"/>
+        <return-value transfer-ownership="full" nullable="1">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="3498">A #XdgNotificationsNotifications that must be freed with g_object_unref() or %NULL if @object does not implement the interface.</doc>
+          <type name="Notifications" c:type="XdgNotificationsNotifications*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3494">A #XdgNotificationsObject.</doc>
+            <type name="Object" c:type="XdgNotificationsObject*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <method name="peek_notifications"
+              c:identifier="xdg_notifications_object_peek_notifications"
+              introspectable="0">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3510">Like xdg_notifications_object_get_notifications() but doesn't increase the reference count on the returned object.
+
+It is not safe to use the returned object if you are on another thread than the one where the #GDBusObjectManagerClient or #GDBusObjectManagerServer for @object is running.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="426"/>
+        <return-value transfer-ownership="none" nullable="1">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="3518">A #XdgNotificationsNotifications or %NULL if @object does not implement the interface. Do not free the returned object, it is owned by @object.</doc>
+          <type name="Notifications" c:type="XdgNotificationsNotifications*"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3512">A #XdgNotificationsObject.</doc>
+            <type name="Object" c:type="XdgNotificationsObject*"/>
+          </instance-parameter>
+        </parameters>
+      </method>
+      <property name="notifications"
+                writable="1"
+                transfer-ownership="none"
+                getter="get_notifications">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3481">The #XdgNotificationsNotifications instance corresponding to the D-Bus interface &lt;link linkend="gdbus-interface-org-freedesktop-Notifications.top_of_page"&gt;org.freedesktop.Notifications&lt;/link&gt;, if any.
+
+Connect to the #GObject::notify signal to get informed of property changes.</doc>
+        <type name="Notifications"/>
+      </property>
+    </interface>
+    <record name="ObjectIface"
+            c:type="XdgNotificationsObjectIface"
+            glib:is-gtype-struct-for="Object">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="3468">Virtual table for the #XdgNotificationsObject interface.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="421"/>
+      <field name="parent_iface">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3470">The parent interface.</doc>
+        <type name="GObject.TypeInterface" c:type="GTypeInterface"/>
+      </field>
+    </record>
+    <class name="ObjectManagerClient"
+           c:symbol-prefix="object_manager_client"
+           c:type="XdgNotificationsObjectManagerClient"
+           parent="Gio.DBusObjectManagerClient"
+           glib:type-name="XdgNotificationsObjectManagerClient"
+           glib:get-type="xdg_notifications_object_manager_client_get_type"
+           glib:type-struct="ObjectManagerClientClass">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="3776">The #XdgNotificationsObjectManagerClient structure contains only private data and should only be accessed using the provided API.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="514"/>
+      <implements name="Gio.AsyncInitable"/>
+      <implements name="Gio.DBusObjectManager"/>
+      <implements name="Gio.Initable"/>
+      <constructor name="new_finish"
+                   c:identifier="xdg_notifications_object_manager_client_new_finish"
+                   throws="1">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3863">Finishes an operation started with xdg_notifications_object_manager_client_new().</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="532"/>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="3870">The constructed object manager client or %NULL if @error is set.</doc>
+          <type name="ObjectManagerClient" c:type="GDBusObjectManager*"/>
+        </return-value>
+        <parameters>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3865">The #GAsyncResult obtained from the #GAsyncReadyCallback passed to xdg_notifications_object_manager_client_new().</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <constructor name="new_for_bus_finish"
+                   c:identifier="xdg_notifications_object_manager_client_new_for_bus_finish"
+                   throws="1">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3953">Finishes an operation started with xdg_notifications_object_manager_client_new_for_bus().</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="551"/>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="3960">The constructed object manager client or %NULL if @error is set.</doc>
+          <type name="ObjectManagerClient" c:type="GDBusObjectManager*"/>
+        </return-value>
+        <parameters>
+          <parameter name="res" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3955">The #GAsyncResult obtained from the #GAsyncReadyCallback passed to xdg_notifications_object_manager_client_new_for_bus().</doc>
+            <type name="Gio.AsyncResult" c:type="GAsyncResult*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <constructor name="new_for_bus_sync"
+                   c:identifier="xdg_notifications_object_manager_client_new_for_bus_sync"
+                   throws="1">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3978">Like xdg_notifications_object_manager_client_new_sync() but takes a #GBusType instead of a #GDBusConnection.
+
+The calling thread is blocked until a reply is received.
+
+See xdg_notifications_object_manager_client_new_for_bus() for the asynchronous version of this constructor.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="554"/>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="3993">The constructed object manager client or %NULL if @error is set.</doc>
+          <type name="ObjectManagerClient" c:type="GDBusObjectManager*"/>
+        </return-value>
+        <parameters>
+          <parameter name="bus_type" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3980">A #GBusType.</doc>
+            <type name="Gio.BusType" c:type="GBusType"/>
+          </parameter>
+          <parameter name="flags" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3981">Flags from the #GDBusObjectManagerClientFlags enumeration.</doc>
+            <type name="Gio.DBusObjectManagerClientFlags"
+                  c:type="GDBusObjectManagerClientFlags"/>
+          </parameter>
+          <parameter name="name" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3982">A bus name (well-known or unique).</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="object_path" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3983">An object path.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3984">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <constructor name="new_sync"
+                   c:identifier="xdg_notifications_object_manager_client_new_sync"
+                   throws="1">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3888">Synchronously creates #GDBusObjectManagerClient using xdg_notifications_object_manager_client_get_proxy_type() as the #GDBusProxyTypeFunc. See g_dbus_object_manager_client_new_sync() for more details.
+
+The calling thread is blocked until a reply is received.
+
+See xdg_notifications_object_manager_client_new() for the asynchronous version of this constructor.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="535"/>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="3903">The constructed object manager client or %NULL if @error is set.</doc>
+          <type name="ObjectManagerClient" c:type="GDBusObjectManager*"/>
+        </return-value>
+        <parameters>
+          <parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3890">A #GDBusConnection.</doc>
+            <type name="Gio.DBusConnection" c:type="GDBusConnection*"/>
+          </parameter>
+          <parameter name="flags" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3891">Flags from the #GDBusObjectManagerClientFlags enumeration.</doc>
+            <type name="Gio.DBusObjectManagerClientFlags"
+                  c:type="GDBusObjectManagerClientFlags"/>
+          </parameter>
+          <parameter name="name"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3892">A bus name (well-known or unique) or %NULL if @connection is not a message bus connection.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="object_path" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3893">An object path.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3894">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <function name="get_proxy_type"
+                c:identifier="xdg_notifications_object_manager_client_get_proxy_type">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3801">A #GDBusProxyTypeFunc that maps @interface_name to the generated #GDBusObjectProxy derived and #GDBusProxy derived types.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="522"/>
+        <return-value transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="3810">A #GDBusProxy derived #GType if @interface_name is not %NULL, otherwise the #GType for #XdgNotificationsObjectProxy.</doc>
+          <type name="GType" c:type="GType"/>
+        </return-value>
+        <parameters>
+          <parameter name="manager" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3803">A #GDBusObjectManagerClient.</doc>
+            <type name="Gio.DBusObjectManagerClient"
+                  c:type="GDBusObjectManagerClient*"/>
+          </parameter>
+          <parameter name="object_path" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3804">The object path of the remote object (unused).</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="interface_name"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3805">Interface name of the remote object or %NULL to get the object proxy #GType.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="user_data"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3806">User data (unused).</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </function>
+      <function name="new"
+                c:identifier="xdg_notifications_object_manager_client_new"
+                glib:finish-func="new_finish">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3833">Asynchronously creates #GDBusObjectManagerClient using xdg_notifications_object_manager_client_get_proxy_type() as the #GDBusProxyTypeFunc. See g_dbus_object_manager_client_new() for more details.
+
+When the operation is finished, @callback will be invoked in the thread-default main loop of the thread you are calling this method from (see g_main_context_push_thread_default()).
+You can then call xdg_notifications_object_manager_client_new_finish() to get the result of the operation.
+
+See xdg_notifications_object_manager_client_new_sync() for the synchronous, blocking version of this constructor.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="524"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3835">A #GDBusConnection.</doc>
+            <type name="Gio.DBusConnection" c:type="GDBusConnection*"/>
+          </parameter>
+          <parameter name="flags" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3836">Flags from the #GDBusObjectManagerClientFlags enumeration.</doc>
+            <type name="Gio.DBusObjectManagerClientFlags"
+                  c:type="GDBusObjectManagerClientFlags"/>
+          </parameter>
+          <parameter name="name"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3837">A bus name (well-known or unique) or %NULL if @connection is not a message bus connection.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="object_path" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3838">An object path.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3839">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1"
+                     scope="async"
+                     closure="6">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3840">A #GAsyncReadyCallback to call when the request is satisfied.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3841">User data to pass to @callback.</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </function>
+      <function name="new_for_bus"
+                c:identifier="xdg_notifications_object_manager_client_new_for_bus"
+                glib:finish-func="new_for_bus_finish">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3923">Like xdg_notifications_object_manager_client_new() but takes a #GBusType instead of a #GDBusConnection.
+
+When the operation is finished, @callback will be invoked in the thread-default main loop of the thread you are calling this method from (see g_main_context_push_thread_default()).
+You can then call xdg_notifications_object_manager_client_new_for_bus_finish() to get the result of the operation.
+
+See xdg_notifications_object_manager_client_new_for_bus_sync() for the synchronous, blocking version of this constructor.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="543"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <parameter name="bus_type" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3925">A #GBusType.</doc>
+            <type name="Gio.BusType" c:type="GBusType"/>
+          </parameter>
+          <parameter name="flags" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3926">Flags from the #GDBusObjectManagerClientFlags enumeration.</doc>
+            <type name="Gio.DBusObjectManagerClientFlags"
+                  c:type="GDBusObjectManagerClientFlags"/>
+          </parameter>
+          <parameter name="name" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3927">A bus name (well-known or unique).</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="object_path" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3928">An object path.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+          <parameter name="cancellable"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3929">A #GCancellable or %NULL.</doc>
+            <type name="Gio.Cancellable" c:type="GCancellable*"/>
+          </parameter>
+          <parameter name="callback"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1"
+                     scope="async"
+                     closure="6">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3930">A #GAsyncReadyCallback to call when the request is satisfied.</doc>
+            <type name="Gio.AsyncReadyCallback" c:type="GAsyncReadyCallback"/>
+          </parameter>
+          <parameter name="user_data"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3931">User data to pass to @callback.</doc>
+            <type name="gpointer" c:type="gpointer"/>
+          </parameter>
+        </parameters>
+      </function>
+      <field name="parent_instance" readable="0" private="1">
+        <type name="Gio.DBusObjectManagerClient"
+              c:type="GDBusObjectManagerClient"/>
+      </field>
+      <field name="priv" readable="0" private="1">
+        <type name="ObjectManagerClientPrivate"
+              c:type="XdgNotificationsObjectManagerClientPrivate*"/>
+      </field>
+    </class>
+    <record name="ObjectManagerClientClass"
+            c:type="XdgNotificationsObjectManagerClientClass"
+            glib:is-gtype-struct-for="ObjectManagerClient">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="3782">Class structure for #XdgNotificationsObjectManagerClient.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="514"/>
+      <field name="parent_class">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3784">The parent class.</doc>
+        <type name="Gio.DBusObjectManagerClientClass"
+              c:type="GDBusObjectManagerClientClass"/>
+      </field>
+    </record>
+    <record name="ObjectManagerClientPrivate"
+            c:type="XdgNotificationsObjectManagerClientPrivate"
+            disguised="1"
+            opaque="1">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="502"/>
+    </record>
+    <class name="ObjectProxy"
+           c:symbol-prefix="object_proxy"
+           c:type="XdgNotificationsObjectProxy"
+           parent="Gio.DBusObjectProxy"
+           glib:type-name="XdgNotificationsObjectProxy"
+           glib:get-type="xdg_notifications_object_proxy_get_type"
+           glib:type-struct="ObjectProxyClass">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="3542">The #XdgNotificationsObjectProxy structure contains only private data and should only be accessed using the provided API.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="449"/>
+      <implements name="Gio.DBusObject"/>
+      <implements name="Object"/>
+      <constructor name="new"
+                   c:identifier="xdg_notifications_object_proxy_new">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3619">Creates a new proxy object.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="457"/>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="3626">The proxy object.</doc>
+          <type name="ObjectProxy" c:type="XdgNotificationsObjectProxy*"/>
+        </return-value>
+        <parameters>
+          <parameter name="connection" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3621">A #GDBusConnection.</doc>
+            <type name="Gio.DBusConnection" c:type="GDBusConnection*"/>
+          </parameter>
+          <parameter name="object_path" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3622">An object path.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <field name="parent_instance" readable="0" private="1">
+        <type name="Gio.DBusObjectProxy" c:type="GDBusObjectProxy"/>
+      </field>
+      <field name="priv" readable="0" private="1">
+        <type name="ObjectProxyPrivate"
+              c:type="XdgNotificationsObjectProxyPrivate*"/>
+      </field>
+    </class>
+    <record name="ObjectProxyClass"
+            c:type="XdgNotificationsObjectProxyClass"
+            glib:is-gtype-struct-for="ObjectProxy">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="3548">Class structure for #XdgNotificationsObjectProxy.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="449"/>
+      <field name="parent_class">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3550">The parent class.</doc>
+        <type name="Gio.DBusObjectProxyClass" c:type="GDBusObjectProxyClass"/>
+      </field>
+    </record>
+    <record name="ObjectProxyPrivate"
+            c:type="XdgNotificationsObjectProxyPrivate"
+            disguised="1"
+            opaque="1">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="437"/>
+    </record>
+    <class name="ObjectSkeleton"
+           c:symbol-prefix="object_skeleton"
+           c:type="XdgNotificationsObjectSkeleton"
+           parent="Gio.DBusObjectSkeleton"
+           glib:type-name="XdgNotificationsObjectSkeleton"
+           glib:get-type="xdg_notifications_object_skeleton_get_type"
+           glib:type-struct="ObjectSkeletonClass">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="3637">The #XdgNotificationsObjectSkeleton structure contains only private data and should only be accessed using the provided API.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="480"/>
+      <implements name="Gio.DBusObject"/>
+      <implements name="Object"/>
+      <constructor name="new"
+                   c:identifier="xdg_notifications_object_skeleton_new">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3735">Creates a new skeleton object.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="488"/>
+        <return-value transfer-ownership="full">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="3741">The skeleton object.</doc>
+          <type name="ObjectSkeleton"
+                c:type="XdgNotificationsObjectSkeleton*"/>
+        </return-value>
+        <parameters>
+          <parameter name="object_path" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3737">An object path.</doc>
+            <type name="utf8" c:type="const gchar*"/>
+          </parameter>
+        </parameters>
+      </constructor>
+      <method name="set_notifications"
+              c:identifier="xdg_notifications_object_skeleton_set_notifications">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3750">Sets the #XdgNotificationsNotifications instance for the D-Bus interface &lt;link linkend="gdbus-interface-org-freedesktop-Notifications.top_of_page"&gt;org.freedesktop.Notifications&lt;/link&gt; on @object.</doc>
+        <source-position filename="Telegram_XdgNotifications_dbus.h"
+                         line="489"/>
+        <return-value transfer-ownership="none">
+          <type name="none" c:type="void"/>
+        </return-value>
+        <parameters>
+          <instance-parameter name="object" transfer-ownership="none">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3752">A #XdgNotificationsObjectSkeleton.</doc>
+            <type name="ObjectSkeleton"
+                  c:type="XdgNotificationsObjectSkeleton*"/>
+          </instance-parameter>
+          <parameter name="interface_"
+                     transfer-ownership="none"
+                     nullable="1"
+                     allow-none="1">
+            <doc xml:space="preserve"
+                 filename="Telegram_XdgNotifications_dbus.c"
+                 line="3753">A #XdgNotificationsNotifications or %NULL to clear the interface.</doc>
+            <type name="Notifications"
+                  c:type="XdgNotificationsNotifications*"/>
+          </parameter>
+        </parameters>
+      </method>
+      <field name="parent_instance" readable="0" private="1">
+        <type name="Gio.DBusObjectSkeleton" c:type="GDBusObjectSkeleton"/>
+      </field>
+      <field name="priv" readable="0" private="1">
+        <type name="ObjectSkeletonPrivate"
+              c:type="XdgNotificationsObjectSkeletonPrivate*"/>
+      </field>
+    </class>
+    <record name="ObjectSkeletonClass"
+            c:type="XdgNotificationsObjectSkeletonClass"
+            glib:is-gtype-struct-for="ObjectSkeleton">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="3643">Class structure for #XdgNotificationsObjectSkeleton.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="480"/>
+      <field name="parent_class">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="3645">The parent class.</doc>
+        <type name="Gio.DBusObjectSkeletonClass"
+              c:type="GDBusObjectSkeletonClass"/>
+      </field>
+    </record>
+    <record name="ObjectSkeletonPrivate"
+            c:type="XdgNotificationsObjectSkeletonPrivate"
+            disguised="1"
+            opaque="1">
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="468"/>
+    </record>
+    <docsection name="XdgNotificationsNotifications">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="481">This section contains code for working with the &lt;link linkend="gdbus-interface-org-freedesktop-Notifications.top_of_page"&gt;org.freedesktop.Notifications&lt;/link&gt; D-Bus interface in C.</doc>
+    </docsection>
+    <docsection name="XdgNotificationsObject">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="3454">This section contains the #XdgNotificationsObject, #XdgNotificationsObjectProxy, and #XdgNotificationsObjectSkeleton types which make it easier to work with objects implementing generated types for D-Bus interfaces.</doc>
+    </docsection>
+    <docsection name="XdgNotificationsObjectManagerClient">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="3768">This section contains a #GDBusObjectManagerClient that uses xdg_notifications_object_manager_client_get_proxy_type() as the #GDBusProxyTypeFunc.</doc>
+    </docsection>
+    <function name="notifications_interface_info"
+              c:identifier="xdg_notifications_notifications_interface_info"
+              moved-to="Notifications.interface_info">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="1115">Gets a machine-readable description of the &lt;link linkend="gdbus-interface-org-freedesktop-Notifications.top_of_page"&gt;org.freedesktop.Notifications&lt;/link&gt; D-Bus interface.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="98"/>
+      <return-value transfer-ownership="none">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1120">A #GDBusInterfaceInfo. Do not free.</doc>
+        <type name="Gio.DBusInterfaceInfo" c:type="GDBusInterfaceInfo*"/>
+      </return-value>
+    </function>
+    <function name="notifications_override_properties"
+              c:identifier="xdg_notifications_notifications_override_properties"
+              moved-to="Notifications.override_properties">
+      <doc xml:space="preserve"
+           filename="Telegram_XdgNotifications_dbus.c"
+           line="1128">Overrides all #GObject properties in the #XdgNotificationsNotifications interface for a concrete class.
+The properties are overridden in the order they are defined.</doc>
+      <source-position filename="Telegram_XdgNotifications_dbus.h" line="99"/>
+      <return-value transfer-ownership="none">
+        <doc xml:space="preserve"
+             filename="Telegram_XdgNotifications_dbus.c"
+             line="1136">The last property id.</doc>
+        <type name="guint" c:type="guint"/>
+      </return-value>
+      <parameters>
+        <parameter name="klass" transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1130">The class structure for a #GObject derived class.</doc>
+          <type name="GObject.ObjectClass" c:type="GObjectClass*"/>
+        </parameter>
+        <parameter name="property_id_begin" transfer-ownership="none">
+          <doc xml:space="preserve"
+               filename="Telegram_XdgNotifications_dbus.c"
+               line="1131">The property id to assign to the first overridden property.</doc>
+          <type name="guint" c:type="guint"/>
+        </parameter>
+      </parameters>
+    </function>
+  </namespace>
+</repository>

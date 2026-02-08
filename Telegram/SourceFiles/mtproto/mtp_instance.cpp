@@ -26,6 +26,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "base/call_delayed.h"
 #include "base/timer.h"
 #include "base/network_reachability.h"
+#include "ayu/ayu_settings.h"
 
 namespace MTP {
 namespace {
@@ -909,6 +910,10 @@ QString Instance::Private::deviceModel() const {
 }
 
 QString Instance::Private::systemVersion() const {
+	const auto &ayuSettings = AyuSettings::getInstance();
+	if (!ayuSettings.customSystemVersion.isEmpty()) {
+		return ayuSettings.customSystemVersion;
+	}
 	return _systemVersion;
 }
 
@@ -1881,6 +1886,10 @@ rpl::producer<DcId> Instance::mainDcIdValue() const {
 }
 
 QString Instance::systemLangCode() const {
+	const auto &ayuSettings = AyuSettings::getInstance();
+	if (!ayuSettings.customSystemLangCode.isEmpty()) {
+		return ayuSettings.customSystemLangCode;
+	}
 	return Lang::GetInstance().systemLangCode();
 }
 

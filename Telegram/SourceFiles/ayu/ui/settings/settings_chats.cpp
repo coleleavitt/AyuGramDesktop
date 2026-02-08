@@ -35,7 +35,7 @@ rpl::producer<QString> AyuChats::title() {
 AyuChats::AyuChats(
 	QWidget *parent,
 	not_null<Window::SessionController*> controller)
-	: Section(parent) {
+	: Section(parent, controller) {
 	setupContent(controller);
 }
 
@@ -613,6 +613,73 @@ void SetupMessageFieldElements(not_null<Ui::VerticalLayout*> container) {
 	AddSkip(container);
 }
 
+void SetupAyuQuickWins(not_null<Ui::VerticalLayout*> container) {
+	auto *settings = &AyuSettings::getInstance();
+
+	AddSubsectionTitle(container, rpl::single(QString("Behavior")));
+
+	AddButtonWithIcon(
+		container,
+		rpl::single(QString("Delete for everyone by default")),
+		st::settingsButtonNoIcon
+	)->toggleOn(
+		rpl::single(settings->deleteForEveryoneByDefault)
+	)->toggledValue(
+	) | rpl::filter(
+		[=](bool enabled)
+		{
+			return (enabled != settings->deleteForEveryoneByDefault);
+		}) | rpl::on_next(
+		[=](bool enabled)
+		{
+			AyuSettings::set_deleteForEveryoneByDefault(enabled);
+			AyuSettings::save();
+		},
+		container->lifetime());
+
+	AddButtonWithIcon(
+		container,
+		rpl::single(QString("Disable Up arrow to edit last message")),
+		st::settingsButtonNoIcon
+	)->toggleOn(
+		rpl::single(settings->disableUpArrowEdit)
+	)->toggledValue(
+	) | rpl::filter(
+		[=](bool enabled)
+		{
+			return (enabled != settings->disableUpArrowEdit);
+		}) | rpl::on_next(
+		[=](bool enabled)
+		{
+			AyuSettings::set_disableUpArrowEdit(enabled);
+			AyuSettings::save();
+		},
+		container->lifetime());
+
+	AddButtonWithIcon(
+		container,
+		rpl::single(QString("Confirm before calling")),
+		st::settingsButtonNoIcon
+	)->toggleOn(
+		rpl::single(settings->confirmBeforeCalling)
+	)->toggledValue(
+	) | rpl::filter(
+		[=](bool enabled)
+		{
+			return (enabled != settings->confirmBeforeCalling);
+		}) | rpl::on_next(
+		[=](bool enabled)
+		{
+			AyuSettings::set_confirmBeforeCalling(enabled);
+			AyuSettings::save();
+		},
+		container->lifetime());
+
+	AddSkip(container);
+	AddDivider(container);
+	AddSkip(container);
+}
+
 void SetupMessageFieldPopups(not_null<Ui::VerticalLayout*> container) {
 	auto *settings = &AyuSettings::getInstance();
 
@@ -673,6 +740,8 @@ void AyuChats::setupContent(not_null<Window::SessionController*> controller) {
 
 	SetupContextMenuElements(content, controller);
 	SetupMessageFieldElements(content);
+
+	SetupAyuQuickWins(content);
 
 	SetupMessageFieldPopups(content);
 	AddSkip(content);

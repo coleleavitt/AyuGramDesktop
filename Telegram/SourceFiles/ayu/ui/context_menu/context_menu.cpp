@@ -748,7 +748,7 @@ void AddReadUntilAction(not_null<Ui::PopupMenu*> menu, HistoryItem *item) {
 	}
 
 	const auto &settings = AyuSettings::getInstance();
-	if (settings.sendReadMessages) {
+	if (settings.sendReadMessages || AyuSettings::isGhostExempt(item->history()->peer->id.value)) {
 		return;
 	}
 

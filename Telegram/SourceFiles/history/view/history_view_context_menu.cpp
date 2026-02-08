@@ -79,7 +79,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "core/click_handler_types.h"
 #include "base/platform/base_platform_info.h"
 #include "base/call_delayed.h"
-#include "settings/settings_premium.h"
+#include "settings/sections/settings_premium.h"
 #include "window/window_peer_menu.h"
 #include "window/window_controller.h"
 #include "window/window_session_controller.h"
@@ -422,12 +422,42 @@ bool AddForwardMessageAction(
 	return true;
 }
 
+void AddForwardToSavedAction(
+		not_null<Ui::PopupMenu*> menu,
+		const ContextMenuRequest &request,
+		not_null<ListWidget*> list) {
+	const auto item = request.item;
+	if (!item || !item->allowsForward()) {
+		return;
+	}
+	if (!request.selectedItems.empty()) {
+		return;
+	}
+	const auto owner = &item->history()->owner();
+	const auto asGroup = (request.pointState != PointState::GroupPart);
+	const auto itemId = item->fullId();
+	const auto session = &item->history()->session();
+	menu->addAction(QString("Forward to Saved Messages"), [=] {
+		if (const auto item = owner->message(itemId)) {
+			const auto self = session->user();
+			const auto history = session->data().history(self);
+			auto items = (asGroup
+				? owner->itemOrItsGroup(item)
+				: MessageIdsList{ 1, itemId });
+			auto draft = Data::ResolvedForwardDraft{ .items = session->data().idsToItems(items) };
+			auto action = Api::SendAction(history);
+			session->api().forwardMessages(std::move(draft), action);
+		}
+	}, &st::menuIconSavedMessages);
+}
+
 void AddForwardAction(
 		not_null<Ui::PopupMenu*> menu,
 		const ContextMenuRequest &request,
 		not_null<ListWidget*> list) {
 	AddForwardSelectedAction(menu, request, list);
 	AddForwardMessageAction(menu, request, list);
+	AddForwardToSavedAction(menu, request, list);
 }
 
 bool AddSendNowSelectedAction(
@@ -2030,7 +2060,7 @@ void AddEmojiPacksAction(
 		st::historyHasCustomEmojiPosition,
 		std::move(text));
 	const auto weak = base::make_weak(controller);
-	button->setClickedCallback([=] {
+	button->setActionTriggered([=] {
 		const auto strong = weak.get();
 		if (!strong) {
 			return;

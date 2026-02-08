@@ -1,0 +1,6 @@
+// AUTO-GENERATED
+
+#ifndef _GI_XDPREQUEST__FLAGS_HPP_
+#define _GI_XDPREQUEST__FLAGS_HPP_
+
+#endif

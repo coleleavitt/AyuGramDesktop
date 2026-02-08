@@ -678,8 +678,16 @@ void Histories::sendReadRequests() {
 	const auto &settings = AyuSettings::getInstance();
 	if (!settings.sendReadMessages) {
 		DEBUG_LOG(("[AyuGram] Don't read messages"));
-		_states.clear();
-		return;
+		for (auto it = _states.begin(); it != _states.end();) {
+			if (AyuSettings::isGhostExempt(it->first->peer->id.value)) {
+				++it;
+			} else {
+				it = _states.erase(it);
+			}
+		}
+		if (_states.empty()) {
+			return;
+		}
 	}
 
 	if (_states.empty()) {

@@ -10,6 +10,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "apiwrap.h"
 #include "api/api_chat_participants.h"
 #include "api/api_messages_search.h"
+#include "api/api_report.h"
 #include "base/unixtime.h"
 #include "core/application.h"
 #include "core/core_settings.h"
@@ -34,6 +35,8 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "ui/wrap/slide_wrap.h"
 #include "styles/style_layers.h"
 #include "styles/style_boxes.h"
+
+#include "ayu/ayu_settings.h"
 
 DeleteMessagesBox::DeleteMessagesBox(
 	QWidget*,
@@ -243,8 +246,10 @@ void DeleteMessagesBox::prepare() {
 			if (hasScheduledMessages() || hasSavedMusicMessages()) {
 			} else if (auto revoke = revokeText(peer)) {
 				const auto &settings = Core::App().settings();
-				const auto revokeByDefault
-					= !settings.rememberedDeleteMessageOnlyForYou();
+				const auto &ayuSettings = AyuSettings::getInstance();
+				const auto revokeByDefault = ayuSettings.deleteForEveryoneByDefault
+					? true
+					: !settings.rememberedDeleteMessageOnlyForYou();
 				_revoke.create(
 					this,
 					revoke->checkbox,
@@ -640,12 +645,7 @@ void DeleteMessagesBox::deleteAndClear() {
 				ChatRestrictionsInfo());
 		}
 		if (_reportSpam->checked()) {
-			_moderateInChannel->session().api().request(
-				MTPchannels_ReportSpam(
-					_moderateInChannel->inputChannel(),
-					_moderateFrom->input(),
-					MTP_vector<MTPint>(1, MTP_int(_ids[0].msg)))
-			).send();
+			Api::ReportSpam(_moderateFrom, { _ids[0] });
 		}
 		if (_deleteAll && _deleteAll->checked()) {
 			_moderateInChannel->session().api().deleteAllFromParticipant(

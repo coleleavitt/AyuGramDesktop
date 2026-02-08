@@ -9,6 +9,7 @@
 #include "lang_auto.h"
 #include "settings_ayu_utils.h"
 #include "ayu/ayu_settings.h"
+#include "ayu/ui/boxes/edit_mark_box.h"
 #include "settings/settings_common.h"
 #include "styles/style_settings.h"
 #include "ui/vertical_list.h"
@@ -26,7 +27,7 @@ rpl::producer<QString> AyuGeneral::title() {
 AyuGeneral::AyuGeneral(
 	QWidget *parent,
 	not_null<Window::SessionController*> controller)
-	: Section(parent) {
+	: Section(parent, controller) {
 	setupContent(controller);
 }
 
@@ -250,6 +251,25 @@ void SetupQoLToggles(not_null<Ui::VerticalLayout*> container, not_null<Window::S
 		},
 		container->lifetime());
 
+	AddButtonWithIcon(
+		container,
+		rpl::single(QString("Spoof webview as iOS")),
+		st::settingsButtonNoIcon
+	)->toggleOn(
+		rpl::single(settings->spoofWebviewAsIOS)
+	)->toggledValue(
+	) | rpl::filter(
+		[=](bool enabled)
+		{
+			return (enabled != settings->spoofWebviewAsIOS);
+		}) | on_next(
+		[=](bool enabled)
+		{
+			AyuSettings::set_spoofWebviewAsIOS(enabled);
+			AyuSettings::save();
+		},
+		container->lifetime());
+
 	std::vector webviewCheckboxes = {
 		NestedEntry{
 			tr::ayu_SettingsIncreaseWebviewHeight(tr::now), settings->increaseWebviewHeight, [=](bool enabled)
@@ -268,6 +288,75 @@ void SetupQoLToggles(not_null<Ui::VerticalLayout*> container, not_null<Window::S
 	};
 
 	AddCollapsibleToggle(container, tr::ayu_SettingsBiggerWindow(), webviewCheckboxes, false);
+
+	AddSkip(container);
+	AddDivider(container);
+	AddSkip(container);
+
+	AddSubsectionTitle(container, rpl::single(QString("Spoofing")));
+
+	AddButtonWithLabel(
+		container,
+		rpl::single(QString("Custom system version")),
+		rpl::single(settings->customSystemVersion.isEmpty() ? QString("Default") : settings->customSystemVersion),
+		st::settingsButtonNoIcon
+	)->addClickHandler(
+		[=]()
+		{
+			auto box = Box<EditMarkBox>(
+				rpl::single(QString("Custom system version")),
+				settings->customSystemVersion,
+				QString(""),
+				[=](const QString &value)
+				{
+					AyuSettings::set_customSystemVersion(value);
+					AyuSettings::save();
+				}
+			);
+			Ui::show(std::move(box));
+		});
+
+	AddButtonWithLabel(
+		container,
+		rpl::single(QString("Custom app version")),
+		rpl::single(settings->customAppVersion.isEmpty() ? QString("Default") : settings->customAppVersion),
+		st::settingsButtonNoIcon
+	)->addClickHandler(
+		[=]()
+		{
+			auto box = Box<EditMarkBox>(
+				rpl::single(QString("Custom app version")),
+				settings->customAppVersion,
+				QString(""),
+				[=](const QString &value)
+				{
+					AyuSettings::set_customAppVersion(value);
+					AyuSettings::save();
+				}
+			);
+			Ui::show(std::move(box));
+		});
+
+	AddButtonWithLabel(
+		container,
+		rpl::single(QString("Custom system lang code")),
+		rpl::single(settings->customSystemLangCode.isEmpty() ? QString("Default") : settings->customSystemLangCode),
+		st::settingsButtonNoIcon
+	)->addClickHandler(
+		[=]()
+		{
+			auto box = Box<EditMarkBox>(
+				rpl::single(QString("Custom system lang code")),
+				settings->customSystemLangCode,
+				QString(""),
+				[=](const QString &value)
+				{
+					AyuSettings::set_customSystemLangCode(value);
+					AyuSettings::save();
+				}
+			);
+			Ui::show(std::move(box));
+		});
 
 	AddSkip(container);
 	AddDivider(container);

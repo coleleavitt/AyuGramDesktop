@@ -216,6 +216,8 @@ set(ayugram_files
         ayu/features/translator/ayu_translator.h
         ayu/features/translator/html_parser.cpp
         ayu/features/translator/html_parser.h
+        ayu/features/translator/implementations/deepl.cpp
+        ayu/features/translator/implementations/deepl.h
         ayu/features/translator/implementations/google.cpp
         ayu/features/translator/implementations/google.h
         ayu/features/translator/implementations/yandex.cpp
@@ -361,6 +363,8 @@ PRIVATE
     boxes/peers/add_bot_to_chat_box.h
     boxes/peers/add_participants_box.cpp
     boxes/peers/add_participants_box.h
+    boxes/peers/channel_ownership_transfer.cpp
+    boxes/peers/channel_ownership_transfer.h
     boxes/peers/choose_peer_box.cpp
     boxes/peers/choose_peer_box.h
     boxes/peers/edit_contact_box.cpp
@@ -472,6 +476,8 @@ PRIVATE
     boxes/report_messages_box.h
     boxes/ringtones_box.cpp
     boxes/ringtones_box.h
+    boxes/select_future_owner_box.cpp
+    boxes/select_future_owner_box.h
     boxes/self_destruction_box.cpp
     boxes/self_destruction_box.h
     boxes/send_credits_box.cpp
@@ -486,6 +492,12 @@ PRIVATE
     boxes/star_gift_auction_box.h
     boxes/star_gift_box.cpp
     boxes/star_gift_box.h
+    boxes/star_gift_cover_box.cpp
+    boxes/star_gift_cover_box.h
+    boxes/star_gift_craft_animation.cpp
+    boxes/star_gift_craft_animation.h
+    boxes/star_gift_craft_box.cpp
+    boxes/star_gift_craft_box.h
     boxes/star_gift_preview_box.cpp
     boxes/star_gift_preview_box.h
     boxes/star_gift_resale_box.cpp
@@ -639,6 +651,17 @@ PRIVATE
     core/crash_reports.h
     core/credits_amount.h
     core/deadlock_detector.h
+    core/deep_links/deep_links_chats.cpp
+    core/deep_links/deep_links_chats.h
+    core/deep_links/deep_links_contacts.cpp
+    core/deep_links/deep_links_contacts.h
+    core/deep_links/deep_links_new.cpp
+    core/deep_links/deep_links_new.h
+    core/deep_links/deep_links_router.cpp
+    core/deep_links/deep_links_router.h
+    core/deep_links/deep_links_settings.cpp
+    core/deep_links/deep_links_settings.h
+    core/deep_links/deep_links_types.h
     core/file_utilities.cpp
     core/file_utilities.h
     core/launcher.cpp
@@ -1029,6 +1052,8 @@ PRIVATE
     history/view/reactions/history_view_reactions_strip.h
     history/view/reactions/history_view_reactions_tabs.cpp
     history/view/reactions/history_view_reactions_tabs.h
+    history/view/history_view_top_peers_selector.cpp
+    history/view/history_view_top_peers_selector.h
     history/view/history_view_about_view.cpp
     history/view/history_view_about_view.h
     history/view/history_view_bottom_info.cpp
@@ -1095,6 +1120,8 @@ PRIVATE
     history/view/history_view_sticker_toast.h
     history/view/history_view_subsection_tabs.cpp
     history/view/history_view_subsection_tabs.h
+    history/view/history_view_summary_header.cpp
+    history/view/history_view_summary_header.h
     history/view/history_view_text_helper.cpp
     history/view/history_view_text_helper.h
     history/view/history_view_transcribe_button.cpp
@@ -1632,8 +1659,6 @@ PRIVATE
     platform/platform_tray.h
     platform/platform_webauthn.h
     platform/platform_window_title.h
-    profile/profile_back_button.cpp
-    profile/profile_back_button.h
     profile/profile_block_widget.cpp
     profile/profile_block_widget.h
     profile/profile_cover_drop_area.cpp
@@ -1678,61 +1703,67 @@ PRIVATE
     settings/cloud_password/settings_cloud_password_step.h
     settings/cloud_password/settings_cloud_password_validate_icon.cpp
     settings/cloud_password/settings_cloud_password_validate_icon.h
-    settings/settings_active_sessions.cpp
-    settings/settings_active_sessions.h
-    settings/settings_advanced.cpp
-    settings/settings_advanced.h
-    settings/settings_blocked_peers.cpp
-    settings/settings_blocked_peers.h
-    settings/settings_business.cpp
-    settings/settings_business.h
-    settings/settings_chat.cpp
-    settings/settings_chat.h
-    settings/settings_calls.cpp
-    settings/settings_calls.h
+    settings/sections/settings_active_sessions.cpp
+    settings/sections/settings_active_sessions.h
+    settings/sections/settings_advanced.cpp
+    settings/sections/settings_advanced.h
+    settings/sections/settings_chat.cpp
+    settings/sections/settings_chat.h
+    settings/sections/settings_blocked_peers.cpp
+    settings/sections/settings_blocked_peers.h
+    settings/sections/settings_business.cpp
+    settings/sections/settings_business.h
+    settings/sections/settings_calls.cpp
+    settings/sections/settings_calls.h
     settings/settings_codes.cpp
     settings/settings_codes.h
     settings/settings_common_session.cpp
     settings/settings_common_session.h
-    settings/settings_credits.cpp
-    settings/settings_credits.h
+    settings/sections/settings_credits.cpp
+    settings/sections/settings_credits.h
     settings/settings_credits_graphics.cpp
     settings/settings_credits_graphics.h
     settings/settings_experimental.cpp
     settings/settings_experimental.h
-    settings/settings_folders.cpp
-    settings/settings_folders.h
-    settings/settings_global_ttl.cpp
-    settings/settings_global_ttl.h
-    settings/settings_information.cpp
-    settings/settings_information.h
+    settings/sections/settings_folders.cpp
+    settings/sections/settings_folders.h
+    settings/sections/settings_global_ttl.cpp
+    settings/sections/settings_global_ttl.h
+    settings/sections/settings_information.cpp
+    settings/sections/settings_information.h
     settings/settings_intro.cpp
     settings/settings_intro.h
-    settings/settings_local_passcode.cpp
-    settings/settings_local_passcode.h
-    settings/settings_main.cpp
-    settings/settings_main.h
-    settings/settings_notifications.cpp
-    settings/settings_notifications.h
-    settings/settings_notifications_type.cpp
-    settings/settings_notifications_type.h
-    settings/settings_passkeys.cpp
-    settings/settings_passkeys.h
+    settings/sections/settings_local_passcode.cpp
+    settings/sections/settings_local_passcode.h
+    settings/sections/settings_main.cpp
+    settings/sections/settings_main.h
+    settings/settings_search.cpp
+    settings/settings_search.h
+    settings/settings_faq_suggestions.cpp
+    settings/settings_faq_suggestions.h
+    settings/settings_builder.cpp
+    settings/settings_builder.h
+    settings/sections/settings_notifications.cpp
+    settings/sections/settings_notifications.h
+    settings/sections/settings_privacy_security.cpp
+    settings/sections/settings_privacy_security.h
+    settings/sections/settings_notifications_type.cpp
+    settings/sections/settings_notifications_type.h
+    settings/sections/settings_passkeys.cpp
+    settings/sections/settings_passkeys.h
     settings/settings_power_saving.cpp
     settings/settings_power_saving.h
-    settings/settings_premium.cpp
-    settings/settings_premium.h
+    settings/sections/settings_premium.cpp
+    settings/sections/settings_premium.h
     settings/settings_privacy_controllers.cpp
     settings/settings_privacy_controllers.h
-    settings/settings_privacy_security.cpp
-    settings/settings_privacy_security.h
     settings/settings_scale_preview.cpp
     settings/settings_scale_preview.h
-    settings/settings_shortcuts.cpp
-    settings/settings_shortcuts.h
     settings/settings_type.h
-    settings/settings_websites.cpp
-    settings/settings_websites.h
+    settings/sections/settings_shortcuts.cpp
+    settings/sections/settings_shortcuts.h
+    settings/sections/settings_websites.cpp
+    settings/sections/settings_websites.h
     storage/details/storage_file_utilities.cpp
     storage/details/storage_file_utilities.h
     storage/details/storage_settings_scheme.cpp
@@ -1789,6 +1820,8 @@ PRIVATE
     tde2e/tde2e_integration.h
     ui/boxes/edit_invite_link_session.cpp
     ui/boxes/edit_invite_link_session.h
+    ui/boxes/emoji_stake_box.cpp
+    ui/boxes/emoji_stake_box.h
     ui/boxes/peer_qr_box.cpp
     ui/boxes/peer_qr_box.h
     ui/chat/attach/attach_item_single_file_preview.cpp

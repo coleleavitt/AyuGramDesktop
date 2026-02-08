@@ -36,7 +36,7 @@ CallbackCancel TelegramTranslator::startTranslation(
 		const auto &data = result.data();
 		const auto &list = data.vresult().v;
 		if (list.isEmpty()) {
-			args.onFail();
+			args.onFail(false);
 		} else {
 			auto vec = std::vector<TextWithEntities>();
 			vec.reserve(list.size());
@@ -53,7 +53,7 @@ CallbackCancel TelegramTranslator::startTranslation(
 		}
 	}).fail([=](const MTP::Error &)
 	{
-		args.onFail();
+		args.onFail(true);
 	}).send();
 
 	return [=]

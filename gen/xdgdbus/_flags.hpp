@@ -1,0 +1,6 @@
+// AUTO-GENERATED
+
+#ifndef _GI_XDGDBUS__FLAGS_HPP_
+#define _GI_XDGDBUS__FLAGS_HPP_
+
+#endif

@@ -1,0 +1,9 @@
+-rootPath
+/home/cole/AyuGram-build/tdesktop/Telegram
+-cmake-output
+-output-file
+/home/cole/AyuGram-build/tdesktop/Telegram/.qt/qml_imports/Telegram_conf.cmake
+-importPath
+/home/cole/AyuGram-build/tdesktop/Telegram
+-importPath
+/usr/lib64/qt6/qml

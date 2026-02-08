@@ -1,0 +1,6 @@
+// AUTO-GENERATED
+
+#ifndef _GI_WEBVIEW__ENUMS_HPP_
+#define _GI_WEBVIEW__ENUMS_HPP_
+
+#endif

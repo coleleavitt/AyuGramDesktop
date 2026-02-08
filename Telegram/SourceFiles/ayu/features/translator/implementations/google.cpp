@@ -81,7 +81,7 @@ QPointer<QNetworkReply> GoogleTranslator::startSingleTranslation(
 	const auto onFail = args.onFail;
 
 	if (text.empty() || toLang.isEmpty()) {
-		if (onFail) onFail();
+		if (onFail) onFail(false);
 		return nullptr;
 	}
 
@@ -136,25 +136,25 @@ QPointer<QNetworkReply> GoogleTranslator::startSingleTranslation(
 							 reply,
 							 [](QNetworkReply *r) { r->deleteLater(); });
 						 if (reply->error() != QNetworkReply::NoError) {
-							 if (onFail) onFail();
+							 if (onFail) onFail(true);
 							 return;
 						 }
 						 const auto body = reply->readAll();
 						 QJsonParseError parseError{};
 						 const auto doc = QJsonDocument::fromJson(body, &parseError);
 						 if (parseError.error != QJsonParseError::NoError || !doc.isArray()) {
-							 if (onFail) onFail();
+							 if (onFail) onFail(false);
 							 return;
 						 }
 						 const auto root = doc.array();
 						 if (root.isEmpty()) {
-						 	 if (onFail) onFail();
+						 	 if (onFail) onFail(false);
 						 	 return;
 						 }
 						 const auto translatedItems = collectStrings(root.at(0));
 						 const auto textOutCombined = translatedItems.join(QStringLiteral(" "));
 						 if (textOutCombined.trimmed().isEmpty()) {
-						 	 if (onFail) onFail();
+						 	 if (onFail) onFail(false);
 						 	 return;
 						 }
 						 const auto decodedText = decodeHtmlEntities(textOutCombined);

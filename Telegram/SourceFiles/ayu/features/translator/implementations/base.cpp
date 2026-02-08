@@ -149,7 +149,7 @@ CallbackCancel MultiThreadTranslator::startTranslation(const StartTranslationArg
 	const auto &fromLang = args.parsedData.fromLang;
 	const auto &toLang = args.parsedData.toLang;
 	if (texts.empty() || toLang.trimmed().isEmpty()) {
-		if (args.onFail) args.onFail();
+		if (args.onFail) args.onFail(false);
 		return []
 		{
 		};
@@ -212,7 +212,7 @@ CallbackCancel MultiThreadTranslator::startTranslation(const StartTranslationArg
 		if (state->finished) return;
 		state->finished = true;
 		state->cancelAll();
-		if (state->onFail) state->onFail();
+		if (state->onFail) state->onFail(true);
 	};
 
 	auto finishSuccess = [state]()
@@ -244,11 +244,17 @@ CallbackCancel MultiThreadTranslator::startTranslation(const StartTranslationArg
 				state->pump();
 			}
 		};
-		singleArgs.onFail = [state, i, finishFail, maxRetries, baseWaitTime]() mutable
+		singleArgs.onFail = [state, i, finishFail, maxRetries, baseWaitTime](bool retryable) mutable
 		{
 			if (state->finished) return;
 
 			state->replies[i] = nullptr;
+
+			if (!retryable) {
+				finishFail();
+				return;
+			}
+
 			state->retryCount[i]++;
 
 			if (state->retryCount[i] >= maxRetries) {
@@ -278,7 +284,7 @@ CallbackCancel MultiThreadTranslator::startTranslation(const StartTranslationArg
 		const auto r = state->self->startSingleTranslation(singleArgs);
 		state->replies[i] = r;
 		if (!r && !state->finished) {
-			singleArgs.onFail();
+			singleArgs.onFail(true);
 		}
 	};
 
