@@ -355,6 +355,35 @@ void AddShadowBanAction(PeerData *peerData,
 	});
 }
 
+void AddGhostModeExceptionAction(PeerData *peerData,
+								 const Window::PeerMenuCallback &addCallback) {
+	if (!peerData || !AyuSettings::isGhostModeActive()) {
+		return;
+	}
+
+	if (const auto user = peerData->asUser()) {
+		if (user->isSelf()) {
+			return;
+		}
+	}
+
+	const auto realId = getDialogIdFromPeer(peerData);
+	const auto exempt = AyuSettings::isGhostExempt(realId);
+	const auto toggleException = [=]
+	{
+		AyuSettings::set_ghostModeException(realId, !exempt);
+		AyuSettings::save();
+	};
+
+	addCallback({
+		.text = (exempt
+					 ? QString("Re-enable ghost mode")
+					 : QString("Disable ghost mode here")),
+		.handler = toggleException,
+		.icon = exempt ? &st::menuIconStealth : &st::menuIconShowInChat,
+	});
+}
+
 void AddDeleteOwnMessagesAction(PeerData *peerData,
 								Data::ForumTopic *topic,
 								not_null<Window::SessionController*> sessionController,

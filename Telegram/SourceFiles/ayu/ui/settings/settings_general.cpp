@@ -224,6 +224,25 @@ void SetupQoLToggles(not_null<Ui::VerticalLayout*> container, not_null<Window::S
 		},
 		container->lifetime());
 
+	AddButtonWithIcon(
+		container,
+		rpl::single(QString("Show message ID on hover")),
+		st::settingsButtonNoIcon
+	)->toggleOn(
+		rpl::single(settings->showMessageId)
+	)->toggledValue(
+	) | rpl::filter(
+		[=](bool enabled)
+		{
+			return (enabled != settings->showMessageId);
+		}) | on_next(
+		[=](bool enabled)
+		{
+			AyuSettings::set_showMessageId(enabled);
+			AyuSettings::save();
+		},
+		container->lifetime());
+
 	SetupShowPeerId(container, controller);
 
 	AddSkip(container);

@@ -675,6 +675,82 @@ void SetupAyuQuickWins(not_null<Ui::VerticalLayout*> container) {
 		},
 		container->lifetime());
 
+	AddButtonWithIcon(
+		container,
+		rpl::single(QString("Always use intelligent forward")),
+		st::settingsButtonNoIcon
+	)->toggleOn(
+		rpl::single(settings->alwaysUseIntelligentForward)
+	)->toggledValue(
+	) | rpl::filter(
+		[=](bool enabled)
+		{
+			return (enabled != settings->alwaysUseIntelligentForward);
+		}) | rpl::on_next(
+		[=](bool enabled)
+		{
+			AyuSettings::set_alwaysUseIntelligentForward(enabled);
+			AyuSettings::save();
+		},
+		container->lifetime());
+
+	AddButtonWithIcon(
+		container,
+		rpl::single(QString("Don't share phone by default")),
+		st::settingsButtonNoIcon
+	)->toggleOn(
+		rpl::single(settings->dontSharePhoneByDefault)
+	)->toggledValue(
+	) | rpl::filter(
+		[=](bool enabled)
+		{
+			return (enabled != settings->dontSharePhoneByDefault);
+		}) | rpl::on_next(
+		[=](bool enabled)
+		{
+			AyuSettings::set_dontSharePhoneByDefault(enabled);
+			AyuSettings::save();
+		},
+		container->lifetime());
+
+	AddButtonWithIcon(
+		container,
+		rpl::single(QString("Always on top")),
+		st::settingsButtonNoIcon
+	)->toggleOn(
+		rpl::single(settings->alwaysOnTop)
+	)->toggledValue(
+	) | rpl::filter(
+		[=](bool enabled)
+		{
+			return (enabled != settings->alwaysOnTop);
+		}) | rpl::on_next(
+		[=](bool enabled)
+		{
+			AyuSettings::set_alwaysOnTop(enabled);
+			AyuSettings::save();
+		},
+		container->lifetime());
+
+	AddButtonWithIcon(
+		container,
+		rpl::single(QString("Auto-unlock passcode on keypress")),
+		st::settingsButtonNoIcon
+	)->toggleOn(
+		rpl::single(settings->autoUnlockPasscode)
+	)->toggledValue(
+	) | rpl::filter(
+		[=](bool enabled)
+		{
+			return (enabled != settings->autoUnlockPasscode);
+		}) | rpl::on_next(
+		[=](bool enabled)
+		{
+			AyuSettings::set_autoUnlockPasscode(enabled);
+			AyuSettings::save();
+		},
+		container->lifetime());
+
 	AddSkip(container);
 	AddDivider(container);
 	AddSkip(container);
