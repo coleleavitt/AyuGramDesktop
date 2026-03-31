@@ -3537,7 +3537,6 @@ void HistoryItem::setText(const TextWithEntities &textWithEntities) {
 					emojiId.toULongLong(&ok);
 					if (ok) {
 						entity = EntityInText(EntityType::CustomEmoji, entity.offset(), entity.length(), emojiId);
-						entity.setLocal();
 					}
 				}
 			}

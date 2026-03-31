@@ -7,46 +7,37 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 */
 #include "history/view/media/history_view_game.h"
 
-#include "lang/lang_keys.h"
-#include "history/history_item_components.h"
+#include "core/ui_integration.h"
+#include "data/data_game.h"
+#include "data/data_media_types.h"
+#include "data/data_session.h"
 #include "history/history.h"
-#include "history/view/history_view_element.h"
+#include "history/history_item_components.h"
 #include "history/view/history_view_cursor_state.h"
+#include "history/view/history_view_element.h"
 #include "history/view/media/history_view_media_common.h"
-#include "ui/item_text_options.h"
-#include "ui/text/text_utilities.h"
+#include "lang/lang_keys.h"
+#include "styles/style_chat.h"
 #include "ui/cached_round_corners.h"
 #include "ui/chat/chat_style.h"
 #include "ui/effects/ripple_animation.h"
+#include "ui/item_text_options.h"
 #include "ui/painter.h"
 #include "ui/power_saving.h"
-#include "core/ui_integration.h"
-#include "data/data_session.h"
-#include "data/data_game.h"
-#include "data/data_media_types.h"
-#include "styles/style_chat.h"
+#include "ui/text/text_utilities.h"
 
 namespace HistoryView {
 
-Game::Game(
-	not_null<Element*> parent,
-	not_null<GameData*> data,
-	const TextWithEntities &consumed)
-: Media(parent)
-, _st(st::historyPagePreview)
-, _data(data)
-, _title(st::msgMinWidth - _st.padding.left() - _st.padding.right())
-, _description(st::msgMinWidth - _st.padding.left() - _st.padding.right()) {
+Game::Game(not_null<Element *> parent, not_null<GameData *> data, const TextWithEntities &consumed)
+	: Media(parent), _st(st::historyPagePreview), _data(data),
+	  _title(st::msgMinWidth - _st.padding.left() - _st.padding.right()),
+	  _description(st::msgMinWidth - _st.padding.left() - _st.padding.right()) {
 	if (!consumed.text.isEmpty()) {
 		const auto context = Core::TextContext({
 			.session = &history()->session(),
 			.repaint = [=] { _parent->customEmojiRepaint(); },
 		});
-		_description.setMarkedText(
-			st::webPageDescriptionStyle,
-			consumed,
-			Ui::ItemTextOptions(parent->data()),
-			context);
+		_description.setMarkedText(st::webPageDescriptionStyle, consumed, Ui::ItemTextOptions(parent->data()), context);
 	}
 	history()->owner().registerGameView(_data, _parent);
 }
@@ -58,46 +49,31 @@ QSize Game::countOptimalSize() {
 	if (!_openl && item->isRegular()) {
 		const auto row = 0;
 		const auto column = 0;
-		_openl = std::make_shared<ReplyMarkupClickHandler>(
-			&item->history()->owner(),
-			row,
-			column,
-			item->fullId());
+		_openl = std::make_shared<ReplyMarkupClickHandler>(&item->history()->owner(), row, column, item->fullId());
 	}
 
 	auto title = TextUtilities::SingleLine(_data->title);
 
 	// init attach
 	if (!_attach) {
-		_attach = CreateAttach(
-			_parent,
-			_data->document,
-			_data->document ? nullptr : _data->photo);
+		_attach = CreateAttach(_parent, _data->document, _data->document ? nullptr : _data->photo);
 	}
 
 	// init strings
 	if (_description.isEmpty() && !_data->description.isEmpty()) {
 		auto text = _data->description;
 		if (!text.isEmpty()) {
-			auto marked = TextWithEntities { text };
+			auto marked = TextWithEntities{text};
 			auto parseFlags = TextParseLinks | TextParseMultiline;
 			TextUtilities::ParseEntities(marked, parseFlags);
-			_description.setMarkedText(
-				st::webPageDescriptionStyle,
-				marked,
-				Ui::WebpageTextDescriptionOptions());
+			_description.setMarkedText(st::webPageDescriptionStyle, marked, Ui::WebpageTextDescriptionOptions());
 			if (!_attach) {
-				_description.updateSkipBlock(
-					_parent->skipBlockWidth(),
-					_parent->skipBlockHeight());
+				_description.updateSkipBlock(_parent->skipBlockWidth(), _parent->skipBlockHeight());
 			}
 		}
 	}
 	if (_title.isEmpty() && !title.isEmpty()) {
-		_title.setText(
-			st::webPageTitleStyle,
-			title,
-			Ui::WebpageTextTitleOptions());
+		_title.setText(st::webPageTitleStyle, title, Ui::WebpageTextTitleOptions());
 	}
 
 	// init dimensions
@@ -138,10 +114,10 @@ QSize Game::countOptimalSize() {
 	if (!_gameTagWidth) {
 		_gameTagWidth = st::msgDateFont->width(tr::lng_game_tag(tr::now).toUpper());
 	}
-	return { maxWidth, minHeight };
+	return {maxWidth, minHeight};
 }
 
-void Game::refreshParentId(not_null<HistoryItem*> realParent) {
+void Game::refreshParentId(not_null<HistoryItem *> realParent) {
 	if (_openl) {
 		_openl->setMessageId(realParent->fullId());
 	}
@@ -193,16 +169,14 @@ QSize Game::countCurrentSize(int newWidth) {
 	}
 	newHeight += padding.top() + padding.bottom();
 
-	return { newWidth, newHeight };
+	return {newWidth, newHeight};
 }
 
-TextSelection Game::toDescriptionSelection(
-		TextSelection selection) const {
+TextSelection Game::toDescriptionSelection(TextSelection selection) const {
 	return UnshiftItemSelection(selection, _title);
 }
 
-TextSelection Game::fromDescriptionSelection(
-		TextSelection selection) const {
+TextSelection Game::fromDescriptionSelection(TextSelection selection) const {
 	return ShiftItemSelection(selection, _title);
 }
 
@@ -224,21 +198,18 @@ void Game::draw(Painter &p, const PaintContext &context) const {
 	const auto selected = context.selected();
 	const auto colorIndex = parent()->contentColorIndex();
 	const auto &colorCollectible = parent()->contentColorCollectible();
-	const auto colorPattern = colorCollectible
-		? st->collectiblePatternIndex(colorCollectible)
-		: st->colorPatternIndex(colorIndex);
+	const auto colorPattern =
+		colorCollectible ? st->collectiblePatternIndex(colorCollectible) : st->colorPatternIndex(colorIndex);
 	const auto useColorCollectible = colorCollectible && !context.outbg;
 	const auto useColorIndex = !context.outbg;
-	const auto cache = useColorCollectible
-		? st->collectibleReplyCache(selected, colorCollectible).get()
-		: useColorIndex
-		? st->coloredReplyCache(selected, colorIndex).get()
-		: stm->replyCache[colorPattern].get();
+	const auto cache = useColorCollectible ? st->collectibleReplyCache(selected, colorCollectible).get()
+		: useColorIndex					   ? st->coloredReplyCache(selected, colorIndex).get()
+										   : stm->replyCache[colorPattern].get();
 	Ui::Text::ValidateQuotePaintCache(*cache, _st);
 	Ui::Text::FillQuotePaint(p, outer, *cache, _st);
 
 	if (_ripple) {
-		_ripple->paint(p, outer.x(), outer.y(), width(), &cache->bg2);
+		_ripple->paint(p, outer.x(), outer.y(), width(), &cache->bg);
 		if (_ripple->empty()) {
 			_ripple = nullptr;
 		}
@@ -247,29 +218,26 @@ void Game::draw(Painter &p, const PaintContext &context) const {
 	auto lineHeight = UnitedLineHeight();
 	if (_titleLines) {
 		p.setPen(cache->icon);
-		p.setTextPalette(useColorCollectible
-			? st->collectibleTextPalette(selected, colorCollectible)
-			: useColorIndex
-			? st->coloredTextPalette(selected, colorIndex)
-			: stm->semiboldPalette);
+		p.setTextPalette(useColorCollectible ? st->collectibleTextPalette(selected, colorCollectible)
+							 : useColorIndex ? st->coloredTextPalette(selected, colorIndex)
+											 : stm->semiboldPalette);
 
 		auto endskip = 0;
 		if (_title.hasSkipBlock()) {
 			endskip = _parent->skipBlockWidth();
 		}
-		_title.drawLeftElided(
-			p,
-			inner.left(),
-			tshift,
-			paintw,
-			width(),
-			_titleLines,
-			style::al_left,
-			0,
-			-1,
-			endskip,
-			false,
-			context.selection);
+		_title.drawLeftElided(p,
+							  inner.left(),
+							  tshift,
+							  paintw,
+							  width(),
+							  _titleLines,
+							  style::al_left,
+							  0,
+							  -1,
+							  endskip,
+							  false,
+							  context.selection);
 		tshift += _titleLines * lineHeight;
 
 		p.setTextPalette(stm->textPalette);
@@ -281,19 +249,20 @@ void Game::draw(Painter &p, const PaintContext &context) const {
 			endskip = _parent->skipBlockWidth();
 		}
 		_parent->prepareCustomEmojiPaint(p, context, _description);
-		_description.draw(p, {
-			.position = { inner.left(), tshift },
-			.outerWidth = width(),
-			.availableWidth = paintw,
-			.spoiler = Ui::Text::DefaultSpoilerCache(),
-			.now = context.now,
-			.pausedEmoji = context.paused || On(PowerSaving::kEmojiChat),
-			.pausedSpoiler = context.paused || On(PowerSaving::kChatSpoiler),
-			.selection = toDescriptionSelection(context.selection),
-			.elisionHeight = _descriptionLines * lineHeight,
-			.elisionRemoveFromEnd = endskip,
-			.useFullWidth = true,
-		});
+		_description.draw(p,
+						  {
+							  .position = {inner.left(), tshift},
+							  .outerWidth = width(),
+							  .availableWidth = paintw,
+							  .spoiler = Ui::Text::DefaultSpoilerCache(),
+							  .now = context.now,
+							  .pausedEmoji = context.paused || On(PowerSaving::kEmojiChat),
+							  .pausedSpoiler = context.paused || On(PowerSaving::kChatSpoiler),
+							  .selection = toDescriptionSelection(context.selection),
+							  .elisionHeight = _descriptionLines * lineHeight,
+							  .elisionRemoveFromEnd = endskip,
+							  .useFullWidth = true,
+						  });
 		tshift += _descriptionLines * lineHeight;
 	}
 	if (_attach) {
@@ -305,12 +274,9 @@ void Game::draw(Painter &p, const PaintContext &context) const {
 		if (rtl()) attachLeft = width() - attachLeft - _attach->width();
 
 		p.translate(attachLeft, attachTop);
-		_attach->draw(p, context.translated(
-			-attachLeft,
-			-attachTop
-		).withSelection(context.selected()
-			? FullSelection
-			: TextSelection()));
+		_attach->draw(p,
+					  context.translated(-attachLeft, -attachTop)
+						  .withSelection(context.selected() ? FullSelection : TextSelection()));
 		auto pixwidth = _attach->width();
 		auto pixheight = _attach->height();
 
@@ -319,11 +285,15 @@ void Game::draw(Painter &p, const PaintContext &context) const {
 		auto gameX = pixwidth - st::msgDateImgDelta - gameW;
 		auto gameY = pixheight - st::msgDateImgDelta - gameH;
 
-		Ui::FillRoundRect(p, style::rtlrect(gameX, gameY, gameW, gameH, pixwidth), sti->msgDateImgBg, sti->msgDateImgBgCorners);
+		Ui::FillRoundRect(
+			p, style::rtlrect(gameX, gameY, gameW, gameH, pixwidth), sti->msgDateImgBg, sti->msgDateImgBgCorners);
 
 		p.setFont(st::msgDateFont);
 		p.setPen(st->msgDateImgFg());
-		p.drawTextLeft(gameX + st::msgDateImgPadding.x(), gameY + st::msgDateImgPadding.y(), pixwidth, tr::lng_game_tag(tr::now).toUpper());
+		p.drawTextLeft(gameX + st::msgDateImgPadding.x(),
+					   gameY + st::msgDateImgPadding.y(),
+					   pixwidth,
+					   tr::lng_game_tag(tr::now).toUpper());
 
 		p.translate(-attachLeft, -attachTop);
 	}
@@ -349,11 +319,9 @@ TextState Game::textState(QPoint point, StateRequest request) const {
 		if (point.y() >= tshift && point.y() < tshift + _titleLines * lineHeight) {
 			Ui::Text::StateRequestElided titleRequest = request.forText();
 			titleRequest.lines = _titleLines;
-			result = TextState(_parent, _title.getStateElidedLeft(
-				point - QPoint(inner.left(), tshift),
-				paintw,
-				width(),
-				titleRequest));
+			result = TextState(
+				_parent,
+				_title.getStateElidedLeft(point - QPoint(inner.left(), tshift), paintw, width(), titleRequest));
 		} else if (point.y() >= tshift + _titleLines * lineHeight) {
 			symbolAdd += _title.length();
 		}
@@ -363,11 +331,9 @@ TextState Game::textState(QPoint point, StateRequest request) const {
 		if (point.y() >= tshift && point.y() < tshift + _descriptionLines * lineHeight) {
 			Ui::Text::StateRequestElided descriptionRequest = request.forText();
 			descriptionRequest.lines = _descriptionLines;
-			result = TextState(_parent, _description.getStateElidedLeft(
-				point - QPoint(inner.left(), tshift),
-				paintw,
-				width(),
-				descriptionRequest));
+			result = TextState(_parent,
+							   _description.getStateElidedLeft(
+								   point - QPoint(inner.left(), tshift), paintw, width(), descriptionRequest));
 		} else if (point.y() >= tshift + _descriptionLines * lineHeight) {
 			symbolAdd += _description.length();
 		}
@@ -411,7 +377,7 @@ TextSelection Game::adjustSelection(TextSelection selection, TextSelectType type
 		return fromDescriptionSelection(descriptionSelection);
 	}
 	auto titleSelection = _title.adjustSelection(selection, type);
-	return { titleSelection.from, fromDescriptionSelection(descriptionSelection).to };
+	return {titleSelection.from, fromDescriptionSelection(descriptionSelection).to};
 }
 
 void Game::clickHandlerActiveChanged(const ClickHandlerPtr &p, bool active) {
@@ -426,12 +392,10 @@ void Game::clickHandlerPressedChanged(const ClickHandlerPtr &p, bool pressed) {
 			if (!_ripple) {
 				const auto full = QRect(0, 0, width(), height());
 				const auto outer = full.marginsRemoved(inBubblePadding());
-				_ripple = std::make_unique<Ui::RippleAnimation>(
-					st::defaultRippleAnimation,
-					Ui::RippleAnimation::RoundRectMask(
-						outer.size(),
-						_st.radius),
-					[=] { repaint(); });
+				_ripple =
+					std::make_unique<Ui::RippleAnimation>(st::defaultRippleAnimation,
+														  Ui::RippleAnimation::RoundRectMask(outer.size(), _st.radius),
+														  [=] { repaint(); });
 			}
 			_ripple->add(_lastPoint);
 		} else if (_ripple) {
@@ -447,18 +411,13 @@ bool Game::toggleSelectionByHandlerClick(const ClickHandlerPtr &p) const {
 	return _attach && _attach->toggleSelectionByHandlerClick(p);
 }
 
-bool Game::allowTextSelectionByHandler(const ClickHandlerPtr &p) const {
-	return (p == _openl);
-}
+bool Game::allowTextSelectionByHandler(const ClickHandlerPtr &p) const { return (p == _openl); }
 
-bool Game::dragItemByHandler(const ClickHandlerPtr &p) const {
-	return _attach && _attach->dragItemByHandler(p);
-}
+bool Game::dragItemByHandler(const ClickHandlerPtr &p) const { return _attach && _attach->dragItemByHandler(p); }
 
 TextForMimeData Game::selectedText(TextSelection selection) const {
 	auto titleResult = _title.toTextForMimeData(selection);
-	auto descriptionResult = _description.toTextForMimeData(
-		toDescriptionSelection(selection));
+	auto descriptionResult = _description.toTextForMimeData(toDescriptionSelection(selection));
 	if (titleResult.empty()) {
 		return descriptionResult;
 	} else if (descriptionResult.empty()) {
@@ -482,15 +441,11 @@ QMargins Game::inBubblePadding() const {
 		st::msgPadding.left(),
 		isBubbleTop() ? st::msgPadding.left() : st::mediaInBubbleSkip,
 		st::msgPadding.right(),
-		(isBubbleBottom()
-			? (st::msgPadding.left() + bottomInfoPadding())
-			: st::mediaInBubbleSkip),
+		(isBubbleBottom() ? (st::msgPadding.left() + bottomInfoPadding()) : st::mediaInBubbleSkip),
 	};
 }
 
-QMargins Game::innerMargin() const {
-	return _st.padding;
-}
+QMargins Game::innerMargin() const { return _st.padding; }
 
 int Game::bottomInfoPadding() const {
 	if (!isBubbleBottom()) {
@@ -517,22 +472,15 @@ void Game::parentTextUpdated() {
 				.repaint = [=] { _parent->customEmojiRepaint(); },
 			});
 			_description.setMarkedText(
-				st::webPageDescriptionStyle,
-				consumed,
-				Ui::ItemTextOptions(_parent->data()),
-				context);
+				st::webPageDescriptionStyle, consumed, Ui::ItemTextOptions(_parent->data()), context);
 		} else {
-			_description = Ui::Text::String(st::msgMinWidth
-				- _st.padding.left()
-				- _st.padding.right());
+			_description = Ui::Text::String(st::msgMinWidth - _st.padding.left() - _st.padding.right());
 		}
 		history()->owner().requestViewResize(_parent);
 	}
 }
 
-bool Game::hasHeavyPart() const {
-	return _attach ? _attach->hasHeavyPart() : false;
-}
+bool Game::hasHeavyPart() const { return _attach ? _attach->hasHeavyPart() : false; }
 
 void Game::unloadHeavyPart() {
 	if (_attach) {
@@ -541,8 +489,6 @@ void Game::unloadHeavyPart() {
 	_description.unloadPersistentAnimation();
 }
 
-Game::~Game() {
-	history()->owner().unregisterGameView(_data, _parent);
-}
+Game::~Game() { history()->owner().unregisterGameView(_data, _parent); }
 
 } // namespace HistoryView

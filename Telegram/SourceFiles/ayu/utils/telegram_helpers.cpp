@@ -6,17 +6,15 @@
 // Copyright @Radolyn, 2025
 #include "telegram_helpers.h"
 
+#include <QTimer>
 #include <functional>
 #include <latch>
-#include <QTimer>
 
 #include <QtCore/QJsonDocument>
 #include <QtCore/QJsonObject>
 
 #include "apiwrap.h"
 
-#include "lang_auto.h"
-#include "rc_manager.h"
 #include "ayu/ayu_worker.h"
 #include "ayu/data/entities.h"
 #include "core/mime_type.h"
@@ -27,6 +25,8 @@
 #include "data/data_peer_id.h"
 #include "data/data_photo.h"
 #include "data/data_user.h"
+#include "lang_auto.h"
+#include "rc_manager.h"
 
 #include "data/data_document.h"
 #include "data/data_session.h"
@@ -51,8 +51,8 @@
 #include "lang/lang_keys.h"
 #include "main/main_domain.h"
 #include "styles/style_ayu_styles.h"
-#include "ui/text/text_utilities.h"
 #include "ui/text/text_entity.h"
+#include "ui/text/text_utilities.h"
 #include "ui/toast/toast.h"
 
 namespace {
@@ -67,7 +67,7 @@ const auto regDateBotUsername = QString("exteraAuthBot");
 constexpr auto regDateBotFallbackId = 6247153446L;
 const auto regDateBotFallbackUsername = QString("ayugrambot");
 
-}
+} // namespace
 
 Main::Session *getSession(ID userId) {
 	for (const auto &[index, account] : Core::App().domain().accounts()) {
@@ -95,7 +95,7 @@ void dispatchToMainThread(const std::function<void()> &callback, int delay) {
 	QMetaObject::invokeMethod(timer, "start", Qt::QueuedConnection, Q_ARG(int, delay));
 }
 
-ID getDialogIdFromPeer(not_null<PeerData*> peer) {
+ID getDialogIdFromPeer(not_null<PeerData *> peer) {
 	ID peerId = peer->id.value & PeerId::kChatTypeMask;
 	if (peer->isChannel() || peer->isChat()) {
 		peerId = -peerId;
@@ -104,23 +104,19 @@ ID getDialogIdFromPeer(not_null<PeerData*> peer) {
 	return peerId;
 }
 
-ID getBareID(not_null<PeerData*> peer) {
-	return peer->id.value & PeerId::kChatTypeMask;
-}
+ID getBareID(not_null<PeerData *> peer) { return peer->id.value & PeerId::kChatTypeMask; }
 
 bool isExteraPeer(ID peerId) {
-	return RCManager::getInstance().developers().contains(peerId) || RCManager::getInstance().channels().
-		contains(peerId);
+	return RCManager::getInstance().developers().contains(peerId) ||
+		RCManager::getInstance().channels().contains(peerId);
 }
 
 bool isSupporterPeer(ID peerId) {
-	return RCManager::getInstance().supporters().contains(peerId) || RCManager::getInstance().supporterChannels().
-		contains(peerId);
+	return RCManager::getInstance().supporters().contains(peerId) ||
+		RCManager::getInstance().supporterChannels().contains(peerId);
 }
 
-bool isCustomBadgePeer(ID peerId) {
-	return RCManager::getInstance().supporterCustomBadges().contains(peerId);
-}
+bool isCustomBadgePeer(ID peerId) { return RCManager::getInstance().supporterCustomBadges().contains(peerId); }
 
 CustomBadge getCustomBadge(ID peerId) {
 	const auto &badges = RCManager::getInstance().supporterCustomBadges();
@@ -130,25 +126,20 @@ CustomBadge getCustomBadge(ID peerId) {
 	return {};
 }
 
-rpl::producer<Info::Profile::Badge::Content> ExteraBadgeTypeFromPeer(not_null<PeerData*> peer) {
+rpl::producer<Info::Profile::Badge::Content> ExteraBadgeTypeFromPeer(not_null<PeerData *> peer) {
 	if (isCustomBadgePeer(getBareID(peer))) {
-		return rpl::single(Info::Profile::Badge::Content{
-			.badge = Info::Profile::BadgeType::ExteraCustom,
-			.emojiStatusId = getCustomBadge(getBareID(peer)).emojiStatusId
-		});
+		return rpl::single(
+			Info::Profile::Badge::Content{.badge = Info::Profile::BadgeType::ExteraCustom,
+										  .emojiStatusId = getCustomBadge(getBareID(peer)).emojiStatusId});
 	} else if (isExteraPeer(getBareID(peer))) {
-		return rpl::single(Info::Profile::Badge::Content{
-			.badge = Info::Profile::BadgeType::Extera
-		});
+		return rpl::single(Info::Profile::Badge::Content{.badge = Info::Profile::BadgeType::Extera});
 	} else if (isSupporterPeer(getBareID(peer))) {
-		return rpl::single(Info::Profile::Badge::Content{
-			.badge = Info::Profile::BadgeType::ExteraSupporter
-		});
+		return rpl::single(Info::Profile::Badge::Content{.badge = Info::Profile::BadgeType::ExteraSupporter});
 	}
 	return rpl::single(Info::Profile::Badge::Content{Info::Profile::BadgeType::None});
 }
 
-Fn<void()> badgeClickHandler(not_null<PeerData*> peer) {
+Fn<void()> badgeClickHandler(not_null<PeerData *> peer) {
 	return [=]
 	{
 		const auto isCustomBadge = isCustomBadgePeer(getBareID(peer));
@@ -159,36 +150,15 @@ Fn<void()> badgeClickHandler(not_null<PeerData*> peer) {
 		if (isCustomBadge) {
 			const auto custom = getCustomBadge(getBareID(peer));
 			text = custom.text.isEmpty()
-					   ? (isExtera
-							  ? tr::ayu_DeveloperPopup(
-								  tr::now,
-								  lt_item,
-								  TextWithEntities{peer->name()},
-								  tr::rich)
-							  : tr::ayu_SupporterPopup(
-								  tr::now,
-								  lt_item,
-								  TextWithEntities{peer->name()},
-								  tr::rich))
-					   : tr::rich(custom.text);
+				? (isExtera ? tr::ayu_DeveloperPopup(tr::now, lt_item, TextWithEntities{peer->name()}, tr::rich)
+							: tr::ayu_SupporterPopup(tr::now, lt_item, TextWithEntities{peer->name()}, tr::rich))
+				: tr::rich(custom.text);
 		} else if (isExtera) {
 			text = peer->isUser()
-					   ? tr::ayu_DeveloperPopup(
-						   tr::now,
-						   lt_item,
-						   TextWithEntities{peer->name()},
-						   tr::rich)
-					   : tr::ayu_OfficialResourcePopup(
-						   tr::now,
-						   lt_item,
-						   TextWithEntities{peer->name()},
-						   tr::rich);
+				? tr::ayu_DeveloperPopup(tr::now, lt_item, TextWithEntities{peer->name()}, tr::rich)
+				: tr::ayu_OfficialResourcePopup(tr::now, lt_item, TextWithEntities{peer->name()}, tr::rich);
 		} else if (isSupporter) {
-			text = tr::ayu_SupporterPopup(
-				tr::now,
-				lt_item,
-				TextWithEntities{peer->name()},
-				tr::rich);
+			text = tr::ayu_SupporterPopup(tr::now, lt_item, TextWithEntities{peer->name()}, tr::rich);
 		} else {
 			return;
 		}
@@ -202,7 +172,7 @@ Fn<void()> badgeClickHandler(not_null<PeerData*> peer) {
 	};
 }
 
-bool isMessageHidden(const not_null<HistoryItem*> item) {
+bool isMessageHidden(const not_null<HistoryItem *> item) {
 	if (AyuState::isHidden(item)) {
 		return true;
 	}
@@ -210,8 +180,8 @@ bool isMessageHidden(const not_null<HistoryItem*> item) {
 	return FiltersController::filtered(item);
 }
 
-void MarkAsReadChatList(not_null<Dialogs::MainList*> list) {
-	auto mark = std::vector<not_null<History*>>();
+void MarkAsReadChatList(not_null<Dialogs::MainList *> list) {
+	auto mark = std::vector<not_null<History *>>();
 	for (const auto &row : list->indexed()->all()) {
 		if (const auto history = row->history()) {
 			mark.push_back(history);
@@ -229,21 +199,21 @@ void readMentions(base::weak_ptr<Data::Thread> weakThread) {
 	const auto topic = thread->asTopic();
 	const auto rootId = topic ? topic->rootId() : 0;
 	using Flag = MTPmessages_ReadMentions::Flag;
-	peer->session().api().request(MTPmessages_ReadMentions(
-		MTP_flags(rootId ? Flag::f_top_msg_id : Flag()),
-		peer->input(),
-		MTP_int(rootId)
-	)).done([=](const MTPmessages_AffectedHistory &result)
-	{
-		const auto offset = peer->session().api().applyAffectedHistory(
-			peer,
-			result);
-		if (offset > 0) {
-			readMentions(weakThread);
-		} else {
-			peer->owner().history(peer)->clearUnreadMentionsFor(rootId);
-		}
-	}).send();
+	peer->session()
+		.api()
+		.request(
+			MTPmessages_ReadMentions(MTP_flags(rootId ? Flag::f_top_msg_id : Flag()), peer->input(), MTP_int(rootId)))
+		.done(
+			[=](const MTPmessages_AffectedHistory &result)
+			{
+				const auto offset = peer->session().api().applyAffectedHistory(peer, result);
+				if (offset > 0) {
+					readMentions(weakThread);
+				} else {
+					peer->owner().history(peer)->clearUnreadMentionsFor(rootId);
+				}
+			})
+		.send();
 }
 
 void readReactions(base::weak_ptr<Data::Thread> weakThread) {
@@ -256,47 +226,36 @@ void readReactions(base::weak_ptr<Data::Thread> weakThread) {
 	const auto peer = thread->peer();
 	const auto rootId = topic ? topic->rootId() : 0;
 	using Flag = MTPmessages_ReadReactions::Flag;
-	peer->session().api().request(MTPmessages_ReadReactions(
-		MTP_flags(rootId ? Flag::f_top_msg_id : Flag(0)),
-		peer->input(),
-		MTP_int(rootId),
-		sublist ? sublist->sublistPeer()->input() : MTPInputPeer()
-	)).done([=](const MTPmessages_AffectedHistory &result)
-	{
-		const auto offset = peer->session().api().applyAffectedHistory(
-			peer,
-			result);
-		if (offset > 0) {
-			readReactions(weakThread);
-		} else {
-			peer->owner().history(peer)->clearUnreadReactionsFor(rootId, sublist);
-		}
-	}).send();
+	peer->session()
+		.api()
+		.request(MTPmessages_ReadReactions(MTP_flags(rootId ? Flag::f_top_msg_id : Flag(0)),
+										   peer->input(),
+										   MTP_int(rootId),
+										   sublist ? sublist->sublistPeer()->input() : MTPInputPeer()))
+		.done(
+			[=](const MTPmessages_AffectedHistory &result)
+			{
+				const auto offset = peer->session().api().applyAffectedHistory(peer, result);
+				if (offset > 0) {
+					readReactions(weakThread);
+				} else {
+					peer->owner().history(peer)->clearUnreadReactionsFor(rootId, sublist);
+				}
+			})
+		.send();
 }
 
-void MarkAsReadThread(not_null<Data::Thread*> thread) {
-	const auto readHistoryNative = [&](const not_null<History*> history)
-	{
-		history->owner().histories().readInbox(history);
-	};
-	const auto sendReadMentions = [=](
-		const not_null<Data::Thread*> threadInner)
-	{
-		readMentions(base::make_weak(threadInner));
-	};
-	const auto sendReadReactions = [=](
-		const not_null<Data::Thread*> threadInner)
-	{
-		readReactions(base::make_weak(threadInner));
-	};
+void MarkAsReadThread(not_null<Data::Thread *> thread) {
+	const auto readHistoryNative = [&](const not_null<History *> history)
+	{ history->owner().histories().readInbox(history); };
+	const auto sendReadMentions = [=](const not_null<Data::Thread *> threadInner)
+	{ readMentions(base::make_weak(threadInner)); };
+	const auto sendReadReactions = [=](const not_null<Data::Thread *> threadInner)
+	{ readReactions(base::make_weak(threadInner)); };
 
 	if (thread->chatListBadgesState().unread) {
 		if (const auto forum = thread->asForum()) {
-			forum->enumerateTopics([](
-				not_null<Data::ForumTopic*> topic)
-				{
-					MarkAsReadThread(topic);
-				});
+			forum->enumerateTopics([](not_null<Data::ForumTopic *> topic) { MarkAsReadThread(topic); });
 		} else if (const auto topic = thread->asTopic()) {
 			topic->readTillEnd();
 		} else if (const auto history = thread->asHistory()) {
@@ -318,33 +277,35 @@ void MarkAsReadThread(not_null<Data::Thread*> thread) {
 	AyuWorker::markAsOnline(&thread->session());
 }
 
-void readHistory(not_null<HistoryItem*> message) {
+void readHistory(not_null<HistoryItem *> message) {
 	const auto history = message->history();
 	const auto tillId = message->id;
 
-	history->session().data().histories()
-		.sendRequest(history,
-					 Data::Histories::RequestType::ReadInbox,
-					 [=](Fn<void()> finish)
-					 {
-						 if (const auto channel = history->peer->asChannel()) {
-							 return history->session().api().request(MTPchannels_ReadHistory(
-								 channel->inputChannel(),
-								 MTP_int(tillId)
-							 )).done([=] { AyuWorker::markAsOnline(&history->session()); }).send();
-						 }
+	history->session().data().histories().sendRequest(
+		history,
+		Data::Histories::RequestType::ReadInbox,
+		[=](Fn<void()> finish)
+		{
+			if (const auto channel = history->peer->asChannel()) {
+				return history->session()
+					.api()
+					.request(MTPchannels_ReadHistory(channel->inputChannel(), MTP_int(tillId)))
+					.done([=] { AyuWorker::markAsOnline(&history->session()); })
+					.send();
+			}
 
-						 return history->session().api().request(MTPmessages_ReadHistory(
-							 history->peer->input(),
-							 MTP_int(tillId)
-						 )).done([=](const MTPmessages_AffectedMessages &result)
-						 {
-							 history->session().api().applyAffectedMessages(history->peer, result);
-							 AyuWorker::markAsOnline(&history->session());
-						 }).fail([=]
-						 {
-						 }).send();
-					 });
+			return history->session()
+				.api()
+				.request(MTPmessages_ReadHistory(history->peer->input(), MTP_int(tillId)))
+				.done(
+					[=](const MTPmessages_AffectedMessages &result)
+					{
+						history->session().api().applyAffectedMessages(history->peer, result);
+						AyuWorker::markAsOnline(&history->session());
+					})
+				.fail([=] {})
+				.send();
+		});
 
 	if (history->unreadMentions().has()) {
 		readMentions(history->asThread());
@@ -384,12 +345,7 @@ QString getDCName(int dc) {
 }
 
 QString getLocalizedAt() {
-	static const auto val = tr::lng_mediaview_date_time(
-		tr::now,
-		lt_date,
-		"",
-		lt_time,
-		"");
+	static const auto val = tr::lng_mediaview_date_time(tr::now, lt_date, "", lt_time, "");
 	return val;
 }
 
@@ -404,20 +360,14 @@ QString formatDateTime(const QDateTime &date) {
 QString formatMessageTime(const QTime &time) {
 	const auto &settings = AyuSettings::getInstance();
 
-	const auto format =
-		settings.showMessageSeconds
-			? (QLocale().timeFormat(QLocale::ShortFormat).contains("AP")
-				   ? "h:mm:ss AP"
-				   : "HH:mm:ss")
-			: QLocale().timeFormat(QLocale::ShortFormat);
+	const auto format = settings.showMessageSeconds
+		? (QLocale().timeFormat(QLocale::ShortFormat).contains("AP") ? "h:mm:ss AP" : "HH:mm:ss")
+		: QLocale().timeFormat(QLocale::ShortFormat);
 
-	return QLocale().toString(
-		time,
-		format
-	);
+	return QLocale().toString(time, format);
 }
 
-int getMediaSizeBytes(not_null<HistoryItem*> message) {
+int getMediaSizeBytes(not_null<HistoryItem *> message) {
 	if (!message->media()) {
 		return -1;
 	}
@@ -454,7 +404,7 @@ int getMediaSizeBytes(not_null<HistoryItem*> message) {
 	return size;
 }
 
-QString getMediaSize(not_null<HistoryItem*> message) {
+QString getMediaSize(not_null<HistoryItem *> message) {
 	const auto size = getMediaSizeBytes(message);
 
 	if (size == -1) {
@@ -464,7 +414,7 @@ QString getMediaSize(not_null<HistoryItem*> message) {
 	return Ui::FormatSizeText(size);
 }
 
-QString getMediaMime(not_null<HistoryItem*> message) {
+QString getMediaMime(not_null<HistoryItem *> message) {
 	if (!message->media()) {
 		return {};
 	}
@@ -488,7 +438,7 @@ QString getMediaMime(not_null<HistoryItem*> message) {
 	return {};
 }
 
-QString getMediaName(not_null<HistoryItem*> message) {
+QString getMediaName(not_null<HistoryItem *> message) {
 	if (!message->media()) {
 		return {};
 	}
@@ -502,7 +452,7 @@ QString getMediaName(not_null<HistoryItem*> message) {
 	return {};
 }
 
-QString getMediaResolution(not_null<HistoryItem*> message) {
+QString getMediaResolution(not_null<HistoryItem *> message) {
 	if (!message->media()) {
 		return {};
 	}
@@ -537,7 +487,7 @@ QString getMediaResolution(not_null<HistoryItem*> message) {
 	return {};
 }
 
-QString getMediaDC(not_null<HistoryItem*> message) {
+QString getMediaDC(not_null<HistoryItem *> message) {
 	if (!message->media()) {
 		return {};
 	}
@@ -556,7 +506,7 @@ QString getMediaDC(not_null<HistoryItem*> message) {
 	return {};
 }
 
-QString getPeerDC(not_null<PeerData*> peer) {
+QString getPeerDC(not_null<PeerData *> peer) {
 	if (const auto statsDcId = peer->owner().statsDcId(peer)) {
 		return getDCName(statsDcId);
 	}
@@ -564,10 +514,7 @@ QString getPeerDC(not_null<PeerData*> peer) {
 	if (peer->hasUserpic()) {
 		const auto dc = v::match(
 			peer->userpicLocation().file().data,
-			[&](const StorageFileLocation &data)
-			{
-				return data.dcId();
-			},
+			[&](const StorageFileLocation &data) { return data.dcId(); },
 			[&](const WebFileLocation &)
 			{
 				// should't happen, but still
@@ -610,7 +557,7 @@ int getScheduleTime(int64 sumSize) {
 	return time;
 }
 
-bool isMessageSavable(const not_null<HistoryItem*> item) {
+bool isMessageSavable(const not_null<HistoryItem *> item) {
 	const auto &settings = AyuSettings::getInstance();
 
 	if (!settings.saveDeletedMessages) {
@@ -623,7 +570,7 @@ bool isMessageSavable(const not_null<HistoryItem*> item) {
 	return true;
 }
 
-void processMessageDelete(not_null<HistoryItem*> item) {
+void processMessageDelete(not_null<HistoryItem *> item) {
 	if (!isMessageSavable(item)) {
 		item->destroy();
 	} else {
@@ -632,11 +579,10 @@ void processMessageDelete(not_null<HistoryItem*> item) {
 	}
 }
 
-void resolvePeer(
-	const QString &peerId,
-	const QString &username,
-	Main::Session *session,
-	const UsernameResolverCallback &callback) {
+void resolvePeer(const QString &peerId,
+				 const QString &username,
+				 Main::Session *session,
+				 const UsernameResolverCallback &callback) {
 	auto normalized = username.trimmed().toLower();
 	if (normalized.isEmpty()) {
 		callback(QString(), nullptr);
@@ -649,29 +595,27 @@ void resolvePeer(
 		return;
 	}
 
-	session->api().request(MTPcontacts_ResolveUsername(
-		MTP_flags(0),
-		MTP_string(normalized),
-		MTP_string()
-	)).done([=](const MTPcontacts_ResolvedPeer &result)
-	{
-		Expects(result.type() == mtpc_contacts_resolvedPeer);
+	session->api()
+		.request(MTPcontacts_ResolveUsername(MTP_flags(0), MTP_string(normalized), MTP_string()))
+		.done(
+			[=](const MTPcontacts_ResolvedPeer &result)
+			{
+				Expects(result.type() == mtpc_contacts_resolvedPeer);
 
-		auto &data = result.c_contacts_resolvedPeer();
-		session->data().processUsers(data.vusers());
-		session->data().processChats(data.vchats());
-		if (const auto peer = session->data().peerLoaded(peerFromMTP(data.vpeer()))) {
-			if (QString::number(peer->id.value & PeerId::kChatTypeMask) == peerId) {
-				callback(normalized, peer);
-				return;
-			}
-		}
+				auto &data = result.c_contacts_resolvedPeer();
+				session->data().processUsers(data.vusers());
+				session->data().processChats(data.vchats());
+				if (const auto peer = session->data().peerLoaded(peerFromMTP(data.vpeer()))) {
+					if (QString::number(peer->id.value & PeerId::kChatTypeMask) == peerId) {
+						callback(normalized, peer);
+						return;
+					}
+				}
 
-		callback(normalized, nullptr);
-	}).fail([=]
-	{
-		callback(QString(), nullptr);
-	}).send();
+				callback(normalized, nullptr);
+			})
+		.fail([=] { callback(QString(), nullptr); })
+		.send();
 }
 
 void searchPeerInner(const QString &peerId, Main::Session *session, const UsernameResolverCallback &callback) {
@@ -686,118 +630,91 @@ void searchPeerInner(const QString &peerId, Main::Session *session, const Userna
 		return;
 	}
 
-	session->api().request(MTPmessages_GetInlineBotResults(
-		MTP_flags(0),
-		bot->inputUser(),
-		MTP_inputPeerEmpty(),
-		MTPInputGeoPoint(),
-		MTP_string(peerId),
-		MTP_string("")
-	)).done([=](const MTPmessages_BotResults &result)
-	{
-		if (result.type() != mtpc_messages_botResults) {
-			callback(QString(), nullptr);
-			return;
-		}
-		auto &d = result.c_messages_botResults();
-		session->data().processUsers(d.vusers());
-
-		auto &v = d.vresults().v;
-
-		for (const auto &res : v) {
-			const auto message = res.match(
-				[&](const MTPDbotInlineResult &data)
-				{
-					return &data.vsend_message();
-				},
-				[&](const MTPDbotInlineMediaResult &data)
-				{
-					return &data.vsend_message();
-				});
-
-			const auto text = message->match(
-				[&](const MTPDbotInlineMessageMediaAuto &data)
-				{
-					return QString();
-				},
-				[&](const MTPDbotInlineMessageText &data)
-				{
-					return qs(data.vmessage());
-				},
-				[&](const MTPDbotInlineMessageMediaGeo &data)
-				{
-					return QString();
-				},
-				[&](const MTPDbotInlineMessageMediaVenue &data)
-				{
-					return QString();
-				},
-				[&](const MTPDbotInlineMessageMediaContact &data)
-				{
-					return QString();
-				},
-				[&](const MTPDbotInlineMessageMediaInvoice &data)
-				{
-					return QString();
-				},
-				[&](const MTPDbotInlineMessageMediaWebPage &data)
-				{
-					return QString();
-				});
-
-			if (text.isEmpty() || text.contains(usernameResolverEmpty)) {
-				continue;
-			}
-
-			QString id; // 🆔
-			QString title; // 🏷
-			QString username; // 📧
-
-			for (auto &line : text.split('\n')) {
-				if (line.startsWith("🆔")) {
-					id = line.mid(line.indexOf(": ") + 2).trimmed();
-				} else if (line.startsWith("🏷")) {
-					title = line.mid(line.indexOf(": ") + 2);
-				} else if (line.startsWith("📧")) {
-					username = line.mid(line.indexOf(": ") + 2);
+	session->api()
+		.request(MTPmessages_GetInlineBotResults(MTP_flags(0),
+												 bot->inputUser(),
+												 MTP_inputPeerEmpty(),
+												 MTPInputGeoPoint(),
+												 MTP_string(peerId),
+												 MTP_string("")))
+		.done(
+			[=](const MTPmessages_BotResults &result)
+			{
+				if (result.type() != mtpc_messages_botResults) {
+					callback(QString(), nullptr);
+					return;
 				}
-			}
+				auto &d = result.c_messages_botResults();
+				session->data().processUsers(d.vusers());
 
-			if (id.isEmpty() || id != peerId) {
-				continue;
-			}
+				auto &v = d.vresults().v;
 
-			if (id.startsWith("-100")) {
-				id = id.mid(4);
-			}
+				for (const auto &res : v) {
+					const auto message =
+						res.match([&](const MTPDbotInlineResult &data) { return &data.vsend_message(); },
+								  [&](const MTPDbotInlineMediaResult &data) { return &data.vsend_message(); });
 
-			if (!username.isEmpty()) {
-				resolvePeer(
-					id,
-					username,
-					session,
-					[=](const QString &titleInner, PeerData *data)
-					{
-						if (data) {
-							callback(titleInner, data);
-						} else {
-							callback(title, nullptr);
+					const auto text =
+						message->match([&](const MTPDbotInlineMessageMediaAuto &data) { return QString(); },
+									   [&](const MTPDbotInlineMessageText &data) { return qs(data.vmessage()); },
+									   [&](const MTPDbotInlineMessageMediaGeo &data) { return QString(); },
+									   [&](const MTPDbotInlineMessageMediaVenue &data) { return QString(); },
+									   [&](const MTPDbotInlineMessageMediaContact &data) { return QString(); },
+									   [&](const MTPDbotInlineMessageMediaInvoice &data) { return QString(); },
+									   [&](const MTPDbotInlineMessageMediaWebPage &data) { return QString(); });
+
+					if (text.isEmpty() || text.contains(usernameResolverEmpty)) {
+						continue;
+					}
+
+					QString id; // 🆔
+					QString title; // 🏷
+					QString username; // 📧
+
+					for (auto &line : text.split('\n')) {
+						if (line.startsWith("🆔")) {
+							id = line.mid(line.indexOf(": ") + 2).trimmed();
+						} else if (line.startsWith("🏷")) {
+							title = line.mid(line.indexOf(": ") + 2);
+						} else if (line.startsWith("📧")) {
+							username = line.mid(line.indexOf(": ") + 2);
 						}
-					});
-				return;
-			}
+					}
 
-			if (!title.isEmpty()) {
-				callback(title, nullptr);
-				return;
-			}
-		}
+					if (id.isEmpty() || id != peerId) {
+						continue;
+					}
 
-		callback(QString(), nullptr);
-	}).fail([=]
-	{
-		callback(QString(), nullptr);
-	}).handleAllErrors().send();
+					if (id.startsWith("-100")) {
+						id = id.mid(4);
+					}
+
+					if (!username.isEmpty()) {
+						resolvePeer(id,
+									username,
+									session,
+									[=](const QString &titleInner, PeerData *data)
+									{
+										if (data) {
+											callback(titleInner, data);
+										} else {
+											callback(title, nullptr);
+										}
+									});
+						return;
+					}
+
+					if (!title.isEmpty()) {
+						callback(title, nullptr);
+						return;
+					}
+				}
+
+				callback(QString(), nullptr);
+			})
+		.fail([=] { callback(QString(), nullptr); })
+		.handleAllErrors()
+		.send();
 }
 
 void searchPeer(const QString &peerId, Main::Session *session, const UsernameResolverCallback &callback) {
@@ -809,14 +726,10 @@ void searchPeer(const QString &peerId, Main::Session *session, const UsernameRes
 	if (session->data().userLoaded(usernameResolverBotId)) {
 		searchPeerInner(peerId, session, callback);
 	} else {
-		resolvePeer(
-			QString::number(usernameResolverBotId),
-			usernameResolverBotUsername,
-			session,
-			[=](const QString &title, PeerData *data)
-			{
-				searchPeerInner(peerId, session, callback);
-			});
+		resolvePeer(QString::number(usernameResolverBotId),
+					usernameResolverBotUsername,
+					session,
+					[=](const QString &title, PeerData *data) { searchPeerInner(peerId, session, callback); });
 	}
 }
 
@@ -831,19 +744,18 @@ void searchUserById(ID userId, Main::Session *session, const UsernameResolverCal
 		return;
 	}
 
-	searchPeer(
-		QString::number(userId),
-		session,
-		[=](const QString &title, PeerData *data)
-		{
-			if (data) {
-				if (const auto user = data->asUser(); user->accessHash()) {
-					callback(title, user);
-					return;
-				}
-			}
-			callback(QString(), nullptr);
-		});
+	searchPeer(QString::number(userId),
+			   session,
+			   [=](const QString &title, PeerData *data)
+			   {
+				   if (data) {
+					   if (const auto user = data->asUser(); user->accessHash()) {
+						   callback(title, user);
+						   return;
+					   }
+				   }
+				   callback(QString(), nullptr);
+			   });
 }
 
 void searchChatById(ID chatId, Main::Session *session, const UsernameResolverCallback &callback) {
@@ -862,17 +774,16 @@ void searchChatById(ID chatId, Main::Session *session, const UsernameResolverCal
 		return;
 	}
 
-	searchPeer(
-		QString("-100") + QString::number(chatId),
-		session,
-		[=](const QString &title, PeerData *data)
-		{
-			if (data && (data->isChat() || data->isChannel())) {
-				callback(title, data);
-			} else {
-				callback(QString(), nullptr);
-			}
-		});
+	searchPeer(QString("-100") + QString::number(chatId),
+			   session,
+			   [=](const QString &title, PeerData *data)
+			   {
+				   if (data && (data->isChat() || data->isChannel())) {
+					   callback(title, data);
+				   } else {
+					   callback(QString(), nullptr);
+				   }
+			   });
 }
 
 ID getUserIdFromPackId(uint64 id) {
@@ -888,14 +799,15 @@ ID getUserIdFromPackId(uint64 id) {
 	return ownerId;
 }
 
-TextWithTags extractText(not_null<HistoryItem*> item) {
+TextWithTags extractText(not_null<HistoryItem *> item) {
 	TextWithTags result;
 
 	QString text;
 	if (const auto media = item->media()) {
 		if (const auto poll = media->poll()) {
 			text.append("\xF0\x9F\x93\x8A ") // 📊
-				.append(poll->question.text).append("\n");
+				.append(poll->question.text)
+				.append("\n");
 			for (const auto &answer : poll->answers) {
 				text.append("• ").append(answer.text.text).append("\n");
 			}
@@ -908,12 +820,9 @@ TextWithTags extractText(not_null<HistoryItem*> item) {
 }
 
 bool mediaDownloadable(const Data::Media *media) {
-	if (!media
-		|| media->webpage() || media->poll() || media->game()
-		|| media->invoice() || media->location() || media->paper()
-		|| media->giveawayStart() || media->giveawayResults()
-		|| media->sharedContact() || media->call()
-	) {
+	if (!media || media->webpage() || media->poll() || media->game() || media->invoice() || media->location() ||
+		media->paper() || media->giveawayStart() || media->giveawayResults() || media->sharedContact() ||
+		media->call()) {
 		return false;
 	}
 	return true;
@@ -926,13 +835,9 @@ TextWithEntities reverseLocalPremiumEmoji(const TextWithEntities &text, not_null
 
 	const auto channel = history->peer->asChannel();
 	const auto hasCustomEmoji = channel && channel->mgInfo && channel->mgInfo->emojiSet.id;
-	const auto sets = hasCustomEmoji && channel
-		? &channel->owner().stickers().sets()
-		: nullptr;
-	const auto set = sets
-		? sets->find(channel->mgInfo->emojiSet.id)
-		: decltype(sets->cend()){};
-	const auto emojiAllowed = [=](const EntityInText& entity)
+	const auto sets = hasCustomEmoji && channel ? &channel->owner().stickers().sets() : nullptr;
+	const auto set = sets ? sets->find(channel->mgInfo->emojiSet.id) : decltype(sets->cend()){};
+	const auto emojiAllowed = [=](const EntityInText &entity)
 	{
 		if (!sets || set == sets->cend()) {
 			return false;
@@ -954,13 +859,12 @@ TextWithEntities reverseLocalPremiumEmoji(const TextWithEntities &text, not_null
 
 	auto result = text;
 	for (auto &entity : result.entities) {
-		if (entity.type() == EntityType::CustomEmoji && entity.isLocal()) {
-			if (isForQuote || !history->peer->isSelf() && !(history->owner().session().user()->flags() & UserDataFlag::Premium) && !emojiAllowed(entity)) {
+		if (entity.type() == EntityType::CustomEmoji) {
+			if (isForQuote ||
+				(!history->peer->isSelf() && !(history->owner().session().user()->flags() & UserDataFlag::Premium) &&
+				 !emojiAllowed(entity))) {
 				entity = EntityInText(
-					EntityType::CustomUrl,
-					entity.offset(),
-					entity.length(),
-					u"tg://emoji?id="_q + entity.data());
+					EntityType::CustomUrl, entity.offset(), entity.length(), u"tg://emoji?id="_q + entity.data());
 			}
 		}
 	}
@@ -970,49 +874,44 @@ TextWithEntities reverseLocalPremiumEmoji(const TextWithEntities &text, not_null
 void resolveAllChats(const std::map<long long, QString> &peers) {
 	auto session = currentSession();
 
-	crl::async([=, &session]
-	{
-		while (!peers.empty()) {
-			for (const auto &[id, username] : peers) {
-                auto latch = std::make_shared<TimedCountDownLatch>(1);
+	crl::async(
+		[=, &session]
+		{
+			while (!peers.empty()) {
+				for (const auto &[id, username] : peers) {
+					auto latch = std::make_shared<TimedCountDownLatch>(1);
 
-				auto onSuccess = [=, &latch](const MTPChatInvite &invite)
-				{
-					invite.match([=](const MTPDchatInvite &data)
-								 {
-								 },
-								 [=](const MTPDchatInviteAlready &data)
-								 {
-									 if (const auto chat = session->data().processChat(data.vchat())) {
-										 if (const auto channel = chat->asChannel()) {
-											 channel->clearInvitePeek();
+					auto onSuccess = [=, &latch](const MTPChatInvite &invite)
+					{
+						invite.match([=](const MTPDchatInvite &data) {},
+									 [=](const MTPDchatInviteAlready &data)
+									 {
+										 if (const auto chat = session->data().processChat(data.vchat())) {
+											 if (const auto channel = chat->asChannel()) {
+												 channel->clearInvitePeek();
+											 }
 										 }
-									 }
-								 },
-								 [=](const MTPDchatInvitePeek &data)
-								 {
-								 });
+									 },
+									 [=](const MTPDchatInvitePeek &data) {});
 
-					latch->countDown();
-				};
-				auto onFail = [=, &latch](const MTP::Error &error)
-				{
-					if (MTP::IsFloodError(error.type())) {
-						std::this_thread::sleep_for(std::chrono::seconds(20));
-					}
-					latch->countDown();
-				};
+						latch->countDown();
+					};
+					auto onFail = [=, &latch](const MTP::Error &error)
+					{
+						if (MTP::IsFloodError(error.type())) {
+							std::this_thread::sleep_for(std::chrono::seconds(20));
+						}
+						latch->countDown();
+					};
 
-				session->api().checkChatInvite(username, onSuccess, onFail);
-				latch->await(std::chrono::seconds(20));
+					session->api().checkChatInvite(username, onSuccess, onFail);
+					latch->await(std::chrono::seconds(20));
+				}
 			}
-		}
-	});
+		});
 }
 
-not_null<Main::Session*> currentSession() {
-	return &Core::App().domain().active().session();
-}
+not_null<Main::Session *> currentSession() { return &Core::App().domain().active().session(); }
 
 template<typename T>
 PeerData *getPeerFromDialogId(T id) {
@@ -1023,7 +922,7 @@ PeerData *getPeerFromDialogId(T id) {
 				from = session->data().channelLoaded(id);
 			}
 			if (!from) {
-				from = reinterpret_cast<PeerData*>(session->data().chatLoaded(id));
+				from = reinterpret_cast<PeerData *>(session->data().chatLoaded(id));
 			}
 
 			if (from) {
@@ -1035,18 +934,11 @@ PeerData *getPeerFromDialogId(T id) {
 	return nullptr;
 }
 
-PeerData *getPeerFromDialogId(ID id) {
-	return getPeerFromDialogId<ID>(id);
-}
+PeerData *getPeerFromDialogId(ID id) { return getPeerFromDialogId<ID>(id); }
 
-PeerData *getPeerFromDialogId(unsigned long long id) {
-	return getPeerFromDialogId<unsigned long long>(id);
-}
+PeerData *getPeerFromDialogId(unsigned long long id) { return getPeerFromDialogId<unsigned long long>(id); }
 
-void getUserRegistrationDateInner(
-	not_null<UserData*> user,
-	ID botId,
-	Fn<void(TextWithEntities)> callback) {
+void getUserRegistrationDateInner(not_null<UserData *> user, ID botId, Fn<void(TextWithEntities)> callback) {
 	const auto session = &user->session();
 	const auto userId = getBareID(user);
 	const auto userName = user->name();
@@ -1058,150 +950,106 @@ void getUserRegistrationDateInner(
 		return;
 	}
 
-	session->api().request(MTPmessages_GetInlineBotResults(
-		MTP_flags(0),
-		bot->inputUser(),
-		MTP_inputPeerEmpty(),
-		MTPInputGeoPoint(),
-		MTP_string(qsl("regdate ") + QString::number(userId)),
-		MTP_string("")
-	)).done([=](const MTPmessages_BotResults &result)
-	{
-		TextWithEntities resultText;
+	session->api()
+		.request(MTPmessages_GetInlineBotResults(MTP_flags(0),
+												 bot->inputUser(),
+												 MTP_inputPeerEmpty(),
+												 MTPInputGeoPoint(),
+												 MTP_string(qsl("regdate ") + QString::number(userId)),
+												 MTP_string("")))
+		.done(
+			[=](const MTPmessages_BotResults &result)
+			{
+				TextWithEntities resultText;
 
-		if (result.type() != mtpc_messages_botResults) {
-			callback(resultText);
-			return;
-		}
-
-		auto &d = result.c_messages_botResults();
-		session->data().processUsers(d.vusers());
-
-		auto &v = d.vresults().v;
-
-		for (const auto &res : v) {
-			const auto message = res.match(
-				[&](const MTPDbotInlineResult &data)
-				{
-					return &data.vsend_message();
-				},
-				[&](const MTPDbotInlineMediaResult &data)
-				{
-					return &data.vsend_message();
-				});
-
-			const auto text = message->match(
-				[&](const MTPDbotInlineMessageMediaAuto &data)
-				{
-					return QString();
-				},
-				[&](const MTPDbotInlineMessageText &data)
-				{
-					return qs(data.vmessage());
-				},
-				[&](const MTPDbotInlineMessageMediaGeo &data)
-				{
-					return QString();
-				},
-				[&](const MTPDbotInlineMessageMediaVenue &data)
-				{
-					return QString();
-				},
-				[&](const MTPDbotInlineMessageMediaContact &data)
-				{
-					return QString();
-				},
-				[&](const MTPDbotInlineMessageMediaInvoice &data)
-				{
-					return QString();
-				},
-				[&](const MTPDbotInlineMessageMediaWebPage &data)
-				{
-					return QString();
-				});
-
-			if (text.isEmpty() || text == "failed") {
-				continue;
-			}
-
-			const auto json = QJsonDocument::fromJson(text.toUtf8());
-			if (!json.isObject()) {
-				continue;
-			}
-
-			const auto obj = json.object();
-			const auto flag = obj["flag"].toString();
-			const auto date = obj["date"].toString();
-
-			const auto parsedDate = QDate::fromString(date, "dd.MM.yyyy");
-			const auto formattedDate = langDayOfMonthFull(parsedDate);
-
-			if (flag == "EXACT" || flag == "INTERPOLATED") {
-				if (!isSelf) {
-					resultText = tr::ayu_CreationDateUserApproximately(
-						tr::now,
-						lt_item1,
-						TextWithEntities{userName},
-						lt_item2,
-						TextWithEntities{formattedDate},
-						tr::rich
-					);
-				} else {
-					resultText = tr::ayu_CreationDateSelfApproximately(
-						tr::now,
-						lt_item,
-						TextWithEntities{formattedDate},
-						tr::rich
-					);
+				if (result.type() != mtpc_messages_botResults) {
+					callback(resultText);
+					return;
 				}
-			} else if (flag == "LT") {
-				if (!isSelf) {
-					resultText = tr::ayu_CreationDateUserEarlier(
-						tr::now,
-						lt_item1,
-						TextWithEntities{userName},
-						lt_item2,
-						TextWithEntities{formattedDate},
-						tr::rich
-					);
-				} else {
-					resultText = tr::ayu_CreationDateSelfEarlier(
-						tr::now,
-						lt_item,
-						TextWithEntities{formattedDate},
-						tr::rich
-					);
-				}
-			} else if (flag == "ET") {
-				if (!isSelf) {
-					resultText = tr::ayu_CreationDateUserLater(
-						tr::now,
-						lt_item1,
-						TextWithEntities{userName},
-						lt_item2,
-						TextWithEntities{formattedDate},
-						tr::rich
-					);
-				} else {
-					resultText = tr::ayu_CreationDateSelfLater(
-						tr::now,
-						lt_item,
-						TextWithEntities{formattedDate},
-						tr::rich
-					);
-				}
-			}
-			break;
-		}
 
-		callback(resultText);
-	}).fail([=]
-	{
-		callback(TextWithEntities{});
-	}).handleAllErrors().send();
+				auto &d = result.c_messages_botResults();
+				session->data().processUsers(d.vusers());
+
+				auto &v = d.vresults().v;
+
+				for (const auto &res : v) {
+					const auto message =
+						res.match([&](const MTPDbotInlineResult &data) { return &data.vsend_message(); },
+								  [&](const MTPDbotInlineMediaResult &data) { return &data.vsend_message(); });
+
+					const auto text =
+						message->match([&](const MTPDbotInlineMessageMediaAuto &data) { return QString(); },
+									   [&](const MTPDbotInlineMessageText &data) { return qs(data.vmessage()); },
+									   [&](const MTPDbotInlineMessageMediaGeo &data) { return QString(); },
+									   [&](const MTPDbotInlineMessageMediaVenue &data) { return QString(); },
+									   [&](const MTPDbotInlineMessageMediaContact &data) { return QString(); },
+									   [&](const MTPDbotInlineMessageMediaInvoice &data) { return QString(); },
+									   [&](const MTPDbotInlineMessageMediaWebPage &data) { return QString(); });
+
+					if (text.isEmpty() || text == "failed") {
+						continue;
+					}
+
+					const auto json = QJsonDocument::fromJson(text.toUtf8());
+					if (!json.isObject()) {
+						continue;
+					}
+
+					const auto obj = json.object();
+					const auto flag = obj["flag"].toString();
+					const auto date = obj["date"].toString();
+
+					const auto parsedDate = QDate::fromString(date, "dd.MM.yyyy");
+					const auto formattedDate = langDayOfMonthFull(parsedDate);
+
+					if (flag == "EXACT" || flag == "INTERPOLATED") {
+						if (!isSelf) {
+							resultText = tr::ayu_CreationDateUserApproximately(tr::now,
+																			   lt_item1,
+																			   TextWithEntities{userName},
+																			   lt_item2,
+																			   TextWithEntities{formattedDate},
+																			   tr::rich);
+						} else {
+							resultText = tr::ayu_CreationDateSelfApproximately(
+								tr::now, lt_item, TextWithEntities{formattedDate}, tr::rich);
+						}
+					} else if (flag == "LT") {
+						if (!isSelf) {
+							resultText = tr::ayu_CreationDateUserEarlier(tr::now,
+																		 lt_item1,
+																		 TextWithEntities{userName},
+																		 lt_item2,
+																		 TextWithEntities{formattedDate},
+																		 tr::rich);
+						} else {
+							resultText = tr::ayu_CreationDateSelfEarlier(
+								tr::now, lt_item, TextWithEntities{formattedDate}, tr::rich);
+						}
+					} else if (flag == "ET") {
+						if (!isSelf) {
+							resultText = tr::ayu_CreationDateUserLater(tr::now,
+																	   lt_item1,
+																	   TextWithEntities{userName},
+																	   lt_item2,
+																	   TextWithEntities{formattedDate},
+																	   tr::rich);
+						} else {
+							resultText = tr::ayu_CreationDateSelfLater(
+								tr::now, lt_item, TextWithEntities{formattedDate}, tr::rich);
+						}
+					}
+					break;
+				}
+
+				callback(resultText);
+			})
+		.fail([=] { callback(TextWithEntities{}); })
+		.handleAllErrors()
+		.send();
 }
 
-void getUserRegistrationDate(not_null<UserData*> user, Fn<void(TextWithEntities)> callback) {
+void getUserRegistrationDate(not_null<UserData *> user, Fn<void(TextWithEntities)> callback) {
 	const auto session = &user->session();
 	const auto selfId = getDialogIdFromPeer(session->user());
 	const auto isSupporter = isSupporterPeer(selfId) || isExteraPeer(selfId);
@@ -1212,40 +1060,24 @@ void getUserRegistrationDate(not_null<UserData*> user, Fn<void(TextWithEntities)
 	if (session->data().userLoaded(botId)) {
 		getUserRegistrationDateInner(user, botId, callback);
 	} else {
-		resolvePeer(
-			QString::number(botId),
-			botUsername,
-			session,
-			[=](const QString &title, PeerData *data)
-			{
-				getUserRegistrationDateInner(user, botId, callback);
-			});
+		resolvePeer(QString::number(botId),
+					botUsername,
+					session,
+					[=](const QString &title, PeerData *data) { getUserRegistrationDateInner(user, botId, callback); });
 	}
 }
 
-void getChannelJoinOrCreateDate(not_null<ChannelData*> channel, Fn<void(TextWithEntities)> callback) {
+void getChannelJoinOrCreateDate(not_null<ChannelData *> channel, Fn<void(TextWithEntities)> callback) {
 	TextWithEntities result;
 
 	if (channel->inviteDate) {
 		const auto formattedDate = langDayOfMonthFull(base::unixtime::parse(channel->inviteDate).date());
 		result = tr::ayu_JoinDateChat(
-			tr::now,
-			lt_item1,
-			TextWithEntities{channel->name()},
-			lt_item2,
-			TextWithEntities{formattedDate},
-			tr::rich
-		);
+			tr::now, lt_item1, TextWithEntities{channel->name()}, lt_item2, TextWithEntities{formattedDate}, tr::rich);
 	} else if (channel->date) {
 		const auto formattedDate = langDayOfMonthFull(base::unixtime::parse(channel->date).date());
 		result = tr::ayu_CreationDateChat(
-			tr::now,
-			lt_item1,
-			TextWithEntities{channel->name()},
-			lt_item2,
-			TextWithEntities{formattedDate},
-			tr::rich
-		);
+			tr::now, lt_item1, TextWithEntities{channel->name()}, lt_item2, TextWithEntities{formattedDate}, tr::rich);
 	}
 
 	if (callback) {
@@ -1253,19 +1085,13 @@ void getChannelJoinOrCreateDate(not_null<ChannelData*> channel, Fn<void(TextWith
 	}
 }
 
-void getChatCreateDate(not_null<ChatData*> chat, Fn<void(TextWithEntities)> callback) {
+void getChatCreateDate(not_null<ChatData *> chat, Fn<void(TextWithEntities)> callback) {
 	TextWithEntities result;
 
 	if (chat->date) {
 		const auto formattedDate = langDayOfMonthFull(base::unixtime::parse(chat->date).date());
 		result = tr::ayu_CreationDateChat(
-			tr::now,
-			lt_item1,
-			TextWithEntities{chat->name()},
-			lt_item2,
-			TextWithEntities{formattedDate},
-			tr::rich
-		);
+			tr::now, lt_item1, TextWithEntities{chat->name()}, lt_item2, TextWithEntities{formattedDate}, tr::rich);
 	}
 
 	if (callback) {
@@ -1273,7 +1099,7 @@ void getChatCreateDate(not_null<ChatData*> chat, Fn<void(TextWithEntities)> call
 	}
 }
 
-void getRegistrationDate(not_null<PeerData*> peer, Fn<void(TextWithEntities)> callback) {
+void getRegistrationDate(not_null<PeerData *> peer, Fn<void(TextWithEntities)> callback) {
 	if (const auto user = peer->asUser()) {
 		getUserRegistrationDate(user, callback);
 	} else if (const auto channel = peer->asChannel()) {

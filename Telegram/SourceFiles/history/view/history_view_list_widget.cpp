@@ -2675,6 +2675,77 @@ TextForMimeData ListWidget::getSelectedText() const {
 	return result;
 }
 
+TextForMimeData ListWidget::getAllLoadedText() const {
+	if (_items.empty()) {
+		return TextForMimeData();
+	}
+
+	auto groups = base::flat_set<not_null<const Data::Group*>>();
+	auto fullSize = 0;
+	auto texts = std::vector<std::pair<
+		not_null<HistoryItem*>,
+		TextForMimeData>>();
+	texts.reserve(_items.size());
+
+	const auto wrapItem = [&](
+			not_null<HistoryItem*> item,
+			TextForMimeData &&unwrapped) {
+		auto time = QString(", [%1]\n").arg(
+			QLocale().toString(ItemDateTime(item), QLocale::ShortFormat));
+		auto part = TextForMimeData();
+		auto size = item->author()->name().size()
+			+ time.size()
+			+ unwrapped.expanded.size();
+		part.reserve(size);
+		part.append(item->author()->name()).append(time);
+		part.append(std::move(unwrapped));
+		texts.emplace_back(std::move(item), std::move(part));
+		fullSize += size;
+	};
+	const auto addItem = [&](not_null<HistoryItem*> item) {
+		if (item->isRegular() && !item->isService()) {
+			wrapItem(item, HistoryItemText(item));
+		}
+	};
+	const auto addGroup = [&](not_null<const Data::Group*> group) {
+		Expects(!group->items.empty());
+		wrapItem(group->items.back(), HistoryGroupText(group));
+	};
+
+	for (const auto &view : _items) {
+		const auto item = view->data();
+		if (hasCopyRestriction(item)) {
+			continue;
+		}
+		if (const auto group = session().data().groups().find(item)) {
+			if (groups.contains(group)) {
+				continue;
+			}
+			groups.emplace(group);
+			addGroup(group);
+		} else {
+			addItem(item);
+		}
+	}
+
+	ranges::sort(texts, [&](
+			const std::pair<not_null<HistoryItem*>, TextForMimeData> &a,
+			const std::pair<not_null<HistoryItem*>, TextForMimeData> &b) {
+		return _delegate->listIsLessInOrder(a.first, b.first);
+	});
+
+	auto result = TextForMimeData();
+	auto sep = u"\n\n"_q;
+	result.reserve(fullSize + (texts.size() - 1) * sep.size());
+	for (auto i = begin(texts), e = end(texts); i != e;) {
+		result.append(std::move(i->second));
+		if (++i != e) {
+			result.append(sep);
+		}
+	}
+	return result;
+}
+
 MessageIdsList ListWidget::getSelectedIds() const {
 	return collectSelectedIds();
 }

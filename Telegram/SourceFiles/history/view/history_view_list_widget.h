@@ -328,6 +328,7 @@ public:
 	void refreshViewer();
 
 	[[nodiscard]] TextForMimeData getSelectedText() const;
+	[[nodiscard]] TextForMimeData getAllLoadedText() const;
 	[[nodiscard]] MessageIdsList getSelectedIds() const;
 	[[nodiscard]] SelectedItems getSelectedItems() const;
 	[[nodiscard]] const TextSelection &getSelectedTextRange(

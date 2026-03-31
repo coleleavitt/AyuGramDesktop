@@ -9,6 +9,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "boxes/translate_box_content.h"
 #include "lang/translate_provider.h"
 
+#include "api/api_text_entities.h"
 #include "core/application.h"
 #include "core/core_settings.h"
 #include "core/ui_integration.h"

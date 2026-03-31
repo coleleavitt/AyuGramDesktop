@@ -1287,6 +1287,12 @@ base::unique_qptr<Ui::PopupMenu> FillContextMenu(not_null<ListWidget *> list, co
 	AddCopyLinkAction(result, link);
 	AddMessageActions(result, request, list);
 
+	if (!list->hasCopyRestriction()) {
+		result->addAction(tr::lng_context_copy_all_text(tr::now), [=] {
+			TextUtilities::SetClipboardText(list->getAllLoadedText());
+		}, &st::menuIconCopy);
+	}
+
 	const auto wasAmount = result->actions().size();
 	if (const auto textItem = view ? view->textItem() : item) {
 		AddEmojiPacksAction(result, textItem, HistoryView::EmojiPacksSource::Message, list->controller());

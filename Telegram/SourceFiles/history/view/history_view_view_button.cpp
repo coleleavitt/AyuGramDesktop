@@ -12,13 +12,13 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "history/history.h"
 #include "history/history_item_components.h"
 #include "history/view/history_view_cursor_state.h"
-#include "iv/iv_data.h"
 #include "iv/iv_controller.h"
+#include "iv/iv_data.h"
 #include "lang/lang_keys.h"
+#include "styles/style_chat.h"
 #include "ui/effects/ripple_animation.h"
 #include "ui/painter.h"
 #include "window/window_session_controller.h"
-#include "styles/style_chat.h"
 
 #include "core/application.h"
 #include "iv/iv_instance.h"
@@ -26,8 +26,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 namespace HistoryView {
 namespace {
 
-[[nodiscard]] ClickHandlerPtr MakeMediaButtonClickHandler(
-		not_null<Data::Media*> media) {
+[[nodiscard]] ClickHandlerPtr MakeMediaButtonClickHandler(not_null<Data::Media *> media) {
 	const auto start = media->giveawayStart();
 	const auto results = media->giveawayResults();
 	Assert(start || results);
@@ -37,29 +36,21 @@ namespace {
 	if (media->parent()->isSending() || media->parent()->hasFailed()) {
 		return nullptr;
 	}
-	const auto maybeStart = start
-		? *start
-		: std::optional<Data::GiveawayStart>();
-	const auto maybeResults = results
-		? *results
-		: std::optional<Data::GiveawayResults>();
-	return std::make_shared<LambdaClickHandler>([=](
-			ClickContext context) {
-		const auto my = context.other.value<ClickHandlerContext>();
-		const auto controller = my.sessionWindow.get();
-		if (!controller) {
-			return;
-		}
-		ResolveGiveawayInfo(
-			controller,
-			peer,
-			messageId,
-			maybeStart,
-			maybeResults);
-	});
+	const auto maybeStart = start ? *start : std::optional<Data::GiveawayStart>();
+	const auto maybeResults = results ? *results : std::optional<Data::GiveawayResults>();
+	return std::make_shared<LambdaClickHandler>(
+		[=](ClickContext context)
+		{
+			const auto my = context.other.value<ClickHandlerContext>();
+			const auto controller = my.sessionWindow.get();
+			if (!controller) {
+				return;
+			}
+			ResolveGiveawayInfo(controller, peer, messageId, maybeStart, maybeResults);
+		});
 }
 
-[[nodiscard]] QString MakeMediaButtonText(not_null<Data::Media*> media) {
+[[nodiscard]] QString MakeMediaButtonText(not_null<Data::Media *> media) {
 	Expects(media->giveawayStart() || media->giveawayResults());
 
 	return tr::lng_prizes_how_works(tr::now, tr::upper);
@@ -67,11 +58,9 @@ namespace {
 
 } // namespace
 
-struct ViewButton::Inner {
-	Inner(
-		not_null<Data::Media*> media,
-		uint8 colorIndex,
-		Fn<void()> updateCallback);
+struct ViewButton::Inner
+{
+	Inner(not_null<Data::Media *> media, uint8 colorIndex, Fn<void()> updateCallback);
 
 	void updateMask(int height);
 	void toggleRipple(bool pressed);
@@ -88,28 +77,20 @@ struct ViewButton::Inner {
 	Ui::Text::String text;
 };
 
-bool ViewButton::MediaHasViewButton(not_null<Data::Media*> media) {
+bool ViewButton::MediaHasViewButton(not_null<Data::Media *> media) {
 	return media->giveawayStart() || media->giveawayResults();
 }
 
-ViewButton::Inner::Inner(
-	not_null<Data::Media*> media,
-	uint8 colorIndex,
-	Fn<void()> updateCallback)
-: margins(st::historyViewButtonMargins)
-, link(MakeMediaButtonClickHandler(media))
-, updateCallback(std::move(updateCallback))
-, colorIndex(colorIndex)
-, aboveInfo(1)
-, text(st::historyViewButtonTextStyle, MakeMediaButtonText(media)) {
-}
+ViewButton::Inner::Inner(not_null<Data::Media *> media, uint8 colorIndex, Fn<void()> updateCallback)
+	: margins(st::historyViewButtonMargins), link(MakeMediaButtonClickHandler(media)),
+	  updateCallback(std::move(updateCallback)), colorIndex(colorIndex), aboveInfo(1),
+	  text(st::historyViewButtonTextStyle, MakeMediaButtonText(media)) {}
 
 void ViewButton::Inner::updateMask(int height) {
 	ripple = std::make_unique<Ui::RippleAnimation>(
 		st::defaultRippleAnimation,
-		Ui::RippleAnimation::RoundRectMask(
-			QSize(lastWidth, height - margins.top() - margins.bottom()),
-			st::roundRadiusLarge),
+		Ui::RippleAnimation::RoundRectMask(QSize(lastWidth, height - margins.top() - margins.bottom()),
+										   st::roundRadiusLarge),
 		updateCallback);
 }
 
@@ -123,45 +104,27 @@ void ViewButton::Inner::toggleRipple(bool pressed) {
 	}
 }
 
-ViewButton::ViewButton(
-	not_null<Data::Media*> media,
-	uint8 colorIndex,
-	Fn<void()> updateCallback)
-: _inner(std::make_unique<Inner>(
-	media,
-	colorIndex,
-	std::move(updateCallback))) {
-}
+ViewButton::ViewButton(not_null<Data::Media *> media, uint8 colorIndex, Fn<void()> updateCallback)
+	: _inner(std::make_unique<Inner>(media, colorIndex, std::move(updateCallback))) {}
 
-ViewButton::~ViewButton() {
-}
+ViewButton::~ViewButton() {}
 
-void ViewButton::resized() const {
-	_inner->updateMask(height());
-}
+void ViewButton::resized() const { _inner->updateMask(height()); }
 
-int ViewButton::height() const {
-	return st::historyViewButtonHeight;
-}
+int ViewButton::height() const { return st::historyViewButtonHeight; }
 
-bool ViewButton::belowMessageInfo() const {
-	return !_inner->aboveInfo;
-}
+bool ViewButton::belowMessageInfo() const { return !_inner->aboveInfo; }
 
-void ViewButton::draw(
-		Painter &p,
-		const QRect &r,
-		const Ui::ChatPaintContext &context) {
+void ViewButton::draw(Painter &p, const QRect &r, const Ui::ChatPaintContext &context) {
 	const auto st = context.st;
 	const auto stm = context.messageStyle();
 	const auto selected = context.selected();
-	const auto cache = context.outbg
-		? stm->replyCache[st->colorPatternIndex(_inner->colorIndex)].get()
-		: st->coloredReplyCache(selected, _inner->colorIndex).get();
+	const auto cache = context.outbg ? stm->replyCache[st->colorPatternIndex(_inner->colorIndex)].get()
+									 : st->coloredReplyCache(selected, _inner->colorIndex).get();
 	const auto radius = st::historyPagePreview.radius;
 
 	if (_inner->ripple && !_inner->ripple->empty()) {
-		_inner->ripple->paint(p, r.left(), r.top(), r.width(), &cache->bg2);
+		_inner->ripple->paint(p, r.left(), r.top(), r.width(), &cache->bg);
 	}
 
 	PainterHighQualityEnabler hq(p);
@@ -171,22 +134,12 @@ void ViewButton::draw(
 
 	p.setPen(cache->icon);
 	_inner->text.drawElided(
-		p,
-		r.left(),
-		r.top() + (r.height() - _inner->text.minHeight()) / 2,
-		r.width(),
-		1,
-		style::al_top);
+		p, r.left(), r.top() + (r.height() - _inner->text.minHeight()) / 2, r.width(), 1, style::al_top);
 
 	if (_inner->externalLink) {
 		const auto &icon = st::msgBotKbUrlIcon;
 		const auto padding = st::msgBotKbIconPadding;
-		icon.paint(
-			p,
-			r.left() + r.width() - icon.width() - padding,
-			r.top() + padding,
-			r.width(),
-			cache->icon);
+		icon.paint(p, r.left() + r.width() - icon.width() - padding, r.top() + padding, r.width(), cache->icon);
 	}
 	if (_inner->lastWidth != r.width()) {
 		_inner->lastWidth = r.width();
@@ -194,9 +147,7 @@ void ViewButton::draw(
 	}
 }
 
-const ClickHandlerPtr &ViewButton::link() const {
-	return _inner->link;
-}
+const ClickHandlerPtr &ViewButton::link() const { return _inner->link; }
 
 bool ViewButton::checkLink(const ClickHandlerPtr &other, bool pressed) {
 	if (_inner->link != other) {
@@ -206,10 +157,7 @@ bool ViewButton::checkLink(const ClickHandlerPtr &other, bool pressed) {
 	return true;
 }
 
-bool ViewButton::getState(
-		QPoint point,
-		const QRect &g,
-		not_null<TextState*> outResult) const {
+bool ViewButton::getState(QPoint point, const QRect &g, not_null<TextState *> outResult) const {
 	if (!g.contains(point)) {
 		return false;
 	}
@@ -219,11 +167,7 @@ bool ViewButton::getState(
 }
 
 QRect ViewButton::countRect(const QRect &r) const {
-	return QRect(
-		r.left(),
-		r.top() + r.height() - height(),
-		r.width(),
-		height()) - _inner->margins;
+	return QRect(r.left(), r.top() + r.height() - height(), r.width(), height()) - _inner->margins;
 }
 
 } // namespace HistoryView
