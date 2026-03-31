@@ -577,7 +577,8 @@ void GroupInfoBox::prepare() {
 	_title->setMaxLength(Ui::EditPeer::kMaxGroupChannelTitle);
 	_title->setInstantReplaces(Ui::InstantReplaces::Default());
 	_title->setInstantReplacesEnabled(
-		Core::App().settings().replaceEmojiValue());
+		Core::App().settings().replaceEmojiValue(),
+		Core::App().settings().systemTextReplaceValue());
 	Ui::Emoji::SuggestionsController::Init(
 		getDelegate()->outerContainer(),
 		_title,
@@ -593,7 +594,8 @@ void GroupInfoBox::prepare() {
 		_description->setMaxLength(Ui::EditPeer::kMaxChannelDescription);
 		_description->setInstantReplaces(Ui::InstantReplaces::Default());
 		_description->setInstantReplacesEnabled(
-			Core::App().settings().replaceEmojiValue());
+			Core::App().settings().replaceEmojiValue(),
+			Core::App().settings().systemTextReplaceValue());
 		_description->setSubmitSettings(
 			Core::App().settings().sendSubmitWay());
 
@@ -1571,16 +1573,15 @@ void EditNameBox::prepare() {
 	_last->submits(
 	) | rpl::on_next([=] { submit(); }, _last->lifetime());
 
-	_first->customTab(true);
-	_last->customTab(true);
-
 	_first->tabbed(
-	) | rpl::on_next([=] {
+	) | rpl::on_next([=](not_null<bool*> handled) {
 		_last->setFocus();
+		*handled = true;
 	}, _first->lifetime());
 	_last->tabbed(
-	) | rpl::on_next([=] {
+	) | rpl::on_next([=](not_null<bool*> handled) {
 		_first->setFocus();
+		*handled = true;
 	}, _last->lifetime());
 }
 

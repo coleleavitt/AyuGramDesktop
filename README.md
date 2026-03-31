@@ -145,3 +145,15 @@ Enjoy using **AyuGram**? Consider sending us a tip!
 ### Bots
 
 - [TelegramDB](https://t.me/tgdatabase) for username lookup by ID
+
+[//]: # (LINKS)
+[telegram]: https://telegram.org
+[telegram_desktop]: https://desktop.telegram.org
+[telegram_api]: https://core.telegram.org
+[telegram_proto]: https://core.telegram.org/mtproto
+[license]: LICENSE
+[win]: docs/building-win.md
+[mac]: docs/building-mac.md
+[linux]: docs/building-linux.md
+[preview_image]: https://github.com/telegramdesktop/tdesktop/blob/dev/docs/assets/preview.png "Preview of Telegram Desktop"
+[preview_image_url]: https://raw.githubusercontent.com/telegramdesktop/tdesktop/dev/docs/assets/preview.png

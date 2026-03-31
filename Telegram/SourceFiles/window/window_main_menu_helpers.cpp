@@ -77,8 +77,8 @@ public:
 	const auto label = Ui::CreateChild<Ui::FlatLabel>(
 		parent.get(),
 		st::mainMenuVersionLabel);
-	if constexpr (Platform::IsMacStoreBuild()
-		|| Platform::IsWindowsStoreBuild()) {
+	if constexpr (!Platform::IsMacStoreBuild()
+		&& !Platform::IsWindowsStoreBuild()) {
 		Ui::InstallTooltip(label, [] {
 			return u"Build date: %1."_q.arg(__DATE__);
 		});

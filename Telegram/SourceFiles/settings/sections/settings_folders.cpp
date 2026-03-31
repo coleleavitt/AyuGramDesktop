@@ -180,11 +180,16 @@ FilterRowButton::FilterRowButton(
 : RippleButton(parent, st::defaultRippleAnimation)
 , _session(session)
 , _remove(this, st::filtersRemove)
-, _restore(this, tr::lng_filters_restore(), st::stickersUndoRemove)
-, _add(this, tr::lng_filters_recommended_add(), st::stickersTrendingAdd)
+, _restore(this, tr::lng_filters_restore(), st::settingsFilterAddRecommended)
+, _add(
+	this,
+	tr::lng_filters_recommended_add(),
+	st::settingsFilterAddRecommended)
 , _state(description.isEmpty() ? State::Normal : State::Suggested) {
 	_restore.setTextTransform(Ui::RoundButton::TextTransform::NoTransform);
+	_restore.setFullRadius(true);
 	_add.setTextTransform(Ui::RoundButton::TextTransform::NoTransform);
+	_add.setFullRadius(true);
 	setup(filter, description.isEmpty()
 		? ComputeCountString(session, filter)
 		: description);
@@ -360,7 +365,7 @@ struct FoldersState {
 	rpl::event_stream<bool> tagsButtonEnabled;
 };
 
-void SetupFoldersList(
+not_null<Ui::VerticalLayout*> SetupFoldersList(
 		not_null<Window::SessionController*> controller,
 		not_null<Ui::VerticalLayout*> container,
 		not_null<FoldersState*> state,
@@ -765,13 +770,16 @@ void SetupFoldersList(
 			checkFinished();
 		});
 	};
+
+	return wrap;
 }
 
 void SetupRecommendedSection(
 		not_null<Window::SessionController*> controller,
 		not_null<Ui::VerticalLayout*> container,
 		not_null<FoldersState*> state,
-		HighlightRegistry *highlights) {
+		HighlightRegistry *highlights,
+		not_null<Ui::VerticalLayout*> filtersWrap) {
 	const auto session = &controller->session();
 	const auto limit = [=] {
 		return Data::PremiumLimits(session).dialogFiltersCurrent();
@@ -795,12 +803,9 @@ void SetupRecommendedSection(
 		return &*i;
 	};
 
-	const auto addFilter = [=, wrap = container->parentWidget()](
-			const Data::ChatFilter &filter) {
-		const auto outerWrap = static_cast<Ui::VerticalLayout*>(wrap);
-		const auto button = outerWrap->insert(
-			outerWrap->count() - 1,
-			object_ptr<FilterRowButton>(outerWrap, session, filter));
+	const auto addFilter = [=](const Data::ChatFilter &filter) {
+		const auto button = filtersWrap->add(
+			object_ptr<FilterRowButton>(filtersWrap, session, filter));
 		button->removeRequests(
 		) | rpl::on_next([=] {
 			const auto row = find(button);
@@ -839,6 +844,8 @@ void SetupRecommendedSection(
 		});
 		state->rows.push_back({ button, filter });
 		state->count = state->rows.size();
+
+		filtersWrap->resizeToWidth(container->width());
 		return button;
 	};
 
@@ -972,12 +979,17 @@ void BuildFoldersListSection(
 	builder.addSubsectionTitle(tr::lng_filters_subtitle());
 
 	builder.add([=](const WidgetContext &ctx) {
-		SetupFoldersList(ctx.controller, ctx.container, state, ctx.highlights);
-		SetupRecommendedSection(
+		const auto wrap = SetupFoldersList(
 			ctx.controller,
 			ctx.container,
 			state,
 			ctx.highlights);
+		SetupRecommendedSection(
+			ctx.controller,
+			ctx.container,
+			state,
+			ctx.highlights,
+			wrap);
 		return SectionBuilder::WidgetToAdd{};
 	});
 }
